@@ -1,15 +1,17 @@
 import Link from "next/link";
-import { ArrowRight, BarChart3, Clock3, Layers3 } from "lucide-react";
-import { Course, formatPrice } from "@/data/courses";
+import { ArrowUpRight, BarChart3, Clock3, Layers3, MonitorPlay } from "lucide-react";
+import type { Course } from "@/data/courses";
 
-export function CourseCard({ course }: { course: Course }) {
-  return <article className="course-card">
-    <div className="course-visual"><span>{course.icon}</span><small>{course.category}</small></div>
-    <div className="course-body">
-      <div className="course-meta"><span><Clock3 size={15}/>{course.duration}</span><span><BarChart3 size={15}/>{course.level}</span></div>
-      <h3>{course.title}</h3><p>{course.description}</p>
-      <div className="course-foot"><span><Layers3 size={16}/>{course.modules} modules</span><strong>{formatPrice(course.price)}</strong></div>
-      <Link href={`/formations/${course.slug}`} className="card-link">Voir la formation <ArrowRight size={17}/></Link>
-    </div>
-  </article>;
+export function CourseCover({index,className=""}:{index:number,className?:string}) {
+  const col=index%4; const row=Math.floor(index/4);
+  return <div className={`course-cover ${className}`} role="img" aria-label="Illustration de la formation" style={{backgroundImage:"url('/images/course-covers-sprite-v2.png')",backgroundPosition:`${col*33.333}% ${row*100}%`}}/>;
+}
+
+export function CourseCard({course}:{course:Course}) {
+  return <article className="course-card"><div className="course-image"><CourseCover index={course.coverIndex}/><span className="category-badge">{course.category}</span></div><div className="course-body">
+    <div className="course-meta"><span><Clock3/>{course.duration}</span><span><BarChart3/>{course.level}</span></div>
+    <h3>{course.title}</h3><p>{course.description}</p>
+    <div className="course-specs"><span><MonitorPlay/>{course.format}</span><span><Layers3/>{course.modules} modules</span></div>
+    <Link href={`/formations/${course.slug}`} className="card-link">Voir la formation <ArrowUpRight/></Link>
+  </div></article>;
 }

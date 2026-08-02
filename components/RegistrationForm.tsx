@@ -1,0 +1,10 @@
+"use client";
+
+import { FormEvent, useState } from "react";
+import { courses } from "@/data/courses";
+
+export function RegistrationForm() {
+  const [sent,setSent]=useState(false);
+  function submit(event:FormEvent<HTMLFormElement>){event.preventDefault();setSent(true)}
+  return <form className="form-card" onSubmit={submit}><h2>Demande d&apos;inscription</h2><p>Quelques informations suffisent pour commencer.</p>{sent?<div className="demo-success" role="status"><strong>Demande prête à être envoyée</strong><p>Le formulaire fonctionne en mode local. L’enregistrement sera activé lors du raccordement à Supabase.</p><button className="button secondary" type="button" onClick={()=>setSent(false)}>Modifier ma demande</button></div>:<><div className="form-grid"><div className="form-group"><label htmlFor="first-name">Prénom</label><input id="first-name" required/></div><div className="form-group"><label htmlFor="last-name">Nom</label><input id="last-name" required/></div><div className="form-group"><label htmlFor="phone">Téléphone / WhatsApp</label><input id="phone" type="tel" required/></div><div className="form-group"><label htmlFor="email">Email</label><input id="email" type="email" required/></div><div className="form-group"><label htmlFor="city">Ville</label><input id="city"/></div><div className="form-group"><label htmlFor="status">Situation professionnelle</label><select id="status"><option>Salarié(e)</option><option>Entrepreneur</option><option>Étudiant(e)</option><option>En recherche d&apos;emploi</option></select></div><div className="form-group full"><label htmlFor="desired-course">Formation souhaitée</label><select id="desired-course" required><option value="">Choisir une formation</option>{courses.map(c=><option key={c.slug}>{c.title}</option>)}</select></div><div className="form-group full"><label htmlFor="message">Message</label><textarea id="message" placeholder="Précisez vos objectifs ou disponibilités..."/></div></div><button className="button primary" type="submit">Envoyer ma demande</button><p className="form-note">En envoyant ce formulaire, vous acceptez d&apos;être contacté(e) par LIDA Formation.</p></>}</form>;
+}

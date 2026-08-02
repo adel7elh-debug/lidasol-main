@@ -13,12 +13,12 @@ test("renders the LIDA Formation homepage", async () => {
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /LIDA/);
-  assert.match(html, /Développez vos/);
-  assert.match(html, /formations pratiques et professionnelles/);
+  assert.match(html, /Développez des compétences/);
+  assert.match(html, /formations pratiques pour maîtriser/);
   assert.doesNotMatch(html, /codex-preview|Building your site/);
 });
 
-for (const [path, expected] of [["/formations", "Nos formations"], ["/connexion", "Votre apprentissage"], ["/dashboard", "Bonjour, Nadia"], ["/admin", "Administration"]]) {
+for (const [path, expected] of [["/formations", "Développez la compétence"], ["/connexion", "Votre apprentissage"], ["/dashboard", "Bonjour, Nadia"], ["/dashboard/formations", "Mes formations"], ["/admin", "Administration"], ["/admin/formations", "Créez, publiez"]]) {
   test(`renders ${path}`, async () => {
     const response = await render(path);
     assert.equal(response.status, 200);

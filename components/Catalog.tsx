@@ -1,12 +1,9 @@
 "use client";
-import { Search } from "lucide-react";
+
+import { Search, SlidersHorizontal } from "lucide-react";
 import { useMemo, useState } from "react";
 import { CourseCard } from "@/components/CourseCard";
 import { courses } from "@/data/courses";
 
-export function Catalog() {
-  const [query,setQuery]=useState(""); const [category,setCategory]=useState("Toutes"); const [level,setLevel]=useState("Tous");
-  const filtered=useMemo(()=>courses.filter(c=>(category==="Toutes"||c.category===category)&&(level==="Tous"||c.level===level)&&`${c.title} ${c.description}`.toLowerCase().includes(query.toLowerCase())),[query,category,level]);
-  const categories=["Toutes",...new Set(courses.map(c=>c.category))];
-  return <><div className="catalog-tools"><div className="search-wrap"><Search/><input className="field" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Rechercher une formation..." aria-label="Rechercher"/></div><select className="field" value={category} onChange={e=>setCategory(e.target.value)} aria-label="Catégorie">{categories.map(c=><option key={c}>{c}</option>)}</select><select className="field" value={level} onChange={e=>setLevel(e.target.value)} aria-label="Niveau">{["Tous","Débutant","Intermédiaire","Avancé","Tous niveaux"].map(l=><option key={l}>{l}</option>)}</select></div><div className="results-count">{filtered.length} formation{filtered.length!==1?"s":""} disponible{filtered.length!==1?"s":""}</div>{filtered.length?<div className="course-grid">{filtered.map(c=><CourseCard key={c.slug} course={c}/>)}</div>:<div className="dash-card">Aucune formation ne correspond à votre recherche.</div>}</>;
-}
+const filters=["Toutes","Finance & Comptabilité","Fiscalité","Gestion","RH","Logiciels","HSE"];
+export function Catalog(){const [query,setQuery]=useState("");const [active,setActive]=useState("Toutes");const filtered=useMemo(()=>courses.filter(c=>(active==="Toutes"||c.filterCategory===active)&&`${c.title} ${c.description} ${c.category}`.toLowerCase().includes(query.toLowerCase())),[query,active]);return <><div className="catalog-controls"><div className="catalog-search"><Search/><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Rechercher une formation" aria-label="Rechercher une formation"/></div><button className="mobile-filter-label" type="button"><SlidersHorizontal/> Filtres</button><div className="filter-pills catalog-pills" role="group" aria-label="Filtrer par domaine">{filters.map(filter=><button type="button" key={filter} className={active===filter?"active":""} onClick={()=>setActive(filter)}>{filter}</button>)}</div></div><div className="catalog-result-line"><span>{filtered.length} formation{filtered.length!==1?"s":""}</span><small>Parcours en ligne avec accompagnement</small></div>{filtered.length?<div className="course-grid catalog-grid">{filtered.map(c=><CourseCard key={c.slug} course={c}/>)}</div>:<div className="empty-state"><Search/><h3>Aucune formation trouvée</h3><p>Essayez un autre mot-clé ou sélectionnez « Toutes ».</p></div>}</>}
