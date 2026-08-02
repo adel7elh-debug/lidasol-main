@@ -1,0 +1,31 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight, Award, BookOpen, BriefcaseBusiness, CheckCircle2, CirclePlay, Clock3, GraduationCap, ShieldCheck, Sparkles, Users } from "lucide-react";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { CourseCard } from "@/components/CourseCard";
+import { WhatsApp } from "@/components/WhatsApp";
+import { courses } from "@/data/courses";
+
+export const metadata: Metadata = { title: "LIDA Formation | Formations professionnelles", description: "Des formations pratiques en comptabilité, fiscalité, gestion et ressources humaines." };
+
+export default function Home() {
+  return <><Header/><main>
+    <section className="hero"><div className="container hero-grid">
+      <div className="hero-copy"><div className="eyebrow"><Sparkles size={16}/> Formations certifiantes · 100 % pratiques</div>
+        <h1>Développez vos <em>compétences</em> avec des formations pratiques et professionnelles</h1>
+        <p>Des parcours conçus par des experts pour acquérir des savoir-faire directement applicables en entreprise.</p>
+        <div className="hero-actions"><Link href="/formations" className="button primary">Voir les formations <ArrowRight size={18}/></Link><Link href="/inscription" className="button secondary">S&apos;inscrire</Link></div>
+        <div className="hero-proof"><div className="avatars"><span>NA</span><span>YM</span><span>SK</span><span>+2k</span></div><div><div className="stars">★★★★★</div><small>4,9/5 par nos apprenants</small></div></div>
+      </div>
+      <div className="hero-panel"><div className="panel-badge"><CirclePlay/> Prochaine session</div><div className="panel-main"><span className="mini-label">FORMATION POPULAIRE</span><h2>Comptabilité générale & pratique</h2><div className="panel-details"><span><Clock3/>10 semaines</span><span><BookOpen/>10 modules</span></div><div className="progress-label"><span>Inscriptions</span><strong>12 places restantes</strong></div><div className="progress-track"><i/></div><Link href="/formations/comptabilite-generale-pratique">Découvrir le programme <ArrowRight size={17}/></Link></div><div className="floating-card"><Award/><span><strong>Attestation</strong><small>incluse en fin de parcours</small></span></div></div>
+    </div></section>
+    <section className="trust-strip"><div className="container"><span>Des formations pensées pour</span><b>ENTREPRISES</b><b>SALARIÉS</b><b>ENTREPRENEURS</b><b>ÉTUDIANTS</b></div></section>
+    <section className="section"><div className="container"><div className="section-head"><div><span className="kicker">NOTRE CATALOGUE</span><h2>Des formations pour passer à l&apos;action</h2></div><Link href="/formations" className="text-link">Voir toutes les formations <ArrowRight size={17}/></Link></div><div className="course-grid">{courses.filter(c=>c.featured).map(c=><CourseCard key={c.slug} course={c}/>)}</div></div></section>
+    <section className="section soft"><div className="container"><div className="center-head"><span className="kicker">POURQUOI LIDA FORMATION ?</span><h2>Votre réussite est notre priorité</h2><p>Une expérience pédagogique exigeante, flexible et tournée vers l&apos;emploi.</p></div><div className="benefit-grid">{[[BriefcaseBusiness,"Une approche pratique","Des exercices, cas réels et outils utilisables dès le lendemain."],[GraduationCap,"Des formateurs experts","Des professionnels en activité, spécialistes de leur domaine."],[Users,"Un suivi personnalisé","Un accompagnement humain et une progression visible à tout moment."],[ShieldCheck,"Une plateforme sécurisée","Vos cours, résultats et documents dans un espace privé."]].map(([Icon,title,text])=><article key={String(title)}><span className="benefit-icon"><Icon/></span><h3>{String(title)}</h3><p>{String(text)}</p></article>)}</div></div></section>
+    <section className="section process"><div className="container process-grid"><div><span className="kicker">UN PARCOURS SIMPLE</span><h2>Apprenez à votre rythme, progressez avec méthode</h2><p>De l&apos;inscription à l&apos;attestation, chaque étape est claire et accompagnée.</p><Link href="/inscription" className="button primary">Commencer maintenant <ArrowRight size={18}/></Link></div><ol><li><b>01</b><span><strong>Choisissez votre formation</strong><small>Comparez les programmes et trouvez le parcours adapté.</small></span></li><li><b>02</b><span><strong>Apprenez et pratiquez</strong><small>Vidéos, supports, exercices, sessions en direct et QCM.</small></span></li><li><b>03</b><span><strong>Validez vos acquis</strong><small>Suivez vos résultats et recevez votre attestation.</small></span></li></ol></div></section>
+    <section className="metrics"><div className="container">{[["2 000+","apprenants formés"],["25+","formations pratiques"],["96 %","de satisfaction"],["15","formateurs experts"]].map(([n,l])=><div key={n}><strong>{n}</strong><span>{l}</span></div>)}</div></section>
+    <section className="section"><div className="container testimonial"><div><span className="quote-mark">“</span><div className="stars">★★★★★</div><blockquote>Une formation structurée, claire et surtout très pratique. J&apos;ai pu appliquer les méthodes dès la première semaine dans mon entreprise.</blockquote><div className="person"><span>SB</span><div><strong>Salma B.</strong><small>Responsable administrative · Casablanca</small></div></div></div><aside><span className="kicker">ILS NOUS FONT CONFIANCE</span><h2>Des compétences qui changent les trajectoires</h2><p>Nos apprenants rejoignent une communauté active et avancent avec des objectifs concrets.</p><div className="check-list"><span><CheckCircle2/> Supports accessibles 24h/24</span><span><CheckCircle2/> Exercices corrigés et QCM</span><span><CheckCircle2/> Attestation de fin de formation</span></div></aside></div></section>
+    <section className="cta"><div className="container"><div><span className="kicker gold">PRÊT À PROGRESSER ?</span><h2>Faites de vos ambitions<br/>de nouvelles compétences.</h2></div><Link href="/inscription" className="button gold-button">Je m&apos;inscris <ArrowRight size={18}/></Link></div></section>
+  </main><Footer/><WhatsApp/></>;
+}

@@ -1,0 +1,1 @@
+import { SimplePublicPage } from "@/components/SimplePublicPage"; export default function Page(){return <SimplePublicPage kicker="NOTRE ÉQUIPE" title="Des experts qui pratiquent ce qu'ils enseignent">Nos formateurs sont des professionnels expérimentés, choisis pour leur expertise et leur capacité à transmettre avec clarté.</SimplePublicPage>}

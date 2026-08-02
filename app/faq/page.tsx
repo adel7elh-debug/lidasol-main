@@ -1,0 +1,1 @@
+import { SimplePublicPage } from "@/components/SimplePublicPage"; export default function Page(){return <SimplePublicPage kicker="QUESTIONS FRÉQUENTES" title="Tout savoir avant de commencer">Modalités, financement, accès aux cours et attestations : notre équipe répond à vos questions.</SimplePublicPage>}

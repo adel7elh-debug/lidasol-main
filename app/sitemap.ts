@@ -1,0 +1,2 @@
+import type { MetadataRoute } from "next"; import { courses } from "@/data/courses";
+export default function sitemap():MetadataRoute.Sitemap{const base="https://formation.lidasol.com";const pages=["","/formations","/a-propos","/formateurs","/faq","/contact","/inscription","/connexion"];return [...pages.map(url=>({url:base+url,lastModified:new Date(),changeFrequency:"weekly" as const,priority:url===""?1:.7})),...courses.map(course=>({url:`${base}/formations/${course.slug}`,lastModified:new Date(),changeFrequency:"monthly" as const,priority:.8}))]}

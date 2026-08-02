@@ -1,0 +1,1 @@
+import { SimplePublicPage } from "@/components/SimplePublicPage"; export default function Page(){return <SimplePublicPage kicker="CONTACT" title="Parlons de votre projet de formation">Contactez-nous pour choisir le parcours le plus adapté à vos objectifs, à votre niveau et à vos disponibilités.</SimplePublicPage>}

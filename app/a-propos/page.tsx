@@ -1,0 +1,1 @@
+import { SimplePublicPage } from "@/components/SimplePublicPage"; export default function Page(){return <SimplePublicPage kicker="L'ORGANISME" title="Former aujourd'hui, faire grandir demain">LIDA Formation accompagne les professionnels et les organisations avec des parcours exigeants, accessibles et directement utiles.</SimplePublicPage>}
