@@ -27,7 +27,7 @@ export function Header() {
         </button>
         <nav id="main-navigation" className={open ? "main-nav open" : "main-nav"} aria-label="Navigation principale">
           {links.map(([href, label]) => <Link key={href} href={href} onClick={close}>{label}</Link>)}
-          <Link href="/contact?service=Diagnostic" className="button primary small" onClick={close}>Demander un diagnostic <ArrowUpRight/></Link>
+          <Link href="/contact?service=Diagnostic" className="button gold-button small" onClick={close}>Diagnostic gratuit <ArrowUpRight/></Link>
         </nav>
       </div>
     </header>

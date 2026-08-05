@@ -14,7 +14,7 @@ test("renders the multidisciplinary consulting homepage", async () => {
   const html = await response.text();
   assert.match(html, /solutions intelligentes/);
   assert.match(html, /Conseil &amp; accompagnement/);
-  assert.match(html, /Digitalisez votre activité/);
+  assert.match(html, /Des solutions digitales adaptées à votre activité/);
   assert.match(html, /Accompagnement ISO/);
   assert.doesNotMatch(html, /href="\/dashboard|Connexion|Supabase|progression enregistrée/i);
 });
