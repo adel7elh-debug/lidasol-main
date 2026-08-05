@@ -1,2 +1,3 @@
 import type { MetadataRoute } from "next";
-export default function robots():MetadataRoute.Robots{return {rules:{userAgent:"*",allow:"/",disallow:["/admin/","/dashboard/"]},sitemap:"https://formation.lidasol.com/sitemap.xml"}}
+
+export default function robots(): MetadataRoute.Robots { return {rules: {userAgent: "*", allow: "/"}, sitemap: "https://lidasol.com/sitemap.xml"}; }

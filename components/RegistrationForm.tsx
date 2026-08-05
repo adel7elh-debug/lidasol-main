@@ -1,10 +1,42 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { courses } from "@/data/courses";
+import { MessageCircle } from "lucide-react";
+import { formations } from "@/data/formations";
+import { siteConfig } from "@/data/site";
 
-export function RegistrationForm() {
-  const [sent,setSent]=useState(false);
-  function submit(event:FormEvent<HTMLFormElement>){event.preventDefault();setSent(true)}
-  return <form className="form-card" onSubmit={submit}><h2>Demande d&apos;inscription</h2><p>Quelques informations suffisent pour commencer.</p>{sent?<div className="demo-success" role="status"><strong>Demande prête à être envoyée</strong><p>Le formulaire fonctionne en mode local. L’enregistrement sera activé lors du raccordement à Supabase.</p><button className="button secondary" type="button" onClick={()=>setSent(false)}>Modifier ma demande</button></div>:<><div className="form-grid"><div className="form-group"><label htmlFor="first-name">Prénom</label><input id="first-name" required/></div><div className="form-group"><label htmlFor="last-name">Nom</label><input id="last-name" required/></div><div className="form-group"><label htmlFor="phone">Téléphone / WhatsApp</label><input id="phone" type="tel" required/></div><div className="form-group"><label htmlFor="email">Email</label><input id="email" type="email" required/></div><div className="form-group"><label htmlFor="city">Ville</label><input id="city"/></div><div className="form-group"><label htmlFor="status">Situation professionnelle</label><select id="status"><option>Salarié(e)</option><option>Entrepreneur</option><option>Étudiant(e)</option><option>En recherche d&apos;emploi</option></select></div><div className="form-group full"><label htmlFor="desired-course">Formation souhaitée</label><select id="desired-course" required><option value="">Choisir une formation</option>{courses.map(c=><option key={c.slug}>{c.title}</option>)}</select></div><div className="form-group full"><label htmlFor="message">Message</label><textarea id="message" placeholder="Précisez vos objectifs ou disponibilités..."/></div></div><button className="button primary" type="submit">Envoyer ma demande</button><p className="form-note">En envoyant ce formulaire, vous acceptez d&apos;être contacté(e) par LIDA Formation.</p></>}</form>;
+type PreparedRequest = { url: string | null };
+
+export function RegistrationForm({initialFormation = ""}: {initialFormation?: string}) {
+  const [prepared, setPrepared] = useState<PreparedRequest | null>(null);
+  function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const selected = formations.find((formation) => formation.slug === data.get("formation"));
+    const message = [
+      "Bonjour LIDA Solutions & Consulting, je souhaite faire une demande d’inscription.",
+      `Nom : ${data.get("firstName")} ${data.get("lastName")}`,
+      `Téléphone : ${data.get("phone")}`,
+      `WhatsApp : ${data.get("whatsapp")}`,
+      `Email : ${data.get("email")}`,
+      `Ville : ${data.get("city")}`,
+      `Formation : ${selected?.title ?? "Non précisée"}`,
+      `Situation : ${data.get("situation")}`,
+      `Message : ${data.get("message") || "Aucun"}`,
+    ].join("\n");
+    const url = siteConfig.whatsappNumber ? `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}` : null;
+    setPrepared({url});
+  }
+
+  if (prepared) return <div className="form-card success-card" role="status"><span className="success-icon">✓</span><h2>Votre demande a bien été préparée.</h2>{prepared.url ? <><p>Cliquez ci-dessous pour l’envoyer à LIDA Solutions &amp; Consulting sur WhatsApp.</p><a className="button whatsapp-button" href={prepared.url} target="_blank" rel="noreferrer"><MessageCircle/> Envoyer sur WhatsApp</a></> : <><p>WhatsApp n’est pas encore configuré. Vous pouvez nous transmettre votre demande par e-mail.</p><a className="button primary" href={`mailto:${siteConfig.email}`}>Écrire à {siteConfig.email}</a></>}<button className="text-button" type="button" onClick={() => setPrepared(null)}>Modifier ma demande</button></div>;
+
+  return <form className="form-card" onSubmit={submit}><h2>Demande d’inscription</h2><p>Renseignez vos informations. Aucun paiement ne vous sera demandé sur ce site.</p><div className="form-grid">
+    <label>Prénom<input name="firstName" autoComplete="given-name" required/></label><label>Nom<input name="lastName" autoComplete="family-name" required/></label>
+    <label>Téléphone<input name="phone" type="tel" autoComplete="tel" required/></label><label>Numéro WhatsApp<input name="whatsapp" type="tel" required/></label>
+    <label>Email<input name="email" type="email" autoComplete="email" required/></label><label>Ville<input name="city" autoComplete="address-level2" required/></label>
+    <label className="full">Formation souhaitée<select name="formation" defaultValue={initialFormation} required><option value="">Sélectionner une formation</option>{formations.map((formation) => <option key={formation.id} value={formation.slug}>{formation.title}</option>)}</select></label>
+    <label className="full">Situation professionnelle<select name="situation" required><option value="">Sélectionner votre situation</option><option>Salarié(e)</option><option>Entrepreneur(e)</option><option>Étudiant(e)</option><option>En recherche d’emploi</option><option>Autre</option></select></label>
+    <label className="full">Message<textarea name="message" rows={5} placeholder="Précisez vos objectifs ou vos disponibilités…"/></label>
+    <label className="checkbox full"><input name="consent" type="checkbox" required/><span>J’accepte d’être contacté(e) par LIDA Solutions &amp; Consulting au sujet de cette demande.</span></label>
+  </div><button className="button primary" type="submit">Préparer ma demande</button></form>;
 }
