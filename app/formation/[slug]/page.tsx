@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const training = trainingBySlug[slug];
   if (!training) return {};
   const canonical = `/formation/${slug}`;
-  return { title: training.seoTitle, description: training.seoDescription, alternates: { canonical }, openGraph: { title: training.seoTitle, description: training.seoDescription, url: absoluteUrl(canonical), images: [{ url: absoluteUrl(training.image), alt: training.title }] } };
+  return { title: training.seoTitle, description: training.seoDescription, alternates: { canonical }, openGraph: { title: training.seoTitle, description: training.seoDescription, url: absoluteUrl(canonical), images: [{ url: absoluteUrl(training.image), alt: training.imageAlt ?? training.title }] } };
 }
 
 export default async function TrainingDetailPage({ params }: Props) {

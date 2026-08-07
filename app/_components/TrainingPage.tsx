@@ -23,7 +23,7 @@ export function TrainingPage({ training }: { training: TrainingData }) {
 
   return (
     <main>
-      <PageHero eyebrow={`${training.category} · Formation professionnelle`} title={training.title} description={training.description} image={training.image} imageAlt={`Formation ${training.shortTitle} avec LIDA`} breadcrumbs={[{ label: "Formations", href: "/formation" }, { label: training.shortTitle, href: `/formation/${training.slug}` }]} primaryLabel="S’inscrire" primaryHref="#inscription" whatsappMessage={training.whatsappMessage} />
+      <PageHero eyebrow={`${training.category} · Formation professionnelle`} title={training.title} description={training.description} image={training.image} imageAlt={training.imageAlt ?? `Formation ${training.shortTitle} avec LIDA`} breadcrumbs={[{ label: "Formations", href: "/formation" }, { label: training.shortTitle, href: `/formation/${training.slug}` }]} primaryLabel="S’inscrire" primaryHref="#inscription" whatsappMessage={training.whatsappMessage} />
 
       <section className="promise-band"><div className="container"><span>La promesse</span><strong>{training.promise}</strong><div><small>Niveau</small>{training.level}</div><div><small>Durée</small>{training.duration}</div></div></section>
 

@@ -10,6 +10,7 @@ export type TrainingData = {
   description: string;
   promise: string;
   image: string;
+  imageAlt?: string;
   why: string[];
   objectives: string[];
   program: { title: string; items: string[] }[];
@@ -209,7 +210,12 @@ export const trainings: TrainingData[] = [
       duration: "Selon le niveau visé",
       description: `Maîtriser les principes et les exigences de l’ISO ${code} pour contribuer efficacement à un système de ${labels[code]}.`,
       promise: `Traduire les exigences ISO ${code} en pratiques concrètes dans votre organisation.`,
-      image: "/photos/iso.jpg",
+      image: code === "9001" ? "/photos/conseil.jpg" : "/photos/iso.jpg",
+      imageAlt: code === "9001"
+        ? "Équipe analysant des indicateurs pour une formation au management de la qualité ISO 9001"
+        : code === "45001"
+          ? "Professionnel portant un casque et un gilet haute visibilité pour une formation ISO 45001 en sécurité au travail"
+          : undefined,
       why: ["Comprendre le référentiel", "Participer au projet de certification", "Préparer les preuves", "Contribuer aux audits et améliorations"],
       objectives: ["Lire la structure de la norme", "Interpréter les exigences", "Identifier les preuves attendues", "Construire un plan d’application"],
       program: [{ title: "Fondamentaux", items: ["Principes de management", "Structure de la norme", "Vocabulaire", "Rôles"] }, { title: `Exigences ISO ${code}`, items: topics[code] }, { title: "Mise en œuvre", items: ["Diagnostic", "Documentation utile", "Indicateurs", "Plan d’action"] }, { title: "Évaluation", items: ["Audit interne", "Écarts", "Actions correctives", "Revue de direction"] }],

@@ -321,7 +321,7 @@ const pages: ServicePageData[] = [
   },
   ...([ 
     {
-      code: "9001", name: "Qualité", purpose: "structurer la qualité autour des besoins clients et de l’amélioration continue", imageAlt: "Accompagnement à la certification ISO 9001",
+      code: "9001", name: "Qualité", purpose: "structurer la qualité autour des besoins clients et de l’amélioration continue", image: "/photos/conseil.jpg", imageAlt: "Équipe analysant des indicateurs et processus de management de la qualité ISO 9001",
       advantages: ["Satisfaction client mieux pilotée", "Processus maîtrisés", "Non-conformités traitées", "Amélioration continue structurée"],
       audience: ["PME de services ou industrielles", "Entreprises répondant à des appels d’offres", "Organisations souhaitant fiabiliser leurs processus"],
       examples: ["Cartographie des processus qualité", "Traitement des réclamations", "Préparation de la revue de direction"],
@@ -329,7 +329,7 @@ const pages: ServicePageData[] = [
       related: [{ label: "Organisation des processus", href: "/gestion-organisation/organisation-processus" }, { label: "Formation ISO 9001", href: "/formation/iso-9001" }],
     },
     {
-      code: "14001", name: "Environnement", purpose: "identifier, maîtriser et améliorer les impacts environnementaux de l’activité", imageAlt: "Accompagnement à la certification ISO 14001",
+      code: "14001", name: "Environnement", purpose: "identifier, maîtriser et améliorer les impacts environnementaux de l’activité", image: "/photos/iso.jpg", imageAlt: "Accompagnement à la certification ISO 14001",
       advantages: ["Aspects environnementaux priorisés", "Obligations mieux suivies", "Risques et consommations maîtrisés", "Performance environnementale mesurée"],
       audience: ["Industries", "BTP", "Logistique", "Services souhaitant structurer leurs engagements environnementaux"],
       examples: ["Analyse des aspects environnementaux", "Suivi des déchets et consommations", "Préparation aux situations d’urgence"],
@@ -337,7 +337,7 @@ const pages: ServicePageData[] = [
       related: [{ label: "Formation ISO 14001", href: "/formation/iso-14001" }, { label: "Gestion documentaire", href: "/gestion-organisation/procedures-documentation" }],
     },
     {
-      code: "45001", name: "Santé et sécurité", purpose: "prévenir les accidents, les maladies professionnelles et améliorer les conditions de travail", imageAlt: "Accompagnement à la certification ISO 45001",
+      code: "45001", name: "Santé et sécurité", purpose: "prévenir les accidents, les maladies professionnelles et améliorer les conditions de travail", image: "/photos/iso.jpg", imageAlt: "Professionnel équipé d’un casque et d’un gilet haute visibilité pour la sécurité au travail ISO 45001",
       advantages: ["Dangers et risques mieux évalués", "Participation des travailleurs", "Plans de prévention suivis", "Culture sécurité renforcée"],
       audience: ["Industrie", "BTP", "Transport", "Services exposés à des risques professionnels"],
       examples: ["Évaluation des risques SST", "Gestion des incidents", "Préparation et réponse aux urgences"],
@@ -349,7 +349,7 @@ const pages: ServicePageData[] = [
     eyebrow: `Accompagnement ISO ${standard.code}`,
     title: `Faire de l’ISO ${standard.code} un système de management vivant.`,
     description: `LIDA accompagne votre entreprise pour ${standard.purpose}, depuis l’analyse initiale jusqu’à la préparation de l’audit de certification.`,
-    image: "/photos/iso.jpg",
+    image: standard.image,
     imageAlt: standard.imageAlt,
     problems: ["Exigences difficiles à interpréter", "Pratiques non formalisées", "Preuves de fonctionnement dispersées", "Audit de certification à préparer"],
     objectives: [`Comprendre les exigences ISO ${standard.code}`, "Analyser les écarts", "Mettre en conformité les pratiques", "Accompagner jusqu’à la certification"],
