@@ -6,9 +6,9 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "next dev --webpack",
     "build": "vinext build",
-    "start": "vinext start",
+    "start": "node .output/server/index.mjs",
     "test": "npm run build",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"
   },
