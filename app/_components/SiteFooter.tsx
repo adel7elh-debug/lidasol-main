@@ -10,10 +10,11 @@ export function SiteFooter() {
           <Link className="brand footer-brand" href="/" aria-label="LIDA Solutions & Consulting — Accueil">
             <Image
               className="brand-logo footer-brand-logo"
-              src="/logo-lida-new.png"
+              src="/logo-lida-new.png?v=20260808"
               alt=""
               width={500}
               height={500}
+              unoptimized
             />
           </Link>
           <p>Conseil, organisation, digitalisation, ISO et formation professionnelle pour les entreprises au Maroc.</p>
