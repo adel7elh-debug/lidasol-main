@@ -29,7 +29,43 @@ const trainingLinks = [
   ["Formations ISO", "/formation#iso"],
 ] as const;
 
+const aboutLinks = [
+  ["À propos de LIDA", "/a-propos"],
+  ["Notre méthodologie", "/a-propos/methodologie"],
+  ["Adel El Haddioui", "/a-propos/adel-el-haddioui"],
+] as const;
+
 type DropdownName = "Expertises" | "ISO" | "Formations";
+type MobileSectionName = "Services" | "ISO" | "Formations" | "À propos";
+
+function MobileNavSection({ id, label, links, isOpen, onToggle, onLinkClick }: {
+  id: string;
+  label: MobileSectionName;
+  links: ReadonlyArray<readonly [string, string]>;
+  isOpen: boolean;
+  onToggle: () => void;
+  onLinkClick: () => void;
+}) {
+  return (
+    <div className="mobile-nav-section">
+      <button
+        type="button"
+        className="mobile-submenu-trigger"
+        aria-expanded={isOpen}
+        aria-controls={id}
+        onClick={onToggle}
+      >
+        <span>{label}</span>
+        <span className="mobile-submenu-icon" aria-hidden="true">+</span>
+      </button>
+      <div className="mobile-submenu" id={id} hidden={!isOpen}>
+        {links.map(([name, href]) => (
+          <Link href={href} key={href} onClick={onLinkClick}>{name}</Link>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function NavDropdown({ label, links, isOpen, onOpen, onClose, onScheduleClose, onCancelClose }: {
   label: DropdownName;
@@ -76,6 +112,7 @@ function NavDropdown({ label, links, isOpen, onOpen, onClose, onScheduleClose, o
 
 export function SiteHeader() {
   const [activeDropdown, setActiveDropdown] = useState<DropdownName | null>(null);
+  const [activeMobileSection, setActiveMobileSection] = useState<MobileSectionName | null>(null);
   const closeTimer = useRef<number | null>(null);
   const mobileMenuRef = useRef<HTMLDetailsElement>(null);
 
@@ -105,7 +142,12 @@ export function SiteHeader() {
   }
 
   function closeMobileMenu() {
+    setActiveMobileSection(null);
     mobileMenuRef.current?.removeAttribute("open");
+  }
+
+  function toggleMobileSection(name: MobileSectionName) {
+    setActiveMobileSection((current) => current === name ? null : name);
   }
 
   useEffect(() => () => {
@@ -123,6 +165,9 @@ export function SiteHeader() {
         <details
           className="mobile-menu"
           ref={mobileMenuRef}
+          onToggle={(event) => {
+            if (!event.currentTarget.open) setActiveMobileSection(null);
+          }}
           onKeyDown={(event) => {
             if (event.key === "Escape") closeMobileMenu();
           }}
@@ -130,13 +175,11 @@ export function SiteHeader() {
           <summary aria-label="Ouvrir le menu"><span /> Menu</summary>
           <nav aria-label="Navigation mobile">
             <Link href="/" onClick={closeMobileMenu}>Accueil</Link>
-            <Link href="/conseil-accompagnement" onClick={closeMobileMenu}>Conseil</Link>
-            <Link href="/digitalisation" onClick={closeMobileMenu}>Digitalisation</Link>
-            <Link href="/gestion-organisation" onClick={closeMobileMenu}>Organisation</Link>
-            <Link href="/accompagnement-iso" onClick={closeMobileMenu}>ISO</Link>
-            <Link href="/formation" onClick={closeMobileMenu}>Formations</Link>
+            <MobileNavSection id="mobile-services" label="Services" links={expertiseLinks} isOpen={activeMobileSection === "Services"} onToggle={() => toggleMobileSection("Services")} onLinkClick={closeMobileMenu} />
+            <MobileNavSection id="mobile-iso" label="ISO" links={isoLinks} isOpen={activeMobileSection === "ISO"} onToggle={() => toggleMobileSection("ISO")} onLinkClick={closeMobileMenu} />
+            <MobileNavSection id="mobile-formations" label="Formations" links={trainingLinks} isOpen={activeMobileSection === "Formations"} onToggle={() => toggleMobileSection("Formations")} onLinkClick={closeMobileMenu} />
             <Link href="/realisations" onClick={closeMobileMenu}>Réalisations</Link>
-            <Link href="/a-propos" onClick={closeMobileMenu}>À propos</Link>
+            <MobileNavSection id="mobile-about" label="À propos" links={aboutLinks} isOpen={activeMobileSection === "À propos"} onToggle={() => toggleMobileSection("À propos")} onLinkClick={closeMobileMenu} />
             <Link href="/contact" onClick={closeMobileMenu}>Contact</Link>
           </nav>
         </details>

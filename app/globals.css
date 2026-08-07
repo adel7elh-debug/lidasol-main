@@ -343,7 +343,9 @@ main { overflow: clip; }
 
 @media (max-width: 930px) {
   .desktop-nav { display: none; }
-  .mobile-menu { display: block; position: relative; }
+  .site-header, .header-inner { overflow: visible; }
+  .mobile-menu { display: block; position: relative; overflow: visible; }
+  .mobile-menu[open] { z-index: 60; }
   .mobile-menu > summary { min-width: 64px; min-height: 48px; display: flex; align-items: center; justify-content: flex-end; gap: 8px; cursor: pointer; list-style: none; font-size: 12px; font-weight: 800; touch-action: manipulation; }
   .mobile-menu > summary::-webkit-details-marker { display: none; }
   .mobile-menu > summary > span { position: relative; width: 20px; height: 12px; border-top: 2px solid white; border-bottom: 2px solid white; }
@@ -352,8 +354,16 @@ main { overflow: clip; }
   .mobile-menu[open] > summary > span::before, .mobile-menu[open] > summary > span::after { content: ""; position: absolute; width: 20px; height: 2px; margin-top: 9px; background: white; }
   .mobile-menu[open] > summary > span::before { transform: rotate(45deg); }
   .mobile-menu[open] > summary > span::after { transform: rotate(-45deg); }
-  .mobile-menu nav { position: fixed; z-index: 5; left: 0; right: 0; top: 78px; max-height: calc(100dvh - 78px); overflow-y: auto; overscroll-behavior: contain; display: grid; padding: 12px 24px calc(18px + env(safe-area-inset-bottom)); color: var(--ink); background: white; box-shadow: var(--shadow); }
+  .mobile-menu nav { position: fixed; z-index: 60; left: 0; right: 0; top: 78px; max-height: calc(100dvh - 78px); overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; display: grid; align-content: start; padding: 12px 24px calc(18px + env(safe-area-inset-bottom)); color: var(--ink); background: white; box-shadow: var(--shadow); -webkit-overflow-scrolling: touch; }
   .mobile-menu nav a { min-height: 48px; display: flex; align-items: center; padding: 8px 4px; border-bottom: 1px solid var(--line); font-size: 14px; touch-action: manipulation; }
+  .mobile-nav-section { min-width: 0; display: grid; }
+  .mobile-submenu-trigger { width: 100%; min-height: 48px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 4px; color: var(--ink); background: white; border: 0; border-bottom: 1px solid var(--line); cursor: pointer; font-size: 14px; font-weight: 700; text-align: left; touch-action: manipulation; }
+  .mobile-submenu-trigger[aria-expanded="true"] { color: var(--blue); background: var(--paper); }
+  .mobile-submenu-icon { display: grid; place-items: center; width: 28px; height: 28px; flex: 0 0 auto; color: var(--blue); font-size: 22px; font-weight: 400; transition: transform .2s ease; }
+  .mobile-submenu-trigger[aria-expanded="true"] .mobile-submenu-icon { transform: rotate(45deg); }
+  .mobile-submenu { min-width: 0; display: grid; padding: 4px 0 10px 14px; background: var(--paper); border-bottom: 1px solid var(--line); }
+  .mobile-submenu[hidden] { display: none; }
+  .mobile-menu nav .mobile-submenu a { min-height: 44px; padding: 8px 12px; border-color: #d5dfeb; font-size: 13px; line-height: 1.35; overflow-wrap: anywhere; }
   .home-hero, .page-hero { padding-top: 70px; }
   .home-hero-layout, .page-hero-layout, .split-copy, .outcomes-layout, .preview-layout, .two-column-sections, .related-layout, .cta-layout, .registration-layout, .contact-page-layout { grid-template-columns: 1fr; }
   .home-hero-visual, .page-hero-image { min-height: 430px; }
@@ -379,7 +389,7 @@ main { overflow: clip; }
   .brand-mark { width: 38px; height: 38px; }
   .brand-name strong { font-size: 16px; }
   .brand-name small { font-size: 7px; }
-  .mobile-menu nav { top: 70px; }
+  .mobile-menu nav { top: 70px; max-height: calc(100dvh - 70px); }
   .home-hero, .page-hero { padding: 44px 0 56px; }
   .home-hero-layout, .page-hero-layout { gap: 34px; }
   .breadcrumbs { gap: 4px 8px; margin-bottom: 28px; font-size: 11px; line-height: 1.35; }
