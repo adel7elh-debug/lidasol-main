@@ -35,7 +35,7 @@ main { overflow: clip; }
 .site-header { position: sticky; z-index: 50; top: 0; color: white; background: rgba(4, 20, 46, .97); border-bottom: 1px solid rgba(255,255,255,.12); box-shadow: 0 10px 35px rgba(0,0,0,.13); backdrop-filter: blur(18px); }
 .header-inner { min-height: 78px; display: flex; align-items: center; gap: 24px; }
 .brand { display: inline-flex; align-items: center; gap: 11px; min-width: max-content; }
-.brand-logo { display: block; width: 70px; height: 70px; flex: 0 0 auto; object-fit: contain; background: white; border-radius: 6px; }
+.brand-logo { display: block; width: 70px; height: 70px; flex: 0 0 auto; object-fit: contain; }
 .brand-mark { display: grid; place-items: center; width: 42px; height: 42px; color: var(--navy); background: linear-gradient(145deg, var(--gold-light), var(--gold)); font-family: Georgia, serif; font-size: 27px; font-weight: 700; box-shadow: inset 0 0 0 1px rgba(255,255,255,.35); }
 .brand-name { display: flex; flex-direction: column; line-height: 1; }
 .brand-name strong { letter-spacing: .28em; font-size: 18px; }
