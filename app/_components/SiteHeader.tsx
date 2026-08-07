@@ -77,6 +77,7 @@ function NavDropdown({ label, links, isOpen, onOpen, onClose, onScheduleClose, o
 export function SiteHeader() {
   const [activeDropdown, setActiveDropdown] = useState<DropdownName | null>(null);
   const closeTimer = useRef<number | null>(null);
+  const mobileMenuRef = useRef<HTMLDetailsElement>(null);
 
   function cancelClose() {
     if (closeTimer.current !== null) {
@@ -103,6 +104,10 @@ export function SiteHeader() {
     }, 150);
   }
 
+  function closeMobileMenu() {
+    mobileMenuRef.current?.removeAttribute("open");
+  }
+
   useEffect(() => () => {
     if (closeTimer.current !== null) window.clearTimeout(closeTimer.current);
   }, []);
@@ -115,18 +120,24 @@ export function SiteHeader() {
           <span className="brand-name"><strong>LIDA</strong><small>Solutions & Consulting</small></span>
         </Link>
 
-        <details className="mobile-menu">
+        <details
+          className="mobile-menu"
+          ref={mobileMenuRef}
+          onKeyDown={(event) => {
+            if (event.key === "Escape") closeMobileMenu();
+          }}
+        >
           <summary aria-label="Ouvrir le menu"><span /> Menu</summary>
           <nav aria-label="Navigation mobile">
-            <Link href="/">Accueil</Link>
-            <Link href="/conseil-accompagnement">Conseil</Link>
-            <Link href="/digitalisation">Digitalisation</Link>
-            <Link href="/gestion-organisation">Organisation</Link>
-            <Link href="/accompagnement-iso">ISO</Link>
-            <Link href="/formation">Formations</Link>
-            <Link href="/realisations">Réalisations</Link>
-            <Link href="/a-propos">À propos</Link>
-            <Link href="/contact">Contact</Link>
+            <Link href="/" onClick={closeMobileMenu}>Accueil</Link>
+            <Link href="/conseil-accompagnement" onClick={closeMobileMenu}>Conseil</Link>
+            <Link href="/digitalisation" onClick={closeMobileMenu}>Digitalisation</Link>
+            <Link href="/gestion-organisation" onClick={closeMobileMenu}>Organisation</Link>
+            <Link href="/accompagnement-iso" onClick={closeMobileMenu}>ISO</Link>
+            <Link href="/formation" onClick={closeMobileMenu}>Formations</Link>
+            <Link href="/realisations" onClick={closeMobileMenu}>Réalisations</Link>
+            <Link href="/a-propos" onClick={closeMobileMenu}>À propos</Link>
+            <Link href="/contact" onClick={closeMobileMenu}>Contact</Link>
           </nav>
         </details>
 
