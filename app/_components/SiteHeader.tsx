@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { createWhatsAppUrl, whatsappMessages } from "@/app/_lib/site";
 
@@ -158,8 +159,14 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="container header-inner">
         <Link className="brand" href="/" aria-label="LIDA Solutions & Consulting — Accueil">
-          <span className="brand-mark" aria-hidden="true">L</span>
-          <span className="brand-name"><strong>LIDA</strong><small>Solutions & Consulting</small></span>
+          <Image
+            className="brand-logo"
+            src="/logo-lida-new.png"
+            alt=""
+            width={500}
+            height={500}
+            priority
+          />
         </Link>
 
         <details

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { LOCATION, PHONE_DISPLAY, PHONE_LINK } from "@/app/_lib/site";
 
@@ -6,9 +7,14 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="container footer-main">
         <div>
-          <Link className="brand footer-brand" href="/">
-            <span className="brand-mark" aria-hidden="true">L</span>
-            <span className="brand-name"><strong>LIDA</strong><small>Solutions & Consulting</small></span>
+          <Link className="brand footer-brand" href="/" aria-label="LIDA Solutions & Consulting — Accueil">
+            <Image
+              className="brand-logo footer-brand-logo"
+              src="/logo-lida-new.png"
+              alt=""
+              width={500}
+              height={500}
+            />
           </Link>
           <p>Conseil, organisation, digitalisation, ISO et formation professionnelle pour les entreprises au Maroc.</p>
         </div>
