@@ -15,8 +15,6 @@ const phonePattern = /^[+\d][\d\s().-]{7,18}$/;
 export function RegistrationForm({ options, defaultTraining = "" }: { options: Option[]; defaultTraining?: string }) {
   const [values, setValues] = useState<FormValues>({ ...initialValues, training: defaultTraining });
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [whatsappUrl, setWhatsappUrl] = useState("");
 
   function update<K extends keyof FormValues>(key: K, value: FormValues[K]) {
     setValues((current) => ({ ...current, [key]: value }));
@@ -37,13 +35,10 @@ export function RegistrationForm({ options, defaultTraining = "" }: { options: O
     event.preventDefault();
     const nextErrors = validate();
     setErrors(nextErrors);
-    if (values.website) { setStatus("error"); return; }
-    if (Object.keys(nextErrors).length) { setStatus("error"); return; }
-    setStatus("loading");
+    if (values.website || Object.keys(nextErrors).length) return;
     const selected = options.find((option) => option.value === values.training)?.label ?? values.training;
     const message = `Bonjour LIDA Solutions & Consulting,\n\nJe souhaite m’inscrire à une formation.\n\nNom : ${values.name}\nTéléphone : ${values.phone}\nWhatsApp : ${values.whatsapp}\nEmail : ${values.email || "Non renseigné"}\nVille : ${values.city || "Non renseignée"}\nEntreprise : ${values.company || "Non renseignée"}\nFonction : ${values.role || "Non renseignée"}\nFormation : ${selected}\nNiveau actuel : ${values.level || "Non renseigné"}\nMode souhaité : ${values.mode}\nNombre de participants : ${values.participants}\nMessage : ${values.message || "Aucun message complémentaire"}\n\nMerci de me contacter pour confirmer mon inscription.`;
-    setWhatsappUrl(createWhatsAppUrl(message));
-    window.setTimeout(() => setStatus("success"), 350);
+    window.location.assign(createWhatsAppUrl(message));
   }
 
   return (
@@ -65,9 +60,8 @@ export function RegistrationForm({ options, defaultTraining = "" }: { options: O
       </div>
       <label className="consent"><input type="checkbox" checked={values.consent} onChange={(event) => update("consent", event.target.checked)} /> <span>J’accepte que LIDA Solutions & Consulting me contacte concernant cette demande. <strong aria-hidden="true">*</strong></span></label>
       {errors.consent ? <p className="field-error">{errors.consent}</p> : null}
-      <div className="form-submit"><button className="button button-blue" type="submit" disabled={status === "loading"}>{status === "loading" ? "Validation…" : "S’inscrire à la formation"}</button><small>Les informations restent dans votre navigateur jusqu’à leur transmission sur WhatsApp.</small></div>
-      {status === "error" && Object.keys(errors).length ? <p className="form-message error" role="alert">Vérifiez les champs signalés. Vos informations sont conservées.</p> : null}
-      {status === "success" ? <div className="form-message success" role="status"><strong>Votre demande d’inscription a bien été préparée.</strong><p>L’équipe LIDA Solutions & Consulting vous contactera pour confirmer les modalités après transmission.</p><a className="button button-whatsapp" href={whatsappUrl} target="_blank" rel="noreferrer">Transmettre ma demande sur WhatsApp</a></div> : null}
+      <div className="form-submit"><button className="button button-whatsapp" type="submit">Envoyer sur WhatsApp</button><small>Les informations restent dans votre navigateur jusqu’à leur transmission sur WhatsApp.</small></div>
+      {Object.keys(errors).length ? <p className="form-message error" role="alert">Vérifiez les champs signalés. Vos informations sont conservées.</p> : null}
     </form>
   );
 }

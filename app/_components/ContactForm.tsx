@@ -8,8 +8,6 @@ const phonePattern = /^[+\d][\d\s().-]{7,18}$/;
 export function ContactForm() {
   const [values, setValues] = useState({ name: "", phone: "", email: "", company: "", subject: "Diagnostic", message: "", consent: false, website: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [whatsappUrl, setWhatsappUrl] = useState("");
 
   function update(key: keyof typeof values, value: string | boolean) {
     setValues((current) => ({ ...current, [key]: value }));
@@ -24,11 +22,9 @@ export function ContactForm() {
     if (!values.message.trim()) nextErrors.message = "Décrivez brièvement votre besoin.";
     if (!values.consent) nextErrors.consent = "Votre accord est nécessaire.";
     setErrors(nextErrors);
-    if (values.website || Object.keys(nextErrors).length) { setStatus("error"); return; }
-    setStatus("loading");
+    if (values.website || Object.keys(nextErrors).length) return;
     const message = `Bonjour LIDA Solutions & Consulting,\n\nJe souhaite vous contacter.\n\nNom : ${values.name}\nTéléphone : ${values.phone}\nEmail : ${values.email || "Non renseigné"}\nEntreprise : ${values.company || "Non renseignée"}\nObjet : ${values.subject}\nBesoin : ${values.message}`;
-    setWhatsappUrl(createWhatsAppUrl(message));
-    window.setTimeout(() => setStatus("success"), 350);
+    window.location.assign(createWhatsAppUrl(message));
   }
 
   return (
@@ -44,9 +40,8 @@ export function ContactForm() {
       </div>
       <label className="consent"><input type="checkbox" checked={values.consent} onChange={(event) => update("consent", event.target.checked)} /><span>J’accepte que LIDA Solutions & Consulting me contacte concernant cette demande. *</span></label>
       {errors.consent ? <p className="field-error">{errors.consent}</p> : null}
-      <div className="form-submit"><button className="button button-blue" type="submit" disabled={status === "loading"}>{status === "loading" ? "Validation…" : "Préparer ma demande"}</button><small>La demande n’est transmise qu’après votre validation dans WhatsApp.</small></div>
-      {status === "error" && Object.keys(errors).length ? <p className="form-message error" role="alert">Vérifiez les champs signalés. Vos informations sont conservées.</p> : null}
-      {status === "success" ? <div className="form-message success" role="status"><strong>Votre demande est prête.</strong><p>Transmettez-la à l’équipe LIDA pour être recontacté.</p><a className="button button-whatsapp" href={whatsappUrl} target="_blank" rel="noreferrer">Envoyer sur WhatsApp</a></div> : null}
+      <div className="form-submit"><button className="button button-whatsapp" type="submit">Envoyer sur WhatsApp</button><small>La demande n’est transmise qu’après votre validation dans WhatsApp.</small></div>
+      {Object.keys(errors).length ? <p className="form-message error" role="alert">Vérifiez les champs signalés. Vos informations sont conservées.</p> : null}
     </form>
   );
 }
