@@ -3,7 +3,7 @@ export const SITE_URL = "https://www.lidasol.com";
 export const PHONE_DISPLAY = "+212 663 667 848";
 export const PHONE_LINK = "+212663667848";
 export const WHATSAPP_NUMBER = "212663667848";
-export const CONTACT_EMAIL = "";
+export const CONTACT_EMAIL = "lidasolution.consulting@gmail.com";
 export const LOCATION = "Marrakech, Maroc";
 
 export const whatsappMessages = {

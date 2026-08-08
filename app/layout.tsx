@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { SiteHeader } from "@/app/_components/SiteHeader";
 import { SiteFooter } from "@/app/_components/SiteFooter";
 import { WhatsAppFloatingButton } from "@/app/_components/WhatsAppButton";
-import { absoluteUrl, LOCATION, PHONE_LINK, SITE_NAME, SITE_URL } from "@/app/_lib/site";
+import { absoluteUrl, CONTACT_EMAIL, LOCATION, PHONE_LINK, SITE_NAME, SITE_URL } from "@/app/_lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,6 +23,7 @@ const organizationSchema = {
   url: SITE_URL,
   logo: absoluteUrl("/favicon.svg"),
   telephone: PHONE_LINK,
+  email: CONTACT_EMAIL,
   address: { "@type": "PostalAddress", addressLocality: LOCATION.split(",")[0], addressCountry: "MA" },
   areaServed: { "@type": "Country", name: "Maroc" },
 };
