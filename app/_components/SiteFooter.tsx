@@ -23,7 +23,7 @@ export function SiteFooter() {
         <div><strong>Formations</strong><Link href="/formation">Catalogue</Link><Link href="/formation/excel">Excel</Link><Link href="/formation/excel-vba">Excel VBA</Link><Link href="/formation/gestion-intelligence-artificielle">Intelligence Artificielle</Link></div>
         <div><strong>Contact</strong><a href={`tel:${PHONE_LINK}`}>{PHONE_DISPLAY}</a><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a><span>{LOCATION}</span><Link href="/contact">Nous écrire</Link></div>
       </div>
-      <div className="container footer-bottom"><small>© 2026 LIDA Solutions & Consulting</small><div><Link href="/sitemap.xml">Plan du site</Link><Link href="/contact">Contact</Link></div></div>
+      <div className="container footer-bottom"><small>© 2026 LIDA Solutions & Consulting</small><div><Link href="/contact">Contact</Link></div></div>
     </footer>
   );
 }
