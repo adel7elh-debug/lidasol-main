@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, ClipboardCheck, Compass, Gauge, PackageCheck } from "lucide-react";
 import type { ServicePageData } from "@/app/_data/services";
 import { servicePages } from "@/app/_data/services";
 import { PageHero } from "@/app/_components/PageHero";
@@ -15,6 +15,7 @@ function getBreadcrumbs(page: ServicePageData) {
 }
 
 export function ServicePage({ page }: { page: ServicePageData }) {
+  const isSubService = page.path.includes("/");
   const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -24,6 +25,94 @@ export function ServicePage({ page }: { page: ServicePageData }) {
     provider: { "@type": "ProfessionalService", name: SITE_NAME, url: absoluteUrl() },
     areaServed: { "@type": "Country", name: "Maroc" },
   };
+
+  if (isSubService) {
+    const summaryCards = [
+      { label: "Votre besoin", icon: Compass, items: page.problems.slice(0, 2) },
+      { label: "Notre intervention", icon: ClipboardCheck, items: page.objectives.slice(0, 2) },
+      { label: "Le résultat", icon: Gauge, items: page.benefits.slice(0, 2) },
+    ];
+
+    return (
+      <main>
+        <PageHero
+          eyebrow={page.eyebrow}
+          title={page.title}
+          description={page.description}
+          image={page.image}
+          imageAlt={page.imageAlt}
+          breadcrumbs={getBreadcrumbs(page)}
+          primaryLabel={page.primaryLabel}
+          primaryHref="/contact#contact-form"
+          whatsappMessage={page.whatsappMessage}
+        />
+
+        <section className="section compact-overview-section">
+          <div className="container">
+            <div className="compact-heading">
+              <p className="eyebrow eyebrow-dark"><span /> L’essentiel</p>
+              <h2>Une intervention claire, adaptée à votre activité.</h2>
+            </div>
+            <div className="compact-summary-grid">
+              {summaryCards.map(({ label, icon: Icon, items }, index) => (
+                <article className="compact-summary-card" key={label}>
+                  <div className="compact-summary-card__top"><Icon aria-hidden="true" size={23} /><span>0{index + 1}</span></div>
+                  <h3>{label}</h3>
+                  <ul>{items.map((item) => <li key={item}>{item}</li>)}</ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section light-section compact-scope-section">
+          <div className="container compact-scope-grid">
+            <div>
+              <p className="eyebrow eyebrow-dark"><span /> Ce que nous faisons</p>
+              <h2>Un accompagnement ciblé, sans complexité inutile.</h2>
+              <div className="compact-action-list">
+                {page.objectives.slice(0, 4).map((item, index) => (
+                  <div key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></div>
+                ))}
+              </div>
+            </div>
+            <aside className="compact-deliverables">
+              <PackageCheck aria-hidden="true" size={30} />
+              <p className="eyebrow eyebrow-dark"><span /> Vos livrables</p>
+              <h2>Du concret pour passer à l’action.</h2>
+              <ul className="icon-list">
+                {page.deliverables.slice(0, 5).map((item) => <li key={item}><CheckCircle2 aria-hidden="true" size={19} />{item}</li>)}
+              </ul>
+            </aside>
+          </div>
+        </section>
+
+        <section className="section dark-section compact-method-section">
+          <div className="container">
+            <div className="compact-heading compact-heading-light">
+              <p className="eyebrow"><span /> Méthode LIDA</p>
+              <h2>4 étapes pour avancer.</h2>
+            </div>
+            <ol className="compact-process-grid">
+              {page.steps.slice(0, 4).map((step, index) => (
+                <li key={step.title}><span>0{index + 1}</span><div><h3>{step.title}</h3><p>{step.text}</p></div></li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section className="related-section compact-related-section">
+          <div className="container related-layout">
+            <div><p className="eyebrow eyebrow-dark"><span /> À découvrir aussi</p><h2>Des expertises complémentaires.</h2></div>
+            <div>{page.related.slice(0, 2).map((item) => <Link href={item.href} key={item.href}>{item.label}<ArrowRight aria-hidden="true" size={17} /></Link>)}</div>
+          </div>
+        </section>
+
+        <CTASection title="Parlons de votre besoin." text="Un premier échange permet de définir la prochaine étape utile pour votre entreprise." primaryLabel={page.primaryLabel} primaryHref="/contact#contact-form" whatsappMessage={page.whatsappMessage} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      </main>
+    );
+  }
 
   return (
     <main>

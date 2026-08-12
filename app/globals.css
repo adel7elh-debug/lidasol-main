@@ -225,6 +225,44 @@ main { overflow: clip; }
 .faq-list summary span { color: var(--blue); font-size: 24px; font-weight: 400; }
 .faq-list details[open] summary span { transform: rotate(45deg); }
 .faq-list p { margin: -4px 0 22px; color: var(--muted); font-size: 14px; line-height: 1.75; }
+.compact-overview-section { padding: 82px 0; }
+.compact-heading { max-width: 720px; margin-bottom: 36px; }
+.compact-heading h2 { margin: 0; font-size: clamp(34px, 4vw, 52px); line-height: 1.08; letter-spacing: -.045em; }
+.compact-summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.compact-summary-card { min-width: 0; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 45px rgba(6,27,61,.07); }
+.compact-summary-card__top { display: flex; align-items: center; justify-content: space-between; color: var(--blue); }
+.compact-summary-card__top span { color: var(--gold); font-size: 11px; font-weight: 900; letter-spacing: .14em; }
+.compact-summary-card h3 { margin: 32px 0 16px; font-size: 21px; }
+.compact-summary-card ul { display: grid; gap: 11px; margin: 0; padding: 0; list-style: none; }
+.compact-summary-card li { position: relative; padding-left: 17px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+.compact-summary-card li::before { content: ""; position: absolute; left: 0; top: .55em; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+.compact-scope-section { padding: 88px 0; }
+.compact-scope-grid { display: grid; grid-template-columns: 1.12fr .88fr; gap: 80px; align-items: start; }
+.compact-scope-grid h2 { margin: 0; font-size: clamp(34px, 4vw, 50px); line-height: 1.08; letter-spacing: -.045em; }
+.compact-action-list { margin-top: 34px; border-top: 1px solid var(--line); }
+.compact-action-list > div { min-width: 0; display: grid; grid-template-columns: 48px 1fr; gap: 17px; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.compact-action-list span { color: var(--gold); font-family: Georgia, serif; font-size: 18px; }
+.compact-action-list strong { color: #243c5c; font-size: 14px; line-height: 1.45; }
+.compact-deliverables { padding: 34px; color: white; background: var(--navy); box-shadow: 0 24px 60px rgba(6,27,61,.15); }
+.compact-deliverables > svg { margin-bottom: 25px; color: var(--gold-light); }
+.compact-deliverables .eyebrow { color: var(--gold-light); }
+.compact-deliverables h2 { font-size: clamp(29px, 3.2vw, 39px); }
+.compact-deliverables .icon-list { margin-top: 20px; }
+.compact-deliverables .icon-list li { color: rgba(255,255,255,.82); border-color: rgba(255,255,255,.14); }
+.compact-deliverables .icon-list svg { color: var(--gold-light); }
+.compact-method-section { padding: 84px 0; }
+.compact-heading-light h2 { color: white; }
+.compact-process-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(255,255,255,.15); border-bottom: 1px solid rgba(255,255,255,.15); }
+.compact-process-grid li { min-width: 0; display: grid; grid-template-columns: auto 1fr; gap: 15px; padding: 28px 24px; border-right: 1px solid rgba(255,255,255,.15); }
+.compact-process-grid li:last-child { border-right: 0; }
+.compact-process-grid > li > span { color: var(--gold-light); font-family: Georgia, serif; font-size: 17px; }
+.compact-process-grid h3 { margin: 0 0 9px; color: white; font-size: 17px; }
+.compact-process-grid p { margin: 0; color: rgba(255,255,255,.62); font-size: 12px; line-height: 1.6; }
+.compact-program-grid article { min-height: 0; }
+.compact-program-grid h3 { margin-top: 19px; }
+.compact-training-facts { margin-top: 18px; }
+.compact-practical-section { padding: 82px 0; }
+.compact-related-section { padding: 62px 0; }
 .cta-section { padding: 80px 0; color: white; background: radial-gradient(circle at 80% 0, rgba(36,119,230,.28), transparent 33%), var(--navy); }
 .cta-layout { display: grid; grid-template-columns: 1.2fr .8fr; gap: 70px; align-items: center; }
 .cta-layout h2 { font-size: clamp(38px,4.6vw,58px); }
@@ -374,6 +412,10 @@ main { overflow: clip; }
   .mobile-menu nav .mobile-submenu a { min-height: 44px; padding: 8px 12px; border-color: #d5dfeb; font-size: 13px; line-height: 1.35; overflow-wrap: anywhere; }
   .home-hero, .page-hero { padding-top: 70px; }
   .home-hero-layout, .page-hero-layout, .split-copy, .outcomes-layout, .preview-layout, .two-column-sections, .related-layout, .cta-layout, .registration-layout, .contact-page-layout { grid-template-columns: 1fr; }
+  .compact-scope-grid { grid-template-columns: 1fr; gap: 42px; }
+  .compact-process-grid { grid-template-columns: repeat(2, 1fr); }
+  .compact-process-grid li:nth-child(2) { border-right: 0; }
+  .compact-process-grid li:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,.15); }
   .home-hero-visual, .page-hero-image { min-height: 430px; }
   .sticky-copy, .registration-layout > div:first-child { position: static; }
   .home-expertise-grid { grid-template-columns: 1fr; }
@@ -422,6 +464,16 @@ main { overflow: clip; }
   .signal-grid strong { flex: 0 0 auto; font-size: 24px; }
   .signal-grid span { min-width: 0; overflow-wrap: anywhere; font-size: 9px; letter-spacing: .045em; }
   .section { padding: 64px 0; }
+  .compact-overview-section, .compact-scope-section, .compact-method-section { padding: 60px 0; }
+  .compact-heading { margin-bottom: 28px; }
+  .compact-heading h2, .compact-scope-grid h2 { overflow-wrap: anywhere; font-size: clamp(29px, 9vw, 42px); }
+  .compact-summary-grid { grid-template-columns: 1fr; }
+  .compact-summary-card { padding: 23px; }
+  .compact-summary-card h3 { margin-top: 25px; }
+  .compact-deliverables { padding: 26px 22px; }
+  .compact-process-grid { grid-template-columns: 1fr; }
+  .compact-process-grid li, .compact-process-grid li:nth-child(2) { padding: 23px 0; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.15); }
+  .compact-process-grid li:last-child { border-bottom: 0; }
   .section-heading { margin-bottom: 32px; }
   .section-heading h2, .split-copy h2, .two-column-sections h2, .sticky-copy h2, .related-layout h2, .contact-page-layout h2, .registration-layout h2, .intra-layout h2 { overflow-wrap: anywhere; font-size: clamp(29px, 9vw, 42px); line-height: 1.1; }
   .section-heading > p:not(.eyebrow), .split-copy p, .two-column-sections p, .sticky-copy p, .training-practical p { font-size: 14px; line-height: 1.72; }
