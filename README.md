@@ -1,6 +1,6 @@
 # LIDA Solutions & Consulting
 
-Site officiel de LIDA Solutions & Consulting pour présenter ses cinq pôles d'expertise : conseil, digitalisation, organisation, accompagnement ISO et formation professionnelle.
+Site officiel de LIDA Solutions & Consulting pour présenter ses quatre services : digitalisation et automatisation, conseil et accompagnement, pilotage et organisation, et formations professionnelles. L’accompagnement ISO est intégré au pôle Pilotage & organisation.
 
 ## Développement
 

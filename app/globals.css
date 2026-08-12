@@ -113,14 +113,17 @@ main { overflow: clip; }
 .signal-grid span { color: rgba(255,255,255,.74); font-size: 10px; line-height: 1.35; text-transform: uppercase; letter-spacing: .07em; }
 .split-copy { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 100px; }
 .split-copy > div:last-child > p { margin: 0; font-size: 17px; }
-.home-expertise-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
-.home-expertise-grid article { position: relative; min-height: 310px; grid-column: span 2; padding: 28px; background: white; border: 1px solid var(--line); transition: transform .25s ease, box-shadow .25s ease; }
-.home-expertise-grid article:nth-child(n+4) { grid-column: span 3; }
+.home-expertise-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.home-expertise-grid article { position: relative; min-width: 0; padding: 28px 28px 78px; background: white; border: 1px solid var(--line); transition: transform .25s ease, box-shadow .25s ease; }
 .home-expertise-grid article:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
 .expertise-icon { display: grid; place-items: center; width: 46px; height: 46px; color: var(--blue); background: #edf4fd; }
 .home-expertise-grid small { position: absolute; right: 25px; top: 26px; color: var(--gold); font-weight: 800; letter-spacing: .12em; }
-.home-expertise-grid h3 { margin: 36px 0 13px; font-size: 21px; }
+.home-expertise-grid h3 { margin: 30px 0 13px; font-size: 21px; }
 .home-expertise-grid p { color: var(--muted); font-size: 13px; line-height: 1.7; }
+.home-expertise-grid ul { display: grid; gap: 9px; margin: 22px 0 0; padding: 0; list-style: none; }
+.home-expertise-grid li { position: relative; padding-left: 18px; color: #304866; font-size: 12px; line-height: 1.5; }
+.home-expertise-grid li::before { content: ""; position: absolute; left: 0; top: .58em; width: 7px; height: 7px; background: var(--gold); border-radius: 50%; }
+.home-expertise-grid .expertise-note { margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--line); font-size: 10px; line-height: 1.55; }
 .home-expertise-grid a { position: absolute; left: 28px; bottom: 28px; display: flex; align-items: center; gap: 8px; color: var(--blue); font-size: 12px; font-weight: 800; }
 .outcomes-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 100px; align-items: start; }
 .sticky-copy { position: sticky; top: 120px; }
@@ -192,6 +195,8 @@ main { overflow: clip; }
 .feature-card > svg { color: var(--blue); }
 .feature-card h3 { margin: 42px 0 13px; font-size: 20px; }
 .feature-card p { color: var(--muted); font-size: 13px; line-height: 1.7; }
+.service-scope-card { min-height: 150px; }
+.service-scope-card h3 { margin: 30px 0 0; }
 .linked-card { display: block; transition: transform .2s ease, box-shadow .2s ease; }
 .linked-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
 .linked-card > span { display: flex; align-items: center; gap: 7px; margin-top: 22px; color: var(--blue); font-size: 12px; font-weight: 800; }
@@ -370,7 +375,8 @@ main { overflow: clip; }
   .home-hero-layout, .page-hero-layout, .split-copy, .outcomes-layout, .preview-layout, .two-column-sections, .related-layout, .cta-layout, .registration-layout, .contact-page-layout { grid-template-columns: 1fr; }
   .home-hero-visual, .page-hero-image { min-height: 430px; }
   .sticky-copy, .registration-layout > div:first-child { position: static; }
-  .home-expertise-grid article, .home-expertise-grid article:nth-child(n+4) { grid-column: span 3; }
+  .home-expertise-grid { grid-template-columns: 1fr; }
+  .home-expertise-grid article { grid-column: auto; }
   .featured-trainings, .process-grid, .four-cols { grid-template-columns: repeat(2, 1fr); }
   .process-grid li:nth-child(2) { border-right: 0; }
   .process-grid li { border-bottom: 1px solid rgba(255,255,255,.13); }
@@ -421,8 +427,7 @@ main { overflow: clip; }
   .split-heading { grid-template-columns: 1fr; gap: 20px; }
   .split-copy, .outcomes-layout, .preview-layout, .two-column-sections, .related-layout, .cta-layout, .registration-layout, .contact-page-layout { gap: 36px; }
   .home-expertise-grid { grid-template-columns: 1fr; }
-  .home-expertise-grid article, .home-expertise-grid article:nth-child(n+4) { grid-column: 1; }
-  .home-expertise-grid article { min-height: 285px; padding: 23px; }
+  .home-expertise-grid article { grid-column: 1; min-height: 0; padding: 23px 23px 75px; }
   .home-expertise-grid a { left: 23px; bottom: 23px; min-height: 44px; }
   .text-link, .transparency-box a { min-height: 44px; align-items: center; }
   .featured-trainings, .process-grid, .four-cols, .three-cols, .training-grid, .program-grid { grid-template-columns: 1fr; }

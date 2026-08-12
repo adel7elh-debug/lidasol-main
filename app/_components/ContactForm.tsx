@@ -6,7 +6,7 @@ import { createWhatsAppUrl } from "@/app/_lib/site";
 const phonePattern = /^[+\d][\d\s().-]{7,18}$/;
 
 export function ContactForm() {
-  const [values, setValues] = useState({ name: "", phone: "", email: "", company: "", subject: "Diagnostic", message: "", consent: false, website: "" });
+  const [values, setValues] = useState({ name: "", phone: "", email: "", company: "", subject: "Diagnostic 180° offert", message: "", consent: false, website: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   function update(key: keyof typeof values, value: string | boolean) {
@@ -35,7 +35,7 @@ export function ContactForm() {
         <label className="field"><span>Téléphone *</span><input value={values.phone} onChange={(event) => update("phone", event.target.value)} inputMode="tel" autoComplete="tel" />{errors.phone ? <small className="field-error">{errors.phone}</small> : null}</label>
         <label className="field"><span>Email</span><input type="email" value={values.email} onChange={(event) => update("email", event.target.value)} autoComplete="email" />{errors.email ? <small className="field-error">{errors.email}</small> : null}</label>
         <label className="field"><span>Entreprise</span><input value={values.company} onChange={(event) => update("company", event.target.value)} autoComplete="organization" /></label>
-        <label className="field wide"><span>Objet</span><select value={values.subject} onChange={(event) => update("subject", event.target.value)}><option>Diagnostic</option><option>Demande de devis</option><option>Être rappelé</option><option>Accompagnement ISO</option><option>Formation</option><option>Digitalisation</option></select></label>
+        <label className="field wide"><span>Objet</span><select value={values.subject} onChange={(event) => update("subject", event.target.value)}><option>Diagnostic 180° offert</option><option>Digitalisation & automatisation</option><option>Conseil comptable, fiscal ou juridique</option><option>Pilotage & organisation</option><option>Accompagnement ISO</option><option>Formation professionnelle</option><option>Demande de devis</option><option>Être rappelé</option></select></label>
         <label className="field wide"><span>Votre besoin *</span><textarea rows={6} value={values.message} onChange={(event) => update("message", event.target.value)} />{errors.message ? <small className="field-error">{errors.message}</small> : null}</label>
       </div>
       <label className="consent"><input type="checkbox" checked={values.consent} onChange={(event) => update("consent", event.target.checked)} /><span>J’accepte que LIDA Solutions & Consulting me contacte concernant cette demande. *</span></label>

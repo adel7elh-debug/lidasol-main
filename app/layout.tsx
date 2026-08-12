@@ -8,7 +8,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: "LIDA Solutions & Consulting", template: "%s | LIDA Solutions & Consulting" },
-  description: "Conseil, digitalisation, organisation, accompagnement ISO et formation professionnelle au Maroc.",
+  description: "Digitalisation et automatisation, conseil, pilotage et organisation, accompagnement ISO et formations professionnelles au Maroc.",
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
   robots: { index: true, follow: true },
   openGraph: { type: "website", locale: "fr_MA", siteName: SITE_NAME },

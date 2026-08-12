@@ -12,7 +12,7 @@ export const whatsappMessages = {
 Je viens de visiter votre site et je souhaite avoir plus d’informations sur vos services.`,
   diagnostic: `Bonjour LIDA Solutions & Consulting,
 
-Je souhaite demander un diagnostic pour mon entreprise.`,
+Je souhaite demander le diagnostic 180° offert pour mon entreprise.`,
   iso: `Bonjour LIDA Solutions & Consulting,
 
 Je souhaite demander un diagnostic ISO.`,
@@ -24,7 +24,7 @@ Je souhaite avoir des informations concernant vos formations professionnelles.`,
 Je souhaite discuter d’un projet de digitalisation de mon entreprise.`,
   organisation: `Bonjour LIDA Solutions & Consulting,
 
-Je souhaite améliorer l’organisation et la gestion de mon entreprise.`,
+Je souhaite améliorer le pilotage et l’organisation de mon entreprise, notamment sur les volets ISO et QSE.`,
   intra: `Bonjour LIDA Solutions & Consulting,
 
 Je souhaite organiser une formation intra-entreprise pour plusieurs collaborateurs et adapter le programme aux besoins de notre équipe.`,

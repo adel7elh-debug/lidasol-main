@@ -1,6 +1,7 @@
 import { whatsappMessages } from "@/app/_lib/site";
 
 export type LinkItem = { label: string; href: string };
+export type ServiceChild = { label: string; href?: string };
 export type FaqItem = { question: string; answer: string };
 
 export type ServicePageData = {
@@ -19,7 +20,7 @@ export type ServicePageData = {
   examples: string[];
   faq: FaqItem[];
   related: LinkItem[];
-  children?: LinkItem[];
+  children?: ServiceChild[];
   primaryLabel: string;
   whatsappMessage: string;
   seoTitle: string;
@@ -37,32 +38,32 @@ const pages: ServicePageData[] = [
   {
     path: "conseil-accompagnement",
     eyebrow: "Conseil & accompagnement",
-    title: "Des décisions plus claires pour faire avancer votre entreprise.",
-    description: "LIDA accompagne les dirigeants et les PME marocaines pour transformer une situation complexe en priorités concrètes, pilotables et partagées.",
+    title: "Mieux préparer et suivre les obligations de votre entreprise.",
+    description: "Nous vous aidons à préparer, organiser et suivre vos obligations administratives, comptables, fiscales et juridiques. Certaines prestations sont réalisées en collaboration avec des professionnels habilités, selon la nature de la mission.",
     image: "/photos/conseil.jpg",
-    imageAlt: "Réunion de conseil et accompagnement d’entreprise",
-    problems: ["Priorités dispersées", "Décisions difficiles à traduire en actions", "Manque de visibilité sur la performance", "Équipes insuffisamment alignées"],
-    objectives: ["Structurer la réflexion du dirigeant", "Choisir les projets à plus fort impact", "Installer un pilotage simple", "Sécuriser l’exécution dans la durée"],
+    imageAlt: "Conseil comptable, fiscal et juridique pour une entreprise",
+    problems: ["Échéances difficiles à suivre", "Documents administratifs dispersés", "Manque de visibilité comptable et fiscale", "Besoin d’un avis juridique adapté"],
+    objectives: ["Organiser les informations et les échéances", "Préparer les éléments comptables", "Anticiper les obligations fiscales", "Orienter les demandes juridiques vers le bon professionnel"],
     steps: sharedSteps,
-    deliverables: ["Diagnostic de situation", "Feuille de route priorisée", "Plan d’action", "Rituels et indicateurs de suivi"],
-    benefits: ["Décisions objectivées", "Priorités partagées", "Responsabilités lisibles", "Progression mesurable"],
-    audience: ["Dirigeants de PME", "Entrepreneurs", "Managers", "Entreprises en phase de structuration ou de transformation"],
-    examples: ["Diagnostic global avant une phase de croissance", "Remise à plat des priorités opérationnelles", "Accompagnement d’un comité de direction"],
+    deliverables: ["État des lieux des obligations", "Calendrier de suivi", "Dossiers et pièces organisés", "Synthèse des points de vigilance"],
+    benefits: ["Échéances mieux maîtrisées", "Informations plus accessibles", "Décisions mieux préparées", "Coordination facilitée avec les professionnels concernés"],
+    audience: ["Dirigeants de PME", "Entrepreneurs", "Créateurs d’entreprise", "Services administratifs et financiers"],
+    examples: ["Organisation du suivi comptable", "Préparation d’un dossier fiscal", "Cadrage d’une demande juridique"],
     faq: [
-      { question: "Par quoi commence un accompagnement ?", answer: "Un premier échange permet de cadrer le besoin. LIDA propose ensuite un diagnostic ciblé avant de recommander un plan d’intervention." },
-      { question: "L’accompagnement convient-il à une petite entreprise ?", answer: "Oui. La méthode, le rythme et les livrables sont adaptés à la taille, aux ressources et à la maturité de chaque entreprise." },
-      { question: "Intervenez-vous uniquement à Marrakech ?", answer: "Les missions peuvent être organisées sur site au Maroc, à distance ou dans un format hybride selon le besoin." },
+      { question: "Quelles prestations sont proposées ?", answer: "L’accompagnement couvre la préparation, l’organisation et le suivi des besoins comptables, fiscaux et juridiques." },
+      { question: "Intervenez-vous avec des professionnels habilités ?", answer: "Oui. Certaines prestations sont réalisées en collaboration avec des professionnels habilités, selon la nature de la mission." },
+      { question: "L’accompagnement convient-il à une petite entreprise ?", answer: "Oui. Le périmètre, le rythme et les outils sont adaptés à la taille et aux besoins de chaque entreprise." },
     ],
-    related: [{ label: "Structurer l’organisation", href: "/gestion-organisation" }, { label: "Digitaliser les opérations", href: "/digitalisation" }],
+    related: [{ label: "Digitaliser le suivi comptable et fiscal", href: "/digitalisation" }, { label: "Structurer le pilotage", href: "/gestion-organisation" }],
     children: [
-      { label: "Diagnostic d’entreprise", href: "/conseil-accompagnement/diagnostic-entreprise" },
-      { label: "Optimisation de la performance", href: "/conseil-accompagnement/optimisation-performance" },
-      { label: "Accompagnement managérial", href: "/conseil-accompagnement/accompagnement-managerial" },
+      { label: "Conseil comptable" },
+      { label: "Conseil fiscal" },
+      { label: "Conseil juridique" },
     ],
-    primaryLabel: "Demander un diagnostic",
+    primaryLabel: "Présenter mon besoin",
     whatsappMessage: whatsappMessages.diagnostic,
-    seoTitle: "Cabinet de conseil et accompagnement au Maroc",
-    seoDescription: "Conseil aux PME au Maroc : diagnostic, feuille de route, accompagnement du dirigeant et pilotage de la performance avec LIDA.",
+    seoTitle: "Conseil comptable, fiscal et juridique au Maroc",
+    seoDescription: "Accompagnement des entreprises pour préparer, organiser et suivre leurs besoins administratifs, comptables, fiscaux et juridiques.",
   },
   {
     path: "conseil-accompagnement/diagnostic-entreprise",
@@ -129,9 +130,9 @@ const pages: ServicePageData[] = [
   },
   {
     path: "digitalisation",
-    eyebrow: "Digitalisation",
+    eyebrow: "Digitalisation & automatisation",
     title: "Digitaliser ce qui ralentit réellement votre activité.",
-    description: "LIDA simplifie vos processus avant de choisir les outils, pour réduire les tâches manuelles, fiabiliser l’information et améliorer les décisions.",
+    description: "Nous digitalisons et automatisons les tâches qui ralentissent réellement votre activité.",
     image: "/photos/digitalisation.jpg",
     imageAlt: "Digitalisation des processus d’une PME",
     problems: ["Saisies multiples", "Fichiers dispersés", "Reporting chronophage", "Informations difficiles à consolider"],
@@ -143,11 +144,11 @@ const pages: ServicePageData[] = [
     examples: ["Circuit de validation digital", "Centralisation du suivi client", "Reporting automatique de direction"],
     faq: [{ question: "Faut-il changer tous nos outils ?", answer: "Non. LIDA évalue d’abord les outils et fichiers existants afin de réutiliser ce qui fonctionne." }, { question: "La digitalisation convient-elle à une petite structure ?", answer: "Oui, à condition de cibler les irritants prioritaires et de déployer des solutions proportionnées." }, { question: "Accompagnez-vous la prise en main ?", answer: "Oui. Documentation, formation et période d’ajustement font partie de l’approche proposée." }],
     related: [{ label: "Organisation des processus", href: "/gestion-organisation/organisation-processus" }, { label: "Formation IA pour la gestion", href: "/formation/gestion-intelligence-artificielle" }],
-    children: [{ label: "Digitalisation des processus", href: "/digitalisation/digitalisation-processus" }, { label: "Tableaux de bord", href: "/digitalisation/tableaux-de-bord" }, { label: "Outils de gestion", href: "/digitalisation/outils-gestion" }],
+    children: [{ label: "Organisation numérique des documents" }, { label: "Automatisation et intégration ERP" }, { label: "Tableaux de bord automatisés" }, { label: "Digitalisation du suivi comptable et fiscal" }, { label: "Outils de gestion et de management adaptés" }],
     primaryLabel: "Demander un diagnostic digital",
     whatsappMessage: whatsappMessages.digitalisation,
-    seoTitle: "Digitalisation des PME au Maroc",
-    seoDescription: "Digitalisation des processus, automatisation, données et tableaux de bord pour les PME marocaines.",
+    seoTitle: "Digitalisation et automatisation des PME au Maroc",
+    seoDescription: "Organisation numérique, automatisation, intégration ERP, suivi comptable et fiscal, tableaux de bord et outils de gestion pour les PME marocaines.",
   },
   {
     path: "digitalisation/digitalisation-processus",
@@ -214,25 +215,25 @@ const pages: ServicePageData[] = [
   },
   {
     path: "gestion-organisation",
-    eyebrow: "Gestion & organisation",
-    title: "Une organisation lisible, pilotable et moins dépendante de l’urgence.",
-    description: "LIDA clarifie les processus, les responsabilités, les documents et les indicateurs qui permettent à l’entreprise de fonctionner avec davantage de maîtrise.",
+    eyebrow: "Pilotage & organisation",
+    title: "Mieux décider, mieux agir et mieux suivre les résultats.",
+    description: "Nous structurons le fonctionnement de votre entreprise et mettons en place les outils nécessaires pour mieux décider, agir et suivre les résultats.",
     image: "/photos/organisation.jpg",
     imageAlt: "Organisation et gestion d’une entreprise",
     problems: ["Rôles mal définis", "Pratiques différentes selon les personnes", "Procédures absentes ou inutilisées", "Pilotage réactif plutôt que préventif"],
-    objectives: ["Structurer le fonctionnement", "Clarifier qui décide et qui agit", "Formaliser sans bureaucratiser", "Installer une amélioration continue"],
+    objectives: ["Structurer le fonctionnement", "Clarifier qui décide et qui agit", "Maîtriser les risques opérationnels", "Intégrer le pilotage ISO et QSE"],
     steps: sharedSteps,
     deliverables: ["Cartographie des processus", "Organigramme et responsabilités", "Procédures utiles", "KPI et routines de pilotage"],
     benefits: ["Coordination renforcée", "Continuité d’activité", "Intégration facilitée", "Performance mieux maîtrisée"],
     audience: ["PME en croissance", "Entreprises familiales", "Structures multi-activités", "Organisations préparant une certification"],
-    examples: ["Refonte d’une organisation interne", "Création d’un système documentaire", "Mise en place d’un pilotage mensuel"],
+    examples: ["Diagnostic organisationnel et ISO", "Création d’un système documentaire", "Mise en place d’un pilotage ISO, QSE ou SMQ externalisé"],
     faq: [{ question: "Faut-il tout formaliser ?", answer: "Non. LIDA formalise ce qui sécurise les activités, clarifie les interfaces ou facilite la transmission." }, { question: "Les équipes participent-elles ?", answer: "Oui. Leur connaissance du terrain est indispensable pour produire une organisation applicable." }, { question: "Cette démarche prépare-t-elle à l’ISO ?", answer: "Elle constitue une base utile, mais un projet ISO comprend des exigences et étapes complémentaires." }],
-    related: [{ label: "Digitaliser les processus", href: "/digitalisation" }, { label: "Accompagnement ISO 9001", href: "/accompagnement-iso/iso-9001" }],
-    children: [{ label: "Organisation des processus", href: "/gestion-organisation/organisation-processus" }, { label: "Procédures & documentation", href: "/gestion-organisation/procedures-documentation" }, { label: "Pilotage de la performance", href: "/gestion-organisation/pilotage-performance" }],
-    primaryLabel: "Demander un diagnostic organisationnel",
+    related: [{ label: "Digitaliser les processus", href: "/digitalisation" }, { label: "Découvrir l’accompagnement ISO", href: "/accompagnement-iso" }],
+    children: [{ label: "Diagnostic organisationnel & ISO" }, { label: "Processus & responsabilités" }, { label: "Documentation & conformité" }, { label: "Risques & maîtrise opérationnelle" }, { label: "Tableaux de bord & KPI" }, { label: "Audit interne & préparation à la certification" }, { label: "Pilotage ISO, QSE & SMQ externalisé" }],
+    primaryLabel: "Demander un diagnostic organisationnel & ISO",
     whatsappMessage: whatsappMessages.organisation,
-    seoTitle: "Conseil en organisation d’entreprise au Maroc",
-    seoDescription: "Structuration des processus, rôles, procédures, KPI et pilotage pour les entreprises et PME au Maroc.",
+    seoTitle: "Pilotage, organisation et ISO au Maroc",
+    seoDescription: "Diagnostic organisationnel et ISO, processus, responsabilités, conformité, risques, KPI, audit interne et pilotage QSE ou SMQ externalisé.",
   },
   {
     path: "gestion-organisation/organisation-processus",
@@ -299,7 +300,7 @@ const pages: ServicePageData[] = [
   },
   {
     path: "accompagnement-iso",
-    eyebrow: "Accompagnement ISO",
+    eyebrow: "Pilotage & organisation · ISO",
     title: "Préparer votre certification avec un système utile au terrain.",
     description: "Du diagnostic initial à la préparation de l’audit, LIDA accompagne vos équipes pour construire un système de management compris, appliqué et durable.",
     image: "/photos/iso.jpg",
@@ -312,7 +313,7 @@ const pages: ServicePageData[] = [
     audience: ["PME", "Industries", "Services", "Organisations souhaitant structurer ou faire évoluer leur système de management"],
     examples: ["Préparation ISO 9001", "Système environnemental ISO 14001", "Management SST ISO 45001"],
     faq: [{ question: "LIDA délivre-t-elle la certification ?", answer: "Non. LIDA accompagne et prépare l’entreprise. La certification est délivrée par un organisme certificateur indépendant." }, { question: "Combien de temps faut-il ?", answer: "La durée dépend de la taille, du périmètre et de la maturité de l’organisation. Le diagnostic initial permet d’établir un calendrier réaliste." }, { question: "Réalisez-vous les audits internes ?", answer: "Oui, dans le respect de l’indépendance nécessaire par rapport aux activités auditées." }],
-    related: [{ label: "Organisation & processus", href: "/gestion-organisation" }, { label: "Formation QHSE", href: "/formation/qhse" }],
+    related: [{ label: "Pilotage & organisation", href: "/gestion-organisation" }, { label: "Formation QHSE", href: "/formation/qhse" }],
     children: [{ label: "ISO 9001 · Qualité", href: "/accompagnement-iso/iso-9001" }, { label: "ISO 14001 · Environnement", href: "/accompagnement-iso/iso-14001" }, { label: "ISO 45001 · Santé et sécurité", href: "/accompagnement-iso/iso-45001" }],
     primaryLabel: "Demander un diagnostic ISO",
     whatsappMessage: whatsappMessages.iso,
@@ -346,7 +347,7 @@ const pages: ServicePageData[] = [
     },
   ] as const).map((standard): ServicePageData => ({
     path: `accompagnement-iso/iso-${standard.code}`,
-    eyebrow: `Accompagnement ISO ${standard.code}`,
+    eyebrow: `Pilotage & organisation · ISO ${standard.code}`,
     title: `Faire de l’ISO ${standard.code} un système de management vivant.`,
     description: `LIDA accompagne votre entreprise pour ${standard.purpose}, depuis l’analyse initiale jusqu’à la préparation de l’audit de certification.`,
     image: standard.image,

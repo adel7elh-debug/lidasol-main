@@ -51,7 +51,12 @@ export function ServicePage({ page }: { page: ServicePageData }) {
           <div className="container">
             <div className="section-heading"><p className="eyebrow eyebrow-dark"><span /> Nos interventions</p><h2>Choisissez le point d’entrée adapté à votre besoin.</h2></div>
             <div className="feature-card-grid three-cols">
-              {page.children.map((child, index) => <Link className="feature-card linked-card" href={child.href} key={child.href}><small>0{index + 1}</small><h3>{child.label}</h3><p>Une intervention structurée, adaptée à votre contexte et orientée vers des résultats mesurables.</p><span>Découvrir <ArrowRight aria-hidden="true" size={16} /></span></Link>)}
+              {page.children.map((child, index) => {
+                const content = <><small>{String(index + 1).padStart(2, "0")}</small><h3>{child.label}</h3>{child.href ? <><p>Une intervention structurée, adaptée à votre contexte et orientée vers des résultats mesurables.</p><span>Découvrir <ArrowRight aria-hidden="true" size={16} /></span></> : null}</>;
+                return child.href
+                  ? <Link className="feature-card linked-card" href={child.href} key={child.href}>{content}</Link>
+                  : <article className="feature-card service-scope-card" key={child.label}>{content}</article>;
+              })}
             </div>
           </div>
         </section>

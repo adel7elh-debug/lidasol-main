@@ -5,29 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { createWhatsAppUrl, whatsappMessages } from "@/app/_lib/site";
 
-const expertiseLinks = [
+const serviceLinks = [
+  ["Digitalisation & automatisation", "/digitalisation"],
   ["Conseil & accompagnement", "/conseil-accompagnement"],
-  ["Digitalisation", "/digitalisation"],
-  ["Gestion & organisation", "/gestion-organisation"],
-] as const;
-
-const isoLinks = [
-  ["Accompagnement ISO", "/accompagnement-iso"],
-  ["ISO 9001", "/accompagnement-iso/iso-9001"],
-  ["ISO 14001", "/accompagnement-iso/iso-14001"],
-  ["ISO 45001", "/accompagnement-iso/iso-45001"],
-] as const;
-
-const trainingLinks = [
-  ["Toutes les formations", "/formation"],
-  ["Gestion administrative & comptable", "/formation/gestion-administrative-comptable"],
-  ["Optimisation fiscale", "/formation/optimisation-fiscale"],
-  ["Intelligence Artificielle", "/formation/gestion-intelligence-artificielle"],
-  ["Excel", "/formation/excel"],
-  ["Excel VBA", "/formation/excel-vba"],
-  ["Management", "/formation/management"],
-  ["QHSE", "/formation/qhse"],
-  ["Formations ISO", "/formation#iso"],
+  ["Pilotage & organisation", "/gestion-organisation"],
+  ["Formations professionnelles", "/formation"],
 ] as const;
 
 const aboutLinks = [
@@ -36,8 +18,8 @@ const aboutLinks = [
   ["Adel El Haddioui", "/a-propos/adel-el-haddioui"],
 ] as const;
 
-type DropdownName = "Expertises" | "ISO" | "Formations";
-type MobileSectionName = "Services" | "ISO" | "Formations" | "À propos";
+type DropdownName = "Services";
+type MobileSectionName = "Services" | "À propos";
 
 function MobileNavSection({ id, label, links, isOpen, onToggle, onLinkClick }: {
   id: string;
@@ -183,9 +165,7 @@ export function SiteHeader() {
           <summary aria-label="Ouvrir le menu"><span /> Menu</summary>
           <nav aria-label="Navigation mobile">
             <Link href="/" onClick={closeMobileMenu}>Accueil</Link>
-            <MobileNavSection id="mobile-services" label="Services" links={expertiseLinks} isOpen={activeMobileSection === "Services"} onToggle={() => toggleMobileSection("Services")} onLinkClick={closeMobileMenu} />
-            <MobileNavSection id="mobile-iso" label="ISO" links={isoLinks} isOpen={activeMobileSection === "ISO"} onToggle={() => toggleMobileSection("ISO")} onLinkClick={closeMobileMenu} />
-            <MobileNavSection id="mobile-formations" label="Formations" links={trainingLinks} isOpen={activeMobileSection === "Formations"} onToggle={() => toggleMobileSection("Formations")} onLinkClick={closeMobileMenu} />
+            <MobileNavSection id="mobile-services" label="Services" links={serviceLinks} isOpen={activeMobileSection === "Services"} onToggle={() => toggleMobileSection("Services")} onLinkClick={closeMobileMenu} />
             <Link href="/realisations" onClick={closeMobileMenu}>Réalisations</Link>
             <MobileNavSection id="mobile-about" label="À propos" links={aboutLinks} isOpen={activeMobileSection === "À propos"} onToggle={() => toggleMobileSection("À propos")} onLinkClick={closeMobileMenu} />
             <Link href="/contact" onClick={closeMobileMenu}>Contact</Link>
@@ -194,16 +174,14 @@ export function SiteHeader() {
 
         <nav className="desktop-nav" aria-label="Navigation principale">
           <Link href="/">Accueil</Link>
-          <NavDropdown label="Expertises" links={expertiseLinks} isOpen={activeDropdown === "Expertises"} onOpen={openDropdown} onClose={closeDropdown} onScheduleClose={scheduleClose} onCancelClose={cancelClose} />
-          <NavDropdown label="ISO" links={isoLinks} isOpen={activeDropdown === "ISO"} onOpen={openDropdown} onClose={closeDropdown} onScheduleClose={scheduleClose} onCancelClose={cancelClose} />
-          <NavDropdown label="Formations" links={trainingLinks} isOpen={activeDropdown === "Formations"} onOpen={openDropdown} onClose={closeDropdown} onScheduleClose={scheduleClose} onCancelClose={cancelClose} />
+          <NavDropdown label="Services" links={serviceLinks} isOpen={activeDropdown === "Services"} onOpen={openDropdown} onClose={closeDropdown} onScheduleClose={scheduleClose} onCancelClose={cancelClose} />
           <Link href="/realisations">Réalisations</Link>
           <Link href="/a-propos">À propos</Link>
           <Link href="/contact">Contact</Link>
         </nav>
 
         <a className="button button-gold header-cta" href={createWhatsAppUrl(whatsappMessages.diagnostic)} target="_blank" rel="noreferrer">
-          Demander un diagnostic
+          Diagnostic 180° offert
         </a>
       </div>
     </header>
