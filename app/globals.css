@@ -189,6 +189,7 @@ main { overflow: clip; }
 .check-grid > div > span { display: grid; place-items: center; width: 29px; height: 29px; flex: 0 0 auto; color: white; background: var(--blue); border-radius: 50%; font-family: Georgia, serif; }
 .feature-card-grid { display: grid; gap: 15px; }
 .three-cols { grid-template-columns: repeat(3, 1fr); }
+.service-child-grid { grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); }
 .four-cols { grid-template-columns: repeat(4, 1fr); }
 .feature-card { min-height: 220px; padding: 28px; background: white; border: 1px solid var(--line); }
 .feature-card > small { color: var(--gold); font-weight: 800; letter-spacing: .14em; }
@@ -430,7 +431,7 @@ main { overflow: clip; }
   .home-expertise-grid article { grid-column: 1; min-height: 0; padding: 23px 23px 75px; }
   .home-expertise-grid a { left: 23px; bottom: 23px; min-height: 44px; }
   .text-link, .transparency-box a { min-height: 44px; align-items: center; }
-  .featured-trainings, .process-grid, .four-cols, .three-cols, .training-grid, .program-grid { grid-template-columns: 1fr; }
+  .featured-trainings, .process-grid, .four-cols, .three-cols, .service-child-grid, .training-grid, .program-grid { grid-template-columns: 1fr; }
   .featured-trainings a { min-height: 200px; padding: 22px; }
   .process-grid li { min-height: 185px; padding: 24px 22px; border-right: 0; }
   .process-grid h3 { margin-top: 32px; }

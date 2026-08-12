@@ -50,7 +50,7 @@ export function ServicePage({ page }: { page: ServicePageData }) {
         <section className="section light-section">
           <div className="container">
             <div className="section-heading"><p className="eyebrow eyebrow-dark"><span /> Nos interventions</p><h2>Choisissez le point d’entrée adapté à votre besoin.</h2></div>
-            <div className="feature-card-grid three-cols">
+            <div className="feature-card-grid service-child-grid">
               {page.children.map((child, index) => {
                 const content = <><small>{String(index + 1).padStart(2, "0")}</small><h3>{child.label}</h3>{child.href ? <><p>Une intervention structurée, adaptée à votre contexte et orientée vers des résultats mesurables.</p><span>Découvrir <ArrowRight aria-hidden="true" size={16} /></span></> : null}</>;
                 return child.href

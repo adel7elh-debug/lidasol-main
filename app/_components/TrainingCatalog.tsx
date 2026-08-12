@@ -14,13 +14,10 @@ export type TrainingCardData = {
 };
 
 const categoryIcons = {
-  "Intelligence Artificielle": Bot,
-  Excel: FileSpreadsheet,
-  VBA: FileSpreadsheet,
-  Fiscalité: Calculator,
-  Comptabilité: Calculator,
-  QHSE: ShieldCheck,
-  ISO: ShieldCheck,
+  "Gestion administrative & comptable": Calculator,
+  "IA appliquée à l’entreprise": Bot,
+  "Excel & analyse des données": FileSpreadsheet,
+  "ISO & QSE": ShieldCheck,
 } as const;
 
 export function TrainingCatalog({ items, categories }: { items: TrainingCardData[]; categories: string[] }) {
