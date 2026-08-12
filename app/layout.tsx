@@ -16,14 +16,14 @@ export const metadata: Metadata = {
     locale: "fr_MA",
     siteName: SITE_NAME,
     title: SITE_NAME,
-    description: "Des solutions intelligentes pour développer votre activité.",
+    description: "Digitalisation, conseil, pilotage, ISO et formations pour les TPE et PME au Maroc.",
     url: SITE_URL,
     images: [{ url: absoluteUrl("/og.png"), width: 1200, height: 630, alt: "LIDA Solutions & Consulting — quatre activités pour développer votre entreprise" }],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_NAME,
-    description: "Des solutions intelligentes pour développer votre activité.",
+    description: "Digitalisation, conseil, pilotage, ISO et formations pour les TPE et PME au Maroc.",
     images: [absoluteUrl("/og.png")],
   },
 };

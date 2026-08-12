@@ -33,9 +33,9 @@ export function ServicePage({ page }: { page: ServicePageData }) {
 
   if (isSubService) {
     const summaryCards = [
-      { label: "Votre besoin", icon: Compass, items: page.problems.slice(0, 2) },
-      { label: "Notre intervention", icon: ClipboardCheck, items: page.objectives.slice(0, 2) },
-      { label: "Le résultat", icon: Gauge, items: page.benefits.slice(0, 2) },
+      { label: "Votre situation", icon: Compass, items: page.problems.slice(0, 2) },
+      { label: "Ce que LIDA met en place", icon: ClipboardCheck, items: page.objectives.slice(0, 2) },
+      { label: "Ce que cela rend possible", icon: Gauge, items: page.benefits.slice(0, 2) },
     ];
 
     return (
@@ -58,7 +58,7 @@ export function ServicePage({ page }: { page: ServicePageData }) {
           <div className="container">
             <div className="compact-heading">
               <p className="eyebrow eyebrow-dark"><span /> L’essentiel</p>
-              <h2>Une intervention claire, adaptée à votre activité.</h2>
+              <h2>Le besoin, les actions et l’effet recherché.</h2>
             </div>
             <div className="compact-summary-grid">
               {summaryCards.map(({ label, icon: Icon, items }, index) => (
@@ -76,7 +76,7 @@ export function ServicePage({ page }: { page: ServicePageData }) {
           <div className="container compact-scope-grid">
             <div>
               <p className="eyebrow eyebrow-dark"><span /> Ce que nous faisons</p>
-              <h2>Un accompagnement ciblé, sans complexité inutile.</h2>
+              <h2>Les actions prévues pour cette prestation.</h2>
               <div className="compact-action-list">
                 {page.objectives.slice(0, 4).map((item, index) => (
                   <div key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></div>
@@ -86,7 +86,7 @@ export function ServicePage({ page }: { page: ServicePageData }) {
             <aside className="compact-deliverables">
               <PackageCheck aria-hidden="true" size={30} />
               <p className="eyebrow eyebrow-dark"><span /> Vos livrables</p>
-              <h2>Du concret pour passer à l’action.</h2>
+              <h2>Les documents et outils remis.</h2>
               <ul className="icon-list">
                 {page.deliverables.slice(0, 5).map((item) => <li key={item}><CheckCircle2 aria-hidden="true" size={19} />{item}</li>)}
               </ul>
@@ -167,7 +167,7 @@ export function ServicePage({ page }: { page: ServicePageData }) {
             <div className="section-heading"><p className="eyebrow eyebrow-dark"><span /> Nos interventions</p><h2>Choisissez le point d’entrée adapté à votre besoin.</h2></div>
             <div className="feature-card-grid service-child-grid">
               {page.children.map((child, index) => {
-                const content = <><small>{String(index + 1).padStart(2, "0")}</small><h3>{child.label}</h3>{child.href ? <><p>Une intervention structurée, adaptée à votre contexte et orientée vers des résultats mesurables.</p><span>Découvrir <ArrowRight aria-hidden="true" size={16} /></span></> : null}</>;
+                const content = <><small>{String(index + 1).padStart(2, "0")}</small><h3>{child.label}</h3><p>{child.description}</p>{child.href ? <span>Découvrir <ArrowRight aria-hidden="true" size={16} /></span> : null}</>;
                 return child.href
                   ? <Link className="feature-card linked-card" href={child.href} key={child.href}>{content}</Link>
                   : <article className="feature-card service-scope-card" key={child.label}>{content}</article>;
@@ -180,7 +180,7 @@ export function ServicePage({ page }: { page: ServicePageData }) {
       <section className="section">
         <div className="container outcomes-layout">
           <div className="sticky-copy"><p className="eyebrow eyebrow-dark"><span /> Objectifs</p><h2>Ce que l’intervention doit rendre possible.</h2><p>Le périmètre est ajusté au diagnostic. Les objectifs restent explicites afin que chacun puisse suivre les progrès.</p></div>
-          <div className="benefit-list">{page.objectives.map((item, index) => <article key={item}><span>0{index + 1}</span><div><h3>{item}</h3><p>Un objectif traduit en actions, responsables et critères de réussite.</p></div></article>)}</div>
+          <div className="benefit-list">{page.objectives.map((item, index) => <article key={item}><span>0{index + 1}</span><div><h3>{item}</h3><p>Effet recherché : {page.benefits[index]?.toLowerCase() ?? "un fonctionnement plus fiable"}.</p></div></article>)}</div>
         </div>
       </section>
 

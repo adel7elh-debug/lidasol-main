@@ -1,7 +1,7 @@
 import { whatsappMessages } from "@/app/_lib/site";
 
 export type LinkItem = { label: string; href: string };
-export type ServiceChild = { label: string; href?: string };
+export type ServiceChild = { label: string; description: string; href?: string };
 export type FaqItem = { question: string; answer: string };
 export type PracticalCase = {
   context: string;
@@ -84,6 +84,155 @@ const defaultFaq: FaqItem[] = [
   { question: "Quels résultats sont remis ?", answer: "La proposition précise les livrables, le calendrier et les critères permettant de suivre les résultats." },
 ];
 
+const illustrativeContext = "Cas illustratif : il décrit une mission possible, pas un client ni un résultat constaté.";
+
+const practicalCases: Record<string, PracticalCase> = {
+  "conseil-accompagnement/conseil-comptable": {
+    context: illustrativeContext,
+    situation: "Une PME de distribution reçoit ses factures et justificatifs par email, WhatsApp et papier avant la clôture mensuelle.",
+    problem: "Des pièces manquent au moment de la transmission au cabinet comptable, tandis que les anomalies restent dispersées dans les échanges.",
+    solution: "LIDA organise un cycle mensuel de collecte, de contrôle et de relance, avec un responsable et une date de vérification pour chaque famille de pièces.",
+    deliverables: ["Plan de classement comptable", "Checklist mensuelle", "Tableau des pièces manquantes"],
+    result: "Le dirigeant visualise l’état du dossier avant l’échéance et le professionnel comptable reçoit un ensemble plus complet et mieux ordonné.",
+  },
+  "conseil-accompagnement/conseil-fiscal": {
+    context: illustrativeContext,
+    situation: "Une petite entreprise suit ses obligations fiscales dans plusieurs agendas et prépare les justificatifs uniquement à l’approche des échéances.",
+    problem: "Les responsabilités sont floues, certains documents arrivent tard et les questions nécessitant un avis habilité ne sont pas isolées assez tôt.",
+    solution: "LIDA construit un calendrier partagé, structure le dossier de justificatifs et prépare une liste de points à faire valider par le professionnel compétent.",
+    deliverables: ["Calendrier fiscal partagé", "Checklist des justificatifs", "Note des points à valider"],
+    result: "L’entreprise anticipe la préparation de ses dossiers et distingue clairement l’organisation interne des consultations réglementées.",
+  },
+  "conseil-accompagnement/conseil-juridique": {
+    context: illustrativeContext,
+    situation: "Une SARL en croissance conserve statuts, procès-verbaux, contrats et délégations dans plusieurs dossiers physiques et numériques.",
+    problem: "Les versions sont difficiles à identifier, les échéances statutaires peu visibles et les demandes adressées aux juristes manquent de pièces.",
+    solution: "LIDA centralise l’inventaire, prépare l’échéancier et constitue un dossier factuel à transmettre à l’avocat, au notaire ou au professionnel habilité concerné.",
+    deliverables: ["Registre documentaire", "Échéancier juridique", "Checklist de constitution du dossier"],
+    result: "Le dirigeant sait quels documents existent, ce qui manque et quels points doivent être confiés à un professionnel du droit.",
+  },
+  "digitalisation/organisation-numerique-documents": {
+    context: illustrativeContext,
+    situation: "Une entreprise de services partage ses dossiers clients dans un espace commun où coexistent des doublons et des fichiers nommés « scan » ou « version finale ».",
+    problem: "Les équipes perdent du temps à retrouver la bonne version et les droits d’accès ne correspondent plus aux responsabilités.",
+    solution: "LIDA définit une arborescence par activité, des règles de nommage, les droits utiles et une méthode d’archivage testée sur un dossier pilote.",
+    deliverables: ["Plan de classement numérique", "Convention de nommage", "Matrice des accès"],
+    result: "Chaque collaborateur dispose d’un emplacement connu, d’une règle de version et d’un chemin clair pour archiver ou retrouver un document.",
+  },
+  "digitalisation/automatisation-integration-erp": {
+    context: illustrativeContext,
+    situation: "Une PME commerciale ressaisit les données d’un devis dans la commande, la facture puis un tableau de suivi séparé.",
+    problem: "Les écarts de saisie se multiplient, le statut des commandes n’est pas partagé et le projet ERP reste défini par une liste de fonctionnalités.",
+    solution: "LIDA cartographie le flux commande-facturation, précise les données de référence, formalise les besoins et prépare des scénarios de test avant intégration.",
+    deliverables: ["Cartographie du flux cible", "Cahier des besoins ERP", "Plan de tests métier"],
+    result: "L’entreprise dispose d’un processus cible validé pour sélectionner ou paramétrer l’outil et limiter les ressaisies inutiles.",
+  },
+  "digitalisation/tableaux-de-bord-automatises": {
+    context: illustrativeContext,
+    situation: "Une direction reconstruit chaque mois ses indicateurs commerciaux, de trésorerie et d’impayés à partir de plusieurs fichiers Excel.",
+    problem: "Les chiffres diffèrent selon les versions, les calculs sont difficiles à contrôler et la préparation retarde la réunion de pilotage.",
+    solution: "LIDA définit les KPI et leurs sources, nettoie le modèle de données puis automatise la consolidation et les contrôles essentiels.",
+    deliverables: ["Dictionnaire des KPI", "Modèle de données contrôlé", "Tableau de bord avec guide d’actualisation"],
+    result: "La mise à jour suit un enchaînement reproductible et les responsables peuvent concentrer la réunion sur les écarts et les décisions.",
+  },
+  "digitalisation/suivi-comptable-fiscal": {
+    context: illustrativeContext,
+    situation: "Une entreprise collecte mensuellement ses pièces comptables auprès de plusieurs responsables par messages et relances individuelles.",
+    problem: "Personne ne voit l’avancement global, les demandes sont répétées et les pièces incomplètes sont découvertes tardivement.",
+    solution: "LIDA met en place un espace unique de dépôt, un échéancier, des rappels et un tableau de contrôle accessible aux personnes concernées.",
+    deliverables: ["Workflow de collecte", "Échéancier partagé", "Registre des anomalies documentaires"],
+    result: "Les pièces attendues, reçues et à corriger deviennent visibles avant leur transmission aux professionnels habilités.",
+  },
+  "digitalisation/outils-gestion-management": {
+    context: illustrativeContext,
+    situation: "Une société de maintenance suit clients, interventions, planning et actions dans plusieurs fichiers et conversations WhatsApp.",
+    problem: "Les équipes ne partagent pas la même information et les abonnements déjà souscrits ne couvrent pas le flux réel de travail.",
+    solution: "LIDA décrit les usages prioritaires, compare les solutions sur des critères concrets et accompagne un paramétrage pilote avec les utilisateurs.",
+    deliverables: ["Cahier des usages", "Grille de comparaison", "Configuration pilote et guide de prise en main"],
+    result: "L’entreprise choisit sur la base de son processus et dispose d’un point de suivi commun pour les interventions et les actions.",
+  },
+  "gestion-organisation/diagnostic-organisationnel-iso": {
+    context: illustrativeContext,
+    situation: "Une PME souhaite préparer ISO 9001 mais ne sait pas si ses processus, documents et pratiques actuels couvrent les exigences essentielles.",
+    problem: "Les actions partent dans plusieurs directions, les risques ne sont pas hiérarchisés et aucune base commune ne permet de planifier le projet.",
+    solution: "LIDA observe les pratiques, échange avec les responsables, examine les preuves disponibles et rapproche les constats du référentiel visé.",
+    deliverables: ["Rapport de diagnostic", "Matrice des écarts", "Feuille de route priorisée"],
+    result: "La direction dispose d’un état de départ argumenté et d’un ordre de traitement pour organiser la suite du projet ISO.",
+  },
+  "gestion-organisation/processus-responsabilites": {
+    context: illustrativeContext,
+    situation: "Dans une PME, une commande passe du commercial aux achats puis à la livraison sans règles partagées pour les validations et les changements.",
+    problem: "Les décisions sont reprises plusieurs fois, certaines tâches n’ont pas de responsable clair et les blocages sont attribués aux personnes plutôt qu’au flux.",
+    solution: "LIDA cartographie le processus réel avec les équipes, définit les étapes de décision et attribue pilote, contributeurs et validations dans une matrice RACI.",
+    deliverables: ["Cartographie commande-livraison", "Matrice RACI", "Plan des améliorations prioritaires"],
+    result: "Les interfaces et responsabilités sont explicites, ce qui donne une base commune pour corriger les ruptures du processus.",
+  },
+  "gestion-organisation/documentation-conformite": {
+    context: illustrativeContext,
+    situation: "Une organisation utilise plusieurs versions de ses procédures et conserve les preuves d’application dans des dossiers propres à chaque service.",
+    problem: "Les collaborateurs ne savent pas toujours quel modèle utiliser et la préparation d’un audit mobilise de longues recherches.",
+    solution: "LIDA crée une liste maîtresse, définit les règles d’approbation et de version, puis rédige avec le terrain les documents réellement nécessaires.",
+    deliverables: ["Liste maîtresse documentaire", "Règle de gestion des versions", "Procédures et modèles prioritaires"],
+    result: "Les documents applicables et leurs preuves associées sont identifiables, accessibles et reliés aux responsabilités.",
+  },
+  "gestion-organisation/risques-maitrise-operationnelle": {
+    context: illustrativeContext,
+    situation: "Un atelier traite les incidents au cas par cas sans registre commun des dangers, des mesures existantes et des actions décidées.",
+    problem: "Les mêmes situations reviennent, les priorités de prévention sont discutées sans critères et certaines actions restent sans échéance.",
+    solution: "LIDA anime l’identification des risques, évalue leur criticité, documente les mesures de maîtrise et organise le suivi des incidents et actions.",
+    deliverables: ["Cartographie des risques", "Plan de maîtrise", "Registre incidents et actions"],
+    result: "Les responsables visualisent les risques prioritaires, les mesures en place et les actions qui nécessitent encore une décision ou un contrôle.",
+  },
+  "gestion-organisation/tableaux-de-bord-kpi": {
+    context: illustrativeContext,
+    situation: "Une équipe de direction examine de nombreux indicateurs mais ne partage ni les formules, ni les seuils, ni les responsables de chaque donnée.",
+    problem: "La réunion commente les chiffres sans conclure sur les écarts et les actions décidées sont rarement reprises au point suivant.",
+    solution: "LIDA réduit le tableau aux KPI utiles, formalise calcul, fréquence et pilote, puis installe une trame de revue orientée décision.",
+    deliverables: ["Fiches KPI", "Tableau de bord de pilotage", "Registre des décisions et actions"],
+    result: "Chaque indicateur a une définition et un propriétaire, et chaque revue aboutit à des actions tracées avec une date de suivi.",
+  },
+  "gestion-organisation/audit-interne-certification": {
+    context: illustrativeContext,
+    situation: "Une entreprise prépare un audit de certification indépendant alors que son programme d’audit interne et ses preuves restent incomplets.",
+    problem: "Les écarts connus ne sont pas analysés jusqu’à leur cause et les équipes associent l’audit à une recherche de documents de dernière minute.",
+    solution: "LIDA prépare le programme, mène les entretiens et vérifications, formalise les constats puis accompagne le suivi des corrections et de leur efficacité.",
+    deliverables: ["Programme d’audit interne", "Rapport de constats", "Plan d’actions suivi"],
+    result: "L’organisation connaît les écarts à traiter avant l’audit externe, sans préjuger de la décision de l’organisme certificateur.",
+  },
+  "gestion-organisation/pilotage-iso-qse-smq-externalise": {
+    context: illustrativeContext,
+    situation: "Une PME dispose d’un système de management mais ne peut pas mobiliser un responsable à temps plein pour en suivre le calendrier.",
+    problem: "Les actions s’accumulent entre deux audits, les indicateurs ne sont pas revus régulièrement et la revue de direction est préparée tard.",
+    solution: "LIDA organise un rythme d’appui défini : calendrier, collecte des indicateurs, suivi des actions, préparation des audits et dossiers de revue.",
+    deliverables: ["Calendrier annuel du système", "Reporting périodique", "Dossier de revue de direction"],
+    result: "La direction conserve une vision régulière du système et des décisions à prendre, avec des responsabilités maintenues dans l’entreprise.",
+  },
+  "accompagnement-iso/iso-9001": {
+    context: illustrativeContext,
+    situation: "Une entreprise de services prépare ISO 9001 alors que les réclamations clients et les actions correctives sont suivies par emails séparés.",
+    problem: "Le lien entre attentes clients, processus, indicateurs et amélioration n’est pas démontré de manière cohérente.",
+    solution: "LIDA structure les processus, les critères de performance et le traitement des non-conformités, puis prépare les équipes à l’audit interne.",
+    deliverables: ["Diagnostic ISO 9001", "Cartographie et fiches processus", "Registre des non-conformités et actions"],
+    result: "Le système qualité relie les exigences aux pratiques et fournit des preuves organisées pour l’évaluation par un organisme indépendant.",
+  },
+  "accompagnement-iso/iso-14001": {
+    context: illustrativeContext,
+    situation: "Un site de production souhaite structurer ISO 14001 mais suit séparément déchets, consommations et obligations environnementales.",
+    problem: "Les aspects significatifs ne sont pas hiérarchisés et le plan d’action ne relie pas clairement impacts, conformité et responsabilités.",
+    solution: "LIDA aide à identifier les aspects environnementaux, organiser la veille de conformité et construire les contrôles et indicateurs adaptés au site.",
+    deliverables: ["Analyse environnementale", "Registre des obligations", "Programme de maîtrise et d’amélioration"],
+    result: "L’organisation dispose d’un système environnemental documenté et pilotable avant l’évaluation de certification indépendante.",
+  },
+  "accompagnement-iso/iso-45001": {
+    context: illustrativeContext,
+    situation: "Une entreprise avec atelier et interventions extérieures souhaite préparer ISO 45001 à partir de pratiques de sécurité déjà présentes mais peu coordonnées.",
+    problem: "L’évaluation des risques, la consultation des travailleurs et le retour sur incidents ne suivent pas une méthode commune.",
+    solution: "LIDA structure l’identification des dangers, les mesures de prévention, la participation des équipes et la préparation aux situations d’urgence.",
+    deliverables: ["Évaluation des risques SST", "Plan de prévention", "Registre incidents, consultations et actions"],
+    result: "Les risques et responsabilités deviennent suivis dans un même système, sans garantie préalable sur l’issue de la certification indépendante.",
+  },
+};
+
 function detail(seed: DetailSeed): ServicePageData {
   const benefits = seed.benefits ?? ["Organisation plus claire", "Temps mieux utilisé", "Risques réduits", "Suivi plus fiable"];
   return {
@@ -92,14 +241,7 @@ function detail(seed: DetailSeed): ServicePageData {
     benefits,
     audience: seed.audience ?? ["Dirigeants de PME", "Responsables de service", "Équipes administratives", "Entreprises en croissance"],
     faq: seed.faq ?? defaultFaq,
-    practicalCase: {
-      context: "Exemple représentatif d’une situation fréquemment rencontrée par les PME au Maroc.",
-      situation: `Une PME souhaite mettre en place ${seed.examples[0].toLowerCase()} pour mieux maîtriser son activité.`,
-      problem: `Elle fait face à ${seed.problems[0].toLowerCase()} et ${seed.problems[1].toLowerCase()}, sans méthode partagée pour avancer.`,
-      solution: `LIDA cadre la mission, puis intervient pour ${seed.objectives[0].toLowerCase()} et ${seed.objectives[1].toLowerCase()} avec les personnes concernées.`,
-      deliverables: seed.deliverables.slice(0, 3),
-      result: `L’entreprise dispose d’un cadre opérationnel visant ${benefits[0].toLowerCase()} et ${benefits[1].toLowerCase()}, sans promettre de résultat chiffré avant le déploiement.`,
-    },
+    practicalCase: practicalCases[seed.path],
   };
 }
 
@@ -392,7 +534,7 @@ function parentPage(seed: Omit<ServicePageData, "steps" | "practicalCase">): Ser
     ...seed,
     steps: sharedSteps,
     practicalCase: {
-      context: "Exemple représentatif d’une situation fréquemment rencontrée par les PME au Maroc.",
+      context: illustrativeContext,
       situation: "Une entreprise souhaite structurer une priorité devenue difficile à piloter.",
       problem: seed.problems.slice(0, 2).join(" et ").toLowerCase() + ".",
       solution: `LIDA intervient pour ${seed.objectives.slice(0, 2).join(" et ").toLowerCase()}.`,
@@ -413,15 +555,15 @@ const conseilParent = parentPage({
   audience: ["Dirigeants de PME", "Entrepreneurs", "Créateurs d’entreprise", "Services administratifs"],
   examples: ["Suivi comptable", "Préparation fiscale", "Cadrage juridique"],
   faq: [
-    { question: "Intervenez-vous avec des professionnels habilités ?", answer: "Oui. Certaines prestations sont réalisées en collaboration avec des professionnels habilités, selon la mission." },
+    { question: "Intervenez-vous avec des professionnels habilités ?", answer: "Oui. Certaines prestations sont réalisées en collaboration avec des professionnels habilités, selon la nature de la mission." },
     { question: "L’accompagnement convient-il à une petite entreprise ?", answer: "Oui. Le périmètre et les outils sont adaptés à chaque entreprise." },
     { question: "Comment démarrer ?", answer: "Un premier échange permet de définir les priorités et les documents disponibles." },
   ],
   related: [{ label: "Digitaliser le suivi", href: "/digitalisation/suivi-comptable-fiscal" }, { label: "Structurer le pilotage", href: "/gestion-organisation" }],
   children: [
-    { label: "Conseil comptable", href: "/conseil-accompagnement/conseil-comptable" },
-    { label: "Conseil fiscal", href: "/conseil-accompagnement/conseil-fiscal" },
-    { label: "Conseil juridique", href: "/conseil-accompagnement/conseil-juridique" },
+    { label: "Conseil comptable", description: "Organiser les pièces, contrôles et échanges mensuels avec votre professionnel comptable.", href: "/conseil-accompagnement/conseil-comptable" },
+    { label: "Conseil fiscal", description: "Anticiper les échéances, rassembler les justificatifs et préparer les points à faire valider.", href: "/conseil-accompagnement/conseil-fiscal" },
+    { label: "Conseil juridique", description: "Centraliser documents et échéances avant de transmettre un dossier complet au professionnel habilité.", href: "/conseil-accompagnement/conseil-juridique" },
   ],
   primaryLabel: "Présenter mon besoin", whatsappMessage: whatsappMessages.diagnostic,
   seoTitle: "Conseil comptable, fiscal et juridique au Maroc", seoDescription: "Préparation et suivi des besoins comptables, fiscaux et juridiques des entreprises au Maroc.",
@@ -439,11 +581,11 @@ const digitalParent = parentPage({
   examples: ["Organisation documentaire", "Intégration ERP", "Reporting automatisé"], faq: defaultFaq,
   related: [{ label: "Processus & responsabilités", href: "/gestion-organisation/processus-responsabilites" }, { label: "Formation IA", href: "/formation/gestion-intelligence-artificielle" }],
   children: [
-    { label: "Organisation numérique des documents", href: "/digitalisation/organisation-numerique-documents" },
-    { label: "Automatisation et intégration ERP", href: "/digitalisation/automatisation-integration-erp" },
-    { label: "Tableaux de bord automatisés", href: "/digitalisation/tableaux-de-bord-automatises" },
-    { label: "Digitalisation du suivi comptable et fiscal", href: "/digitalisation/suivi-comptable-fiscal" },
-    { label: "Outils de gestion et de management adaptés", href: "/digitalisation/outils-gestion-management" },
+    { label: "Organisation numérique des documents", description: "Définir où classer, comment nommer, qui accède et quelle version conserver.", href: "/digitalisation/organisation-numerique-documents" },
+    { label: "Automatisation et intégration ERP", description: "Cartographier les flux, supprimer les ressaisies et tester un processus cible avant déploiement.", href: "/digitalisation/automatisation-integration-erp" },
+    { label: "Tableaux de bord automatisés", description: "Fiabiliser les sources et actualiser les KPI sans reconstruire le reporting à chaque période.", href: "/digitalisation/tableaux-de-bord-automatises" },
+    { label: "Digitalisation du suivi comptable et fiscal", description: "Centraliser les demandes, rappels, pièces reçues et anomalies avant les échéances.", href: "/digitalisation/suivi-comptable-fiscal" },
+    { label: "Outils de gestion et de management adaptés", description: "Comparer les solutions à partir des usages réels, puis accompagner paramétrage et adoption.", href: "/digitalisation/outils-gestion-management" },
   ],
   primaryLabel: "Demander un diagnostic digital", whatsappMessage: whatsappMessages.digitalisation,
   seoTitle: "Digitalisation et automatisation des PME au Maroc", seoDescription: "Organisation numérique, ERP, automatisation, tableaux de bord et outils de gestion pour PME.",
@@ -461,13 +603,13 @@ const pilotageParent = parentPage({
   examples: ["Diagnostic organisationnel et ISO", "Audit interne", "Pilotage QSE externalisé"], faq: defaultFaq,
   related: [{ label: "Digitalisation", href: "/digitalisation" }, { label: "Accompagnement ISO", href: "/accompagnement-iso" }],
   children: [
-    { label: "Diagnostic organisationnel & ISO", href: "/gestion-organisation/diagnostic-organisationnel-iso" },
-    { label: "Processus & responsabilités", href: "/gestion-organisation/processus-responsabilites" },
-    { label: "Documentation & conformité", href: "/gestion-organisation/documentation-conformite" },
-    { label: "Risques & maîtrise opérationnelle", href: "/gestion-organisation/risques-maitrise-operationnelle" },
-    { label: "Tableaux de bord & KPI", href: "/gestion-organisation/tableaux-de-bord-kpi" },
-    { label: "Audit interne & préparation à la certification", href: "/gestion-organisation/audit-interne-certification" },
-    { label: "Pilotage ISO, QSE & SMQ externalisé", href: "/gestion-organisation/pilotage-iso-qse-smq-externalise" },
+    { label: "Diagnostic organisationnel & ISO", description: "Établir un état de départ, mesurer les écarts et ordonner la feuille de route.", href: "/gestion-organisation/diagnostic-organisationnel-iso" },
+    { label: "Processus & responsabilités", description: "Représenter les flux réels et préciser qui prépare, décide, valide et contrôle.", href: "/gestion-organisation/processus-responsabilites" },
+    { label: "Documentation & conformité", description: "Maîtriser les versions et relier procédures, preuves, responsabilités et exigences applicables.", href: "/gestion-organisation/documentation-conformite" },
+    { label: "Risques & maîtrise opérationnelle", description: "Hiérarchiser les risques et suivre les mesures, incidents et actions de prévention.", href: "/gestion-organisation/risques-maitrise-operationnelle" },
+    { label: "Tableaux de bord & KPI", description: "Choisir les indicateurs utiles et installer des revues qui débouchent sur des décisions tracées.", href: "/gestion-organisation/tableaux-de-bord-kpi" },
+    { label: "Audit interne & préparation à la certification", description: "Vérifier l’application du système, analyser les écarts et préparer l’audit indépendant.", href: "/gestion-organisation/audit-interne-certification" },
+    { label: "Pilotage ISO, QSE & SMQ externalisé", description: "Maintenir le calendrier, les indicateurs, les actions, les audits et les revues tout au long de l’année.", href: "/gestion-organisation/pilotage-iso-qse-smq-externalise" },
   ],
   primaryLabel: "Demander un diagnostic organisationnel & ISO", whatsappMessage: whatsappMessages.organisation,
   seoTitle: "Pilotage, organisation et ISO au Maroc", seoDescription: "Diagnostic, processus, risques, KPI, audit et pilotage ISO QSE externalisé au Maroc.",
@@ -489,7 +631,11 @@ const isoParent = parentPage({
     { question: "Combien de temps faut-il ?", answer: "Le diagnostic initial permet de définir un calendrier selon la taille et la maturité de l’organisation." },
   ],
   related: [{ label: "Diagnostic organisationnel & ISO", href: "/gestion-organisation/diagnostic-organisationnel-iso" }, { label: "Audit interne", href: "/gestion-organisation/audit-interne-certification" }],
-  children: [{ label: "ISO 9001 · Qualité", href: "/accompagnement-iso/iso-9001" }, { label: "ISO 14001 · Environnement", href: "/accompagnement-iso/iso-14001" }, { label: "ISO 45001 · Santé et sécurité", href: "/accompagnement-iso/iso-45001" }],
+  children: [
+    { label: "ISO 9001 · Qualité", description: "Relier satisfaction client, processus, indicateurs et traitement des non-conformités.", href: "/accompagnement-iso/iso-9001" },
+    { label: "ISO 14001 · Environnement", description: "Structurer aspects environnementaux, conformité, maîtrise opérationnelle et amélioration.", href: "/accompagnement-iso/iso-14001" },
+    { label: "ISO 45001 · Santé et sécurité", description: "Organiser l’évaluation des risques SST, la prévention et la participation des travailleurs.", href: "/accompagnement-iso/iso-45001" },
+  ],
   primaryLabel: "Demander un diagnostic ISO", whatsappMessage: whatsappMessages.iso,
   seoTitle: "Accompagnement ISO 9001 14001 45001 au Maroc", seoDescription: "Diagnostic, documentation, formation et audit interne ISO au Maroc.",
 });

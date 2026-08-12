@@ -29,11 +29,11 @@ export function TrainingPage({ training }: { training: TrainingData }) {
     <main>
       <PageHero eyebrow={`${training.category} · Formation professionnelle`} title={training.title} description={training.description} image={training.image} imageAlt={training.imageAlt ?? `Formation ${training.shortTitle} avec LIDA`} breadcrumbs={[{ label: "Formations", href: "/formation" }, { label: training.shortTitle, href: `/formation/${training.slug}` }]} primaryLabel="S’inscrire" primaryHref="#inscription" whatsappMessage={training.whatsappMessage} />
 
-      <section className="promise-band"><div className="container"><span>La promesse</span><strong>{training.promise}</strong><div><small>Niveau</small>{training.level}</div><div><small>Durée</small>{training.duration}</div></div></section>
+      <section className="promise-band"><div className="container"><span>Résultat visé</span><strong>{training.promise}</strong><div><small>Niveau</small>{training.level}</div><div><small>Durée</small>{training.duration}</div></div></section>
 
       <section className="section compact-overview-section">
         <div className="container">
-          <div className="compact-heading"><p className="eyebrow eyebrow-dark"><span /> L’essentiel</p><h2>Une formation pratique et directement applicable.</h2></div>
+          <div className="compact-heading"><p className="eyebrow eyebrow-dark"><span /> L’essentiel</p><h2>Les besoins, objectifs et acquis de ce parcours.</h2></div>
           <div className="compact-summary-grid">
             {summaryCards.map(({ label, icon: Icon, items }, index) => (
               <article className="compact-summary-card" key={label}>
