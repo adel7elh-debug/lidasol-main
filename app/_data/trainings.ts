@@ -14,6 +14,8 @@ export type TrainingData = {
   why: string[];
   objectives: string[];
   program: { title: string; items: string[] }[];
+  workshops: string[];
+  supports: string[];
   skills: string[];
   audience: string[];
   prerequisites: string;
@@ -28,7 +30,7 @@ export type TrainingData = {
 const practicalFaq: FaqItem[] = [
   { question: "La formation peut-elle être organisée en entreprise ?", answer: "Oui. Le format intra-entreprise permet d’adapter les cas pratiques, le rythme et les objectifs à votre équipe." },
   { question: "Peut-on suivre la formation à distance ?", answer: "Selon le programme, la formation peut être organisée en présentiel, à distance ou dans un format hybride." },
-  { question: "Une attestation est-elle délivrée ?", answer: "Les modalités administratives et l’attestation prévue sont précisées dans la proposition de formation." },
+  { question: "Quels documents sont remis ?", answer: "Le programme et le devis précisent les supports, fichiers ou modèles réellement prévus pour le parcours retenu." },
   { question: "Peut-on adapter le programme ?", answer: "Oui. Un échange de cadrage et, si nécessaire, un positionnement permettent de cibler les modules utiles." },
 ];
 
@@ -47,6 +49,8 @@ export const trainings: TrainingData[] = [
     why: ["Réduire les oublis d’échéances", "Fiabiliser les pièces transmises au comptable", "Mieux suivre clients, fournisseurs et trésorerie", "Créer des tableaux de gestion simples"],
     objectives: ["Organiser le classement et l’archivage", "Maîtriser le cycle de facturation", "Suivre règlements et trésorerie", "Préparer correctement les pièces comptables"],
     program: [{ title: "Organisation administrative", items: ["Documents de l’entreprise", "Classement et archivage", "Échéancier administratif", "Gestion documentaire"] }, { title: "Flux clients et fournisseurs", items: ["Devis et factures", "Suivi des règlements", "Relances", "Dossiers fournisseurs"] }, { title: "Bases comptables", items: ["Notions essentielles", "Pièces justificatives", "Préparation des dossiers", "Relation avec le cabinet comptable"] }, { title: "Pilotage", items: ["Suivi de trésorerie", "Tableaux clients/fournisseurs", "Indicateurs administratifs", "Bonnes pratiques de contrôle"] }],
+    workshops: ["Classer un dossier mensuel fictif", "Repérer les pièces manquantes", "Construire un échéancier de relance"],
+    supports: ["Trame de classement", "Checklist de contrôle", "Tableau d’échéances illustratif"],
     skills: ["Tenir un dossier administratif structuré", "Suivre les échéances", "Préparer les pièces comptables", "Construire des tableaux de suivi"],
     audience: ["Dirigeants", "Entrepreneurs", "Responsables et assistants administratifs", "Responsables financiers", "Créateurs d’entreprise"],
     prerequisites: "Aucun prérequis comptable avancé. Les participants peuvent apporter leurs modèles de documents pour les ateliers.",
@@ -71,6 +75,8 @@ export const trainings: TrainingData[] = [
     why: ["Anticiper les échéances", "Améliorer la qualité des justificatifs", "Limiter les risques de non-conformité", "Mieux coordonner direction, comptabilité et fiscalité"],
     objectives: ["Comprendre les principaux mécanismes fiscaux", "Organiser le calendrier fiscal", "Identifier les options légales pertinentes", "Préparer les éléments en cas de contrôle"],
     program: [{ title: "Cadre fiscal de l’entreprise", items: ["Principaux impôts et obligations", "Responsabilités", "Calendrier fiscal", "Veille et coordination"] }, { title: "Organisation et justificatifs", items: ["Pièces probantes", "Traçabilité", "Archivage", "Rapprochements"] }, { title: "Optimisation conforme", items: ["Arbitrages documentés", "Anticipation", "Choix légalement permis", "Validation avec les professionnels compétents"] }, { title: "Gestion des risques", items: ["Signaux d’alerte", "Préparation au contrôle", "Dossier permanent", "Plan d’amélioration"] }],
+    workshops: ["Lire un calendrier fiscal fictif", "Qualifier un dossier de justificatifs", "Préparer une question pour un professionnel habilité"],
+    supports: ["Modèle d’échéancier", "Checklist documentaire", "Matrice de vigilance illustrative"],
     skills: ["Lire un calendrier fiscal", "Structurer les justificatifs", "Évaluer un risque", "Dialoguer efficacement avec le conseil fiscal et le comptable"],
     audience: ["Dirigeants", "Responsables administratifs et financiers", "Comptables d’entreprise", "Entrepreneurs"],
     prerequisites: "Connaître le fonctionnement général de son entreprise. La formation ne remplace pas une consultation fiscale individualisée.",
@@ -95,6 +101,8 @@ export const trainings: TrainingData[] = [
     why: ["Automatiser des tâches à faible valeur", "Améliorer la qualité des documents", "Accélérer l’analyse et le reporting", "Encadrer confidentialité et vérification"],
     objectives: ["Identifier les cas d’usage rentables", "Rédiger des instructions efficaces", "Vérifier les résultats produits", "Définir des règles d’utilisation professionnelle"],
     program: [{ title: "Fondamentaux et cadre d’usage", items: ["Fonctionnement général", "Limites et erreurs", "Confidentialité des données", "Charte de bonnes pratiques"] }, { title: "Productivité administrative", items: ["Emails", "Comptes rendus", "Procédures", "Analyse documentaire", "Préparation de réunions"] }, { title: "Données et reporting", items: ["Analyse de tableaux", "Rapports", "Aide aux dashboards", "Modèles Excel", "Support à la décision"] }, { title: "Mise en pratique", items: ["Cas métiers", "Bibliothèque de prompts", "Workflow humain + IA", "Plan d’adoption"] }],
+    workshops: ["Améliorer une consigne imprécise", "Contrôler une synthèse générée", "Concevoir un workflow humain + IA"],
+    supports: ["Canevas de prompt", "Grille de vérification", "Charte d’usage illustrative"],
     skills: ["Utiliser professionnellement ChatGPT et des outils IA", "Créer des prompts réutilisables", "Analyser et contrôler un résultat", "Protéger les données sensibles"],
     audience: ["Dirigeants", "Managers", "Administratifs", "RH", "Finance", "Qualité et QHSE"],
     prerequisites: "Aucun niveau technique requis. Une connaissance de ses tâches quotidiennes suffit pour travailler sur des cas concrets.",
@@ -119,6 +127,8 @@ export const trainings: TrainingData[] = [
     why: ["Gagner du temps dans les calculs", "Fiabiliser les fichiers", "Analyser de grands tableaux", "Présenter des indicateurs lisibles"],
     objectives: ["Choisir les bonnes formules", "Structurer et nettoyer les données", "Créer des analyses dynamiques", "Construire des tableaux de bord"],
     program: [{ title: "Niveau débutant", items: ["Interface et bonnes pratiques", "Formules de base", "Mise en forme", "Tri, filtre et impression"] }, { title: "Niveau intermédiaire", items: ["Fonctions conditionnelles", "Recherche de données", "Validation", "Tableaux structurés", "Graphiques"] }, { title: "Niveau avancé", items: ["Fonctions avancées", "Nettoyage de données", "Tableaux croisés dynamiques", "Modèles de reporting"] }, { title: "Projet pratique", items: ["Base de données", "KPI", "Dashboard", "Contrôles de fiabilité"] }],
+    workshops: ["Nettoyer une base d’exercice", "Construire une formule contrôlable", "Produire un tableau croisé et un graphique"],
+    supports: ["Fichiers d’exercice", "Checklist de fiabilité", "Trame de tableau de bord"],
     skills: ["Construire des formules robustes", "Nettoyer une base", "Créer un tableau croisé dynamique", "Produire un reporting professionnel"],
     audience: ["Administratifs", "Commerciaux", "Finance", "RH", "Managers", "Qualité et QHSE"],
     prerequisites: "Un test de positionnement permet d’orienter le participant vers le niveau débutant, intermédiaire ou avancé.",
@@ -143,6 +153,8 @@ export const trainings: TrainingData[] = [
     why: ["Éliminer les manipulations répétitives", "Réduire les risques d’erreur", "Générer automatiquement rapports et documents", "Créer des interfaces simples"],
     objectives: ["Comprendre la logique VBA", "Manipuler feuilles, fichiers et données", "Automatiser un processus", "Créer un outil maintenable"],
     program: [{ title: "Premières macros", items: ["Enregistreur", "Éditeur VBA", "Objets Excel", "Bonnes pratiques"] }, { title: "Logique de programmation", items: ["Variables", "Conditions", "Boucles", "Procédures et fonctions"] }, { title: "Automatisation", items: ["Feuilles et classeurs", "Fichiers", "Import/export", "Génération de rapports"] }, { title: "Outils de gestion", items: ["Formulaires VBA", "Contrôles", "Gestion des erreurs", "Projet métier"] }],
+    workshops: ["Enregistrer puis corriger une macro", "Automatiser un rapport fictif", "Ajouter contrôles et gestion d’erreurs"],
+    supports: ["Classeur d’exercice", "Exemples de macros commentées", "Checklist de maintenance"],
     skills: ["Écrire et corriger une macro", "Automatiser un reporting", "Créer un formulaire", "Structurer un mini-outil de gestion"],
     audience: ["Utilisateurs Excel réguliers", "Contrôleurs de gestion", "Finance", "Administratifs", "Analystes et responsables reporting"],
     prerequisites: "Maîtriser les bases d’Excel, les formules courantes et la manipulation de tableaux de données.",
@@ -167,6 +179,8 @@ export const trainings: TrainingData[] = [
     why: ["Clarifier les attentes", "Mieux déléguer", "Gérer les situations difficiles", "Faire progresser l’équipe"],
     objectives: ["Adapter son management", "Conduire un entretien", "Animer une réunion", "Piloter un plan d’action"],
     program: [{ title: "Rôle du manager", items: ["Positionnement", "Objectifs", "Responsabilités", "Styles de management"] }, { title: "Communication", items: ["Écoute", "Feedback", "Recadrage", "Entretiens"] }, { title: "Pilotage", items: ["Délégation", "Rituels", "Indicateurs", "Suivi des actions"] }, { title: "Situations réelles", items: ["Mises en situation", "Études de cas", "Plan de progrès", "Retours d’expérience"] }],
+    workshops: ["Préparer une délégation", "Conduire un feedback en jeu de rôle", "Structurer une réunion de suivi"],
+    supports: ["Trame d’entretien", "Fiche de délégation", "Plan de progrès"],
     skills: ["Déléguer avec un cadre", "Donner du feedback", "Animer une réunion", "Suivre les priorités"],
     audience: ["Managers de proximité", "Responsables de service", "Chefs de projet", "Futurs managers"],
     prerequisites: "Aucun prérequis formel. Les participants viennent avec des situations managériales à travailler.",
@@ -191,6 +205,8 @@ export const trainings: TrainingData[] = [
     why: ["Structurer la prévention", "Comprendre les obligations", "Analyser les incidents", "Déployer des actions QHSE"],
     objectives: ["Identifier les risques", "Construire un plan QHSE", "Suivre des indicateurs", "Animer la sensibilisation"],
     program: [{ title: "Système QHSE", items: ["Principes", "Rôles", "Risques et opportunités", "Planification"] }, { title: "Prévention", items: ["Identification des dangers", "Évaluation", "Mesures de maîtrise", "Urgences"] }, { title: "Pilotage", items: ["Indicateurs", "Incidents", "Actions correctives", "Audits"] }, { title: "Animation", items: ["Sensibilisation", "Communication", "Causeries", "Amélioration continue"] }],
+    workshops: ["Évaluer une situation de risque fictive", "Analyser un incident", "Préparer une causerie QHSE"],
+    supports: ["Grille d’évaluation", "Fiche d’analyse d’incident", "Trame de sensibilisation"],
     skills: ["Évaluer un risque", "Suivre un plan d’action", "Analyser un incident", "Préparer une sensibilisation"],
     audience: ["Responsables QHSE", "Managers", "Préventeurs", "Membres de comités sécurité"],
     prerequisites: "Aucun pour le tronc commun. Certains modules avancés nécessitent une première expérience QHSE.",
@@ -226,6 +242,8 @@ export const trainings: TrainingData[] = [
       why: ["Comprendre le référentiel", "Participer au projet de certification", "Préparer les preuves", "Contribuer aux audits et améliorations"],
       objectives: ["Lire la structure de la norme", "Interpréter les exigences", "Identifier les preuves attendues", "Construire un plan d’application"],
       program: [{ title: "Fondamentaux", items: ["Principes de management", "Structure de la norme", "Vocabulaire", "Rôles"] }, { title: `Exigences ISO ${code}`, items: topics[code] }, { title: "Mise en œuvre", items: ["Diagnostic", "Documentation utile", "Indicateurs", "Plan d’action"] }, { title: "Évaluation", items: ["Audit interne", "Écarts", "Actions correctives", "Revue de direction"] }],
+      workshops: [`Relier une exigence ISO ${code} à une pratique`, "Qualifier une preuve", "Construire une action à partir d’un écart fictif"],
+      supports: [`Grille de lecture ISO ${code}`, "Checklist de preuves", "Trame de plan d’action"],
       skills: [`Interpréter l’ISO ${code}`, "Relier exigence et pratique", "Préparer une preuve", "Contribuer à un audit"],
       audience: ["Responsables et animateurs QHSE", "Pilotes de processus", "Managers", "Auditeurs internes débutants"],
       prerequisites: "Aucun pour l’initiation. Une connaissance de l’organisation est utile pour les ateliers d’application.",
@@ -251,6 +269,8 @@ export const trainings: TrainingData[] = [
     why: ["Réduire les zones grises", "Fluidifier les interfaces", "Transmettre le savoir-faire", "Préparer la digitalisation"],
     objectives: ["Cartographier un processus", "Définir les responsabilités", "Rédiger une procédure utile", "Identifier les améliorations"],
     program: [{ title: "Lecture de l’organisation", items: ["Activités", "Processus", "Interfaces", "Parties prenantes"] }, { title: "Rôles", items: ["Organigramme", "Responsabilités", "RACI", "Délégation"] }, { title: "Formalisation", items: ["Fiche processus", "Procédures", "Documents", "Gestion des versions"] }, { title: "Amélioration", items: ["Irritants", "Risques", "KPI", "Plan d’action"] }],
+    workshops: ["Cartographier un flux fictif", "Construire une matrice RACI", "Rédiger une étape de procédure"],
+    supports: ["Canevas de processus", "Matrice RACI", "Modèle de procédure"],
     skills: ["Représenter un processus", "Construire une matrice RACI", "Rédiger une procédure", "Animer une amélioration"],
     audience: ["Managers", "Responsables qualité", "Administratifs", "Pilotes de processus"],
     prerequisites: "Aucun. Les participants peuvent apporter un processus réel à cartographier.",
@@ -275,6 +295,8 @@ export const trainings: TrainingData[] = [
     why: ["Lire les principaux chiffres", "Organiser les ressources", "Préparer les décisions", "Suivre un plan d’action"],
     objectives: ["Comprendre les flux de gestion", "Construire un budget simple", "Suivre des indicateurs", "Identifier les écarts"],
     program: [{ title: "Repères de gestion", items: ["Cycle d’activité", "Charges et produits", "Marge", "Trésorerie"] }, { title: "Prévision", items: ["Objectifs", "Budget", "Hypothèses", "Scénarios"] }, { title: "Suivi", items: ["KPI", "Tableau de bord", "Écarts", "Actions"] }, { title: "Décision", items: ["Priorités", "Risques", "Ressources", "Revue de gestion"] }],
+    workshops: ["Lire un compte de gestion simplifié", "Construire une prévision", "Analyser un écart et proposer une action"],
+    supports: ["Cas chiffré simplifié", "Trame de budget", "Tableau de suivi"],
     skills: ["Lire un tableau de gestion", "Construire une prévision", "Analyser un écart", "Préparer une revue"],
     audience: ["Entrepreneurs", "Managers", "Responsables administratifs", "Créateurs d’entreprise"],
     prerequisites: "Aucun prérequis financier avancé.",
@@ -299,6 +321,8 @@ export const trainings: TrainingData[] = [
     why: ["Traiter les causes plutôt que les symptômes", "Impliquer les équipes", "Mesurer l’efficacité", "Capitaliser sur les solutions"],
     objectives: ["Décrire un problème factuellement", "Analyser les causes", "Construire un plan d’action", "Vérifier l’efficacité"],
     program: [{ title: "Cadrer", items: ["Faits", "Impact", "Périmètre", "Objectif"] }, { title: "Analyser", items: ["5 pourquoi", "Ishikawa", "Données", "Causes racines"] }, { title: "Agir", items: ["Solutions", "Priorisation", "Plan d’action", "Responsabilités"] }, { title: "Pérenniser", items: ["Mesure d’efficacité", "Standardisation", "Retour d’expérience", "Capitalisation"] }],
+    workshops: ["Décrire un problème sans interprétation", "Animer un 5 pourquoi", "Évaluer l’efficacité d’une action"],
+    supports: ["Fiche problème", "Diagramme de causes", "Trame de plan d’action"],
     skills: ["Cadrer un problème", "Animer une analyse de causes", "Prioriser des actions", "Mesurer leur efficacité"],
     audience: ["Managers", "Qualité et QHSE", "Production", "Équipes support"],
     prerequisites: "Aucun. Les participants peuvent travailler sur un problème réel anonymisé.",

@@ -1,4 +1,5 @@
 import { whatsappMessages } from "@/app/_lib/site";
+import { serviceOffers, type ServiceOfferDetail } from "@/app/_data/serviceOffers";
 
 export type LinkItem = { label: string; href: string };
 export type ServiceChild = { label: string; description: string; href?: string };
@@ -27,6 +28,7 @@ export type ServicePageData = {
   audience: string[];
   examples: string[];
   practicalCase: PracticalCase;
+  offer?: ServiceOfferDetail;
   faq: FaqItem[];
   related: LinkItem[];
   children?: ServiceChild[];
@@ -242,13 +244,14 @@ function detail(seed: DetailSeed): ServicePageData {
     audience: seed.audience ?? ["Dirigeants de PME", "Responsables de service", "Équipes administratives", "Entreprises en croissance"],
     faq: seed.faq ?? defaultFaq,
     practicalCase: practicalCases[seed.path],
+    offer: serviceOffers[seed.path],
   };
 }
 
 const conseilDetails = [
   detail({
     path: "conseil-accompagnement/conseil-comptable",
-    eyebrow: "Conseil & accompagnement · Comptabilité",
+    eyebrow: "Conseil & accompagnement · Organisation comptable",
     title: "Fiabiliser votre organisation comptable avant chaque échéance.",
     description: "LIDA organise les pièces, les flux et les contrôles nécessaires pour faciliter le suivi comptable et les échanges avec votre professionnel comptable.",
     image: photos.accounting,
@@ -258,9 +261,9 @@ const conseilDetails = [
     deliverables: ["Plan de classement comptable", "Checklist mensuelle", "Calendrier des échéances", "Tableau des anomalies"],
     examples: ["Organisation mensuelle des pièces", "Suivi clients et fournisseurs", "Préparation du dossier comptable"],
     related: [{ label: "Suivi comptable et fiscal digitalisé", href: "/digitalisation/suivi-comptable-fiscal" }, { label: "Formation gestion administrative", href: "/formation/gestion-administrative-comptable" }],
-    primaryLabel: "Organiser mon suivi comptable",
+    primaryLabel: "Diagnostiquer mon organisation comptable",
     whatsappMessage: whatsappMessages.diagnostic,
-    seoTitle: "Conseil et organisation comptable pour PME au Maroc",
+    seoTitle: "Organisation et préparation comptable pour PME au Maroc",
     seoDescription: "Organisation des pièces, échéances, contrôles et échanges comptables pour les TPE et PME au Maroc.",
     faq: [
       { question: "LIDA remplace-t-elle l’expert-comptable ?", answer: "Non. LIDA prépare, organise et suit les informations. Les actes réglementés restent réalisés par les professionnels habilités." },
@@ -270,7 +273,7 @@ const conseilDetails = [
   }),
   detail({
     path: "conseil-accompagnement/conseil-fiscal",
-    eyebrow: "Conseil & accompagnement · Fiscalité",
+    eyebrow: "Conseil & accompagnement · Échéances fiscales",
     title: "Anticiper vos obligations fiscales avec une organisation claire.",
     description: "LIDA vous aide à préparer les informations, suivre le calendrier fiscal et coordonner les points nécessitant un professionnel habilité.",
     image: photos.fiscal,
@@ -279,10 +282,10 @@ const conseilDetails = [
     objectives: ["Construire un calendrier fiscal", "Organiser les justificatifs", "Identifier les points de vigilance", "Préparer les arbitrages"],
     deliverables: ["Calendrier fiscal", "Liste des justificatifs", "Matrice de vigilance", "Dossier de préparation"],
     examples: ["Préparation d’une échéance", "Organisation des justificatifs", "Suivi d’un plan de régularisation"],
-    related: [{ label: "Conseil comptable", href: "/conseil-accompagnement/conseil-comptable" }, { label: "Suivi digitalisé", href: "/digitalisation/suivi-comptable-fiscal" }],
-    primaryLabel: "Préparer mes obligations fiscales",
+    related: [{ label: "Organisation & préparation comptable", href: "/conseil-accompagnement/conseil-comptable" }, { label: "Suivi digitalisé", href: "/digitalisation/suivi-comptable-fiscal" }],
+    primaryLabel: "Cadrer mes échéances fiscales",
     whatsappMessage: whatsappMessages.diagnostic,
-    seoTitle: "Conseil fiscal et organisation des obligations au Maroc",
+    seoTitle: "Préparation et suivi des échéances fiscales au Maroc",
     seoDescription: "Préparation, organisation et suivi des obligations fiscales des PME avec professionnels habilités selon la mission.",
     faq: [
       { question: "Proposez-vous des consultations fiscales réglementées ?", answer: "LIDA assure l’organisation et la préparation. Les consultations ou actes réservés sont réalisés avec des professionnels habilités." },
@@ -292,7 +295,7 @@ const conseilDetails = [
   }),
   detail({
     path: "conseil-accompagnement/conseil-juridique",
-    eyebrow: "Conseil & accompagnement · Juridique",
+    eyebrow: "Conseil & accompagnement · Dossiers juridiques",
     title: "Préparer vos dossiers juridiques et sécuriser leur suivi.",
     description: "LIDA structure les documents, les échéances et les demandes juridiques, puis coordonne si nécessaire un professionnel du droit habilité.",
     image: photos.legal,
@@ -301,10 +304,10 @@ const conseilDetails = [
     objectives: ["Centraliser les documents", "Suivre les échéances", "Préparer les faits et pièces", "Orienter vers le professionnel adapté"],
     deliverables: ["Dossier juridique organisé", "Échéancier", "Checklist de pièces", "Note de cadrage"],
     examples: ["Organisation des documents sociaux", "Préparation d’un dossier contractuel", "Suivi des échéances juridiques"],
-    related: [{ label: "Documentation & conformité", href: "/gestion-organisation/documentation-conformite" }, { label: "Conseil fiscal", href: "/conseil-accompagnement/conseil-fiscal" }],
-    primaryLabel: "Présenter mon besoin juridique",
+    related: [{ label: "Documentation & conformité", href: "/gestion-organisation/documentation-conformite" }, { label: "Suivi des échéances fiscales", href: "/conseil-accompagnement/conseil-fiscal" }],
+    primaryLabel: "Organiser mon dossier juridique",
     whatsappMessage: whatsappMessages.diagnostic,
-    seoTitle: "Accompagnement et préparation juridique pour PME au Maroc",
+    seoTitle: "Organisation des dossiers juridiques pour PME au Maroc",
     seoDescription: "Organisation des documents et dossiers juridiques, avec professionnels habilités lorsque la mission l’exige.",
     faq: [
       { question: "LIDA remplace-t-elle un avocat ou un notaire ?", answer: "Non. LIDA organise et prépare le dossier. Les consultations et actes réservés sont confiés aux professionnels habilités." },
@@ -377,7 +380,7 @@ const digitalDetails = [
     objectives: ["Centraliser les demandes", "Automatiser les rappels", "Tracer les contrôles", "Partager l’avancement"],
     deliverables: ["Workflow de collecte", "Échéancier partagé", "Tableau des anomalies", "Guide d’utilisation"],
     examples: ["Collecte mensuelle", "Rappels automatiques", "Suivi des écarts documentaires"],
-    related: [{ label: "Conseil comptable", href: "/conseil-accompagnement/conseil-comptable" }, { label: "Conseil fiscal", href: "/conseil-accompagnement/conseil-fiscal" }],
+    related: [{ label: "Organisation comptable", href: "/conseil-accompagnement/conseil-comptable" }, { label: "Échéances fiscales", href: "/conseil-accompagnement/conseil-fiscal" }],
     primaryLabel: "Digitaliser mon suivi",
     whatsappMessage: whatsappMessages.digitalisation,
     seoTitle: "Digitalisation du suivi comptable et fiscal au Maroc",
@@ -561,12 +564,12 @@ const conseilParent = parentPage({
   ],
   related: [{ label: "Digitaliser le suivi", href: "/digitalisation/suivi-comptable-fiscal" }, { label: "Structurer le pilotage", href: "/gestion-organisation" }],
   children: [
-    { label: "Conseil comptable", description: "Organiser les pièces, contrôles et échanges mensuels avec votre professionnel comptable.", href: "/conseil-accompagnement/conseil-comptable" },
-    { label: "Conseil fiscal", description: "Anticiper les échéances, rassembler les justificatifs et préparer les points à faire valider.", href: "/conseil-accompagnement/conseil-fiscal" },
-    { label: "Conseil juridique", description: "Centraliser documents et échéances avant de transmettre un dossier complet au professionnel habilité.", href: "/conseil-accompagnement/conseil-juridique" },
+    { label: "Organisation & préparation comptable", description: "Organiser les pièces, contrôles et échanges mensuels avec votre professionnel comptable.", href: "/conseil-accompagnement/conseil-comptable" },
+    { label: "Préparation & suivi des échéances fiscales", description: "Anticiper les échéances, rassembler les justificatifs et préparer les points à faire valider.", href: "/conseil-accompagnement/conseil-fiscal" },
+    { label: "Organisation des dossiers juridiques", description: "Centraliser documents et échéances avant de transmettre un dossier complet au professionnel habilité.", href: "/conseil-accompagnement/conseil-juridique" },
   ],
   primaryLabel: "Présenter mon besoin", whatsappMessage: whatsappMessages.diagnostic,
-  seoTitle: "Conseil comptable, fiscal et juridique au Maroc", seoDescription: "Préparation et suivi des besoins comptables, fiscaux et juridiques des entreprises au Maroc.",
+  seoTitle: "Organisation comptable, fiscale et juridique au Maroc", seoDescription: "Préparation et suivi des dossiers comptables, des échéances fiscales et des documents juridiques des entreprises au Maroc.",
 });
 
 const digitalParent = parentPage({

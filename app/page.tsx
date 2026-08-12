@@ -27,7 +27,7 @@ const expertises = [
     number: "02",
     title: "Conseil & accompagnement",
     text: "Nous organisons les pièces, échéances et dossiers à transmettre aux interlocuteurs comptables, fiscaux ou juridiques.",
-    items: ["Conseil comptable", "Conseil fiscal", "Conseil juridique"],
+    items: ["Organisation & préparation comptable", "Préparation & suivi des échéances fiscales", "Organisation des dossiers juridiques"],
     note: "Certaines prestations sont réalisées en collaboration avec des professionnels habilités, selon la nature de la mission.",
     href: "/conseil-accompagnement",
   },

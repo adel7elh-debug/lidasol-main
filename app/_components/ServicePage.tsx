@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, ClipboardCheck, Compass, Gauge, PackageCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, CircleOff, ClipboardCheck, FileInput, PackageCheck, SearchCheck } from "lucide-react";
 import type { ServicePageData } from "@/app/_data/services";
 import { servicePages } from "@/app/_data/services";
 import { PageHero } from "@/app/_components/PageHero";
 import { FAQ } from "@/app/_components/FAQ";
 import { CTASection } from "@/app/_components/CTASection";
+import { OfferVisual } from "@/app/_components/OfferVisual";
 import { absoluteUrl, SITE_NAME } from "@/app/_lib/site";
 
 function getBreadcrumbs(page: ServicePageData) {
@@ -32,11 +33,8 @@ export function ServicePage({ page }: { page: ServicePageData }) {
   };
 
   if (isSubService) {
-    const summaryCards = [
-      { label: "Votre situation", icon: Compass, items: page.problems.slice(0, 2) },
-      { label: "Ce que LIDA met en place", icon: ClipboardCheck, items: page.objectives.slice(0, 2) },
-      { label: "Ce que cela rend possible", icon: Gauge, items: page.benefits.slice(0, 2) },
-    ];
+    const offer = page.offer;
+    if (!offer) throw new Error(`Données d’offre manquantes pour ${page.path}`);
 
     return (
       <main>
@@ -54,45 +52,11 @@ export function ServicePage({ page }: { page: ServicePageData }) {
 
         {regulatedNotice ? <aside className="service-notice"><div className="container"><strong>À savoir</strong><p>{regulatedNotice}</p></div></aside> : null}
 
-        <section className="section compact-overview-section">
-          <div className="container">
-            <div className="compact-heading">
-              <p className="eyebrow eyebrow-dark"><span /> L’essentiel</p>
-              <h2>Le besoin, les actions et l’effet recherché.</h2>
-            </div>
-            <div className="compact-summary-grid">
-              {summaryCards.map(({ label, icon: Icon, items }, index) => (
-                <article className="compact-summary-card" key={label}>
-                  <div className="compact-summary-card__top"><Icon aria-hidden="true" size={23} /><span>0{index + 1}</span></div>
-                  <h3>{label}</h3>
-                  <ul>{items.map((item) => <li key={item}>{item}</li>)}</ul>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+        <section className="section service-fit-section"><div className="container service-fit-layout"><div><p className="eyebrow eyebrow-dark"><span /> Cette offre est utile si…</p><h2>Vous reconnaissez ces situations dans votre activité.</h2><div className="offer-signal-list">{page.problems.map((item, index) => <div key={item}><span>{String(index + 1).padStart(2, "0")}</span><p>{item}</p></div>)}</div></div><OfferVisual visual={offer.visual} /></div></section>
 
-        <section className="section light-section compact-scope-section">
-          <div className="container compact-scope-grid">
-            <div>
-              <p className="eyebrow eyebrow-dark"><span /> Ce que nous faisons</p>
-              <h2>Les actions prévues pour cette prestation.</h2>
-              <div className="compact-action-list">
-                {page.objectives.slice(0, 4).map((item, index) => (
-                  <div key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></div>
-                ))}
-              </div>
-            </div>
-            <aside className="compact-deliverables">
-              <PackageCheck aria-hidden="true" size={30} />
-              <p className="eyebrow eyebrow-dark"><span /> Vos livrables</p>
-              <h2>Les documents et outils remis.</h2>
-              <ul className="icon-list">
-                {page.deliverables.slice(0, 5).map((item) => <li key={item}><CheckCircle2 aria-hidden="true" size={19} />{item}</li>)}
-              </ul>
-            </aside>
-          </div>
-        </section>
+        <section className="section light-section service-scope-detail"><div className="container"><div className="section-heading split-heading"><div><p className="eyebrow eyebrow-dark"><span /> Périmètre</p><h2>Ce que LIDA analyse, construit et transmet.</h2></div><p>La proposition finale ajuste ce périmètre au diagnostic et distingue explicitement les responsabilités de LIDA, de l’entreprise et des professionnels habilités.</p></div><div className="scope-action-grid">{page.objectives.map((item, index) => <article key={item}><span>{String(index + 1).padStart(2, "0")}</span><ClipboardCheck aria-hidden="true" size={20} /><strong>{item}</strong></article>)}</div></div></section>
+
+        <section className="section deliverable-showcase"><div className="container deliverable-showcase__layout"><div><p className="eyebrow eyebrow-dark"><span /> Ce que vous recevez</p><h2>Des supports nommés, utilisables et transmis aux responsables.</h2><p>Chaque livrable est adapté aux outils retenus et au niveau de maturité constaté.</p></div><div className="deliverable-cards">{page.deliverables.map((item, index) => <article key={item}><PackageCheck aria-hidden="true" size={22} /><small>Livrable {String(index + 1).padStart(2, "0")}</small><strong>{item}</strong></article>)}</div></div></section>
 
         <section className="section practical-case-section">
           <div className="container">
@@ -114,16 +78,18 @@ export function ServicePage({ page }: { page: ServicePageData }) {
         <section className="section dark-section compact-method-section">
           <div className="container">
             <div className="compact-heading compact-heading-light">
-              <p className="eyebrow"><span /> Méthode LIDA</p>
-              <h2>4 étapes pour avancer.</h2>
+               <p className="eyebrow"><span /> Déroulement concret</p>
+               <h2>Les quatre étapes propres à cette mission.</h2>
             </div>
             <ol className="compact-process-grid">
-              {page.steps.slice(0, 4).map((step, index) => (
+              {offer.steps.map((step, index) => (
                 <li key={step.title}><span>0{index + 1}</span><div><h3>{step.title}</h3><p>{step.text}</p></div></li>
               ))}
             </ol>
           </div>
         </section>
+
+        <section className="section service-boundaries"><div className="container"><div className="section-heading"><p className="eyebrow eyebrow-dark"><span /> Rôles et limites</p><h2>Ce qui est inclus, attendu et hors périmètre.</h2></div><div className="boundary-grid"><article><SearchCheck aria-hidden="true" /><h3>Inclus dans l’accompagnement</h3><ul>{offer.included.map((item) => <li key={item}>{item}</li>)}</ul></article><article><FileInput aria-hidden="true" /><h3>À fournir par l’entreprise</h3><ul>{offer.inputs.map((item) => <li key={item}>{item}</li>)}</ul></article><article><CircleOff aria-hidden="true" /><h3>Hors périmètre ou réservé</h3><ul>{offer.excluded.map((item) => <li key={item}>{item}</li>)}</ul></article></div></div></section>
 
         <section className="related-section compact-related-section">
           <div className="container related-layout">
@@ -132,7 +98,7 @@ export function ServicePage({ page }: { page: ServicePageData }) {
           </div>
         </section>
 
-        <CTASection title="Parlons de votre besoin." text="Un premier échange permet de définir la prochaine étape utile pour votre entreprise." primaryLabel={page.primaryLabel} primaryHref="/contact#contact-form" whatsappMessage={page.whatsappMessage} />
+        <CTASection title={offer.ctaTitle} text={offer.ctaText} primaryLabel={page.primaryLabel} primaryHref="/contact#contact-form" whatsappMessage={page.whatsappMessage} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       </main>
     );

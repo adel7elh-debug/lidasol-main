@@ -37,8 +37,8 @@ export function TrainingCatalog({ items, categories }: { items: TrainingCardData
               <div className="training-card-top"><span><Icon aria-hidden="true" size={21} /></span><small>{item.category}</small></div>
               <h2>{item.title}</h2>
               <p>{item.description}</p>
-              <dl><div><dt>Niveau</dt><dd>{item.level}</dd></div><div><dt>Durée</dt><dd>{item.duration}</dd></div></dl>
-              <div className="card-actions"><Link href={`/formation/${item.slug}`}>Voir la formation <ArrowRight aria-hidden="true" size={16} /></Link><Link href={`/formation/inscription?formation=${item.slug}`}>S’inscrire</Link></div>
+              <dl><div><dt>Niveau</dt><dd>{item.level}</dd></div><div><dt>Format</dt><dd>Défini après cadrage</dd></div></dl>
+              <div className="card-actions"><Link href={`/formation/${item.slug}`}>Voir le programme <ArrowRight aria-hidden="true" size={16} /></Link><Link href={`/formation/inscription?formation=${item.slug}`}>Recevoir programme &amp; devis</Link></div>
             </article>
           );
         })}

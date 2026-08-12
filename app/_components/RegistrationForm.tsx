@@ -37,13 +37,13 @@ export function RegistrationForm({ options, defaultTraining = "" }: { options: O
     setErrors(nextErrors);
     if (values.website || Object.keys(nextErrors).length) return;
     const selected = options.find((option) => option.value === values.training)?.label ?? values.training;
-    const message = `Bonjour LIDA Solutions & Consulting,\n\nJe souhaite m’inscrire à une formation.\n\nNom : ${values.name}\nTéléphone : ${values.phone}\nWhatsApp : ${values.whatsapp}\nEmail : ${values.email || "Non renseigné"}\nVille : ${values.city || "Non renseignée"}\nEntreprise : ${values.company || "Non renseignée"}\nFonction : ${values.role || "Non renseignée"}\nFormation : ${selected}\nNiveau actuel : ${values.level || "Non renseigné"}\nMode souhaité : ${values.mode}\nNombre de participants : ${values.participants}\nMessage : ${values.message || "Aucun message complémentaire"}\n\nMerci de me contacter pour confirmer mon inscription.`;
+    const message = `Bonjour LIDA Solutions & Consulting,\n\nJe souhaite recevoir le programme et un devis pour une formation.\n\nNom : ${values.name}\nTéléphone : ${values.phone}\nWhatsApp : ${values.whatsapp}\nEmail : ${values.email || "Non renseigné"}\nVille : ${values.city || "Non renseignée"}\nEntreprise : ${values.company || "Non renseignée"}\nFonction : ${values.role || "Non renseignée"}\nFormation : ${selected}\nNiveau actuel : ${values.level || "Non renseigné"}\nMode souhaité : ${values.mode}\nNombre de participants : ${values.participants}\nMessage : ${values.message || "Aucun message complémentaire"}\n\nMerci de me contacter pour préciser le format et les modalités.`;
     window.location.assign(createWhatsAppUrl(message));
   }
 
   return (
     <form className="lead-form" onSubmit={handleSubmit} noValidate aria-describedby="registration-form-help">
-      <p className="form-helper" id="registration-form-help">Le formulaire prépare une demande d’inscription. WhatsApp s’ouvre ensuite avec un message prérempli ; vous restez libre de le relire et de l’envoyer.</p>
+      <p className="form-helper" id="registration-form-help">Le formulaire prépare une demande de programme et de devis. WhatsApp s’ouvre ensuite avec un message prérempli ; vous restez libre de le relire et de l’envoyer.</p>
       <div className="honeypot" aria-hidden="true"><label>Votre site<input tabIndex={-1} autoComplete="off" value={values.website} onChange={(event) => update("website", event.target.value)} /></label></div>
       <div className="form-grid">
         <Field label="Nom complet" required error={errors.name} errorId="registration-name-error"><input value={values.name} onChange={(event) => update("name", event.target.value)} autoComplete="name" required aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? "registration-name-error" : undefined} /></Field>

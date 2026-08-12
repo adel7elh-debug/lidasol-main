@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Bot, Calculator, FileSpreadsheet, ShieldCheck } from "lucide-react";
+import { ArrowRight, Bot, Calculator, CheckCircle2, FileSpreadsheet, ShieldCheck, UsersRound } from "lucide-react";
 import type { TrainingAxis } from "@/app/_data/trainingAxes";
 import type { TrainingData } from "@/app/_data/trainings";
 import { PageHero } from "@/app/_components/PageHero";
@@ -21,8 +21,9 @@ export function TrainingAxesGrid({ axes }: { axes: TrainingAxis[] }) {
               <span className="training-axis-card__icon"><Icon aria-hidden="true" size={23} /></span>
               <small>{axis.trainingSlugs.length} formation{axis.trainingSlugs.length > 1 ? "s" : ""}</small>
               <h2>{axis.title}</h2>
-              <p>{axis.description}</p>
-              <Link href={`/formation/${axis.slug}`}>Découvrir les formations <ArrowRight aria-hidden="true" size={17} /></Link>
+              <div className="axis-profiles"><UsersRound aria-hidden="true" size={17} /><span>{axis.profiles.slice(0, 2).join(" · ")}</span></div>
+              <ul>{axis.skills.map((skill) => <li key={skill}><CheckCircle2 aria-hidden="true" size={15} />{skill}</li>)}</ul>
+              <Link href={`/formation/${axis.slug}`}>Voir les programmes <ArrowRight aria-hidden="true" size={17} /></Link>
             </div>
           </article>
         );
@@ -37,15 +38,16 @@ export function TrainingAxisPage({ axis, trainings }: { axis: TrainingAxis; trai
       <PageHero eyebrow={`Formations · ${axis.eyebrow}`} title={axis.title} description={axis.description} image={axis.image} imageAlt={axis.imageAlt} breadcrumbs={[{ label: "Formations", href: "/formation" }, { label: axis.title, href: `/formation/${axis.slug}` }]} primaryLabel="Demander un programme" primaryHref="/formation/inscription" whatsappMessage={whatsappMessages.formation} />
       <section className="section catalog-section">
         <div className="container">
-          <div className="section-heading split-heading"><div><p className="eyebrow eyebrow-dark"><span /> Programmes disponibles</p><h2>Choisissez la formation adaptée à votre besoin.</h2></div><p>Chaque programme est ajusté au niveau des participants et peut être organisé en intra-entreprise.</p></div>
+          <div className="section-heading split-heading"><div><p className="eyebrow eyebrow-dark"><span /> Programmes disponibles</p><h2>Comparez les situations traitées et les compétences visées.</h2></div><p>Le format final est défini après échange sur le niveau, les objectifs, le nombre de participants et les exercices souhaités.</p></div>
           <div className="training-grid">
             {trainings.map((training) => (
               <article className="training-card" key={training.slug}>
                 <div className="training-card-top"><span><ArrowRight aria-hidden="true" size={21} /></span><small>{training.level}</small></div>
                 <h2>{training.title}</h2>
-                <p>{training.description}</p>
-                <dl><div><dt>Niveau</dt><dd>{training.level}</dd></div><div><dt>Durée</dt><dd>{training.duration}</dd></div></dl>
-                <div className="card-actions"><Link href={`/formation/${training.slug}`}>Voir le programme <ArrowRight aria-hidden="true" size={16} /></Link><Link href={`/formation/inscription?formation=${training.slug}`}>S’inscrire</Link></div>
+                <p><strong>Promesse :</strong> {training.promise}</p>
+                <div className="training-card-facts"><div><small>Public principal</small><span>{training.audience.slice(0, 2).join(" · ")}</span></div><div><small>Situations traitées</small><span>{training.why.slice(0, 2).join(" · ")}</span></div><div><small>Compétences</small><span>{training.skills.slice(0, 2).join(" · ")}</span></div></div>
+                <dl><div><dt>Niveau</dt><dd>{training.level}</dd></div><div><dt>Modalités</dt><dd>Présentiel · distance · intra</dd></div></dl>
+                <div className="card-actions"><Link href={`/formation/${training.slug}`}>Voir le programme <ArrowRight aria-hidden="true" size={16} /></Link><Link href={`/formation/inscription?formation=${training.slug}`}>Recevoir programme & devis</Link></div>
               </article>
             ))}
           </div>
