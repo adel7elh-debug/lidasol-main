@@ -32,7 +32,7 @@ export function PageHero({ eyebrow, title, description, image, imageAlt, breadcr
             </div>
           </div>
           <div className="page-hero-image">
-            <Image src={image} alt={imageAlt} fill priority sizes="(max-width: 900px) 100vw, 42vw" unoptimized />
+            <Image src={image} alt={imageAlt} fill priority sizes="(max-width: 900px) 100vw, 42vw" />
             <div><span>LIDA</span><strong>Conseil · Terrain · Résultats</strong></div>
           </div>
         </div>

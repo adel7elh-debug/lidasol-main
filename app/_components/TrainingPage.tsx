@@ -10,9 +10,9 @@ import { absoluteUrl, SITE_NAME } from "@/app/_lib/site";
 export function TrainingPage({ training }: { training: TrainingData }) {
   const options = trainings.map((item) => ({ value: item.slug, label: item.title }));
   const summaryCards = [
-    { label: "Pourquoi", icon: Target, items: training.why.slice(0, 2) },
-    { label: "Objectifs", icon: GraduationCap, items: training.objectives.slice(0, 2) },
-    { label: "Compétences", icon: Award, items: training.skills.slice(0, 2) },
+    { label: "Pourquoi", icon: Target, items: training.why },
+    { label: "Objectifs", icon: GraduationCap, items: training.objectives },
+    { label: "Compétences acquises", icon: Award, items: training.skills },
   ];
   const courseSchema = {
     "@context": "https://schema.org",
@@ -46,7 +46,7 @@ export function TrainingPage({ training }: { training: TrainingData }) {
         </div>
       </section>
 
-      <section className="section dark-section compact-method-section"><div className="container"><div className="compact-heading compact-heading-light"><p className="eyebrow"><span /> Programme</p><h2>Un parcours progressif et applicable.</h2></div><div className="program-grid compact-program-grid">{training.program.map((module, index) => <article key={module.title}><span>Module {index + 1}</span><h3>{module.title}</h3><ul>{module.items.slice(0, 3).map((item) => <li key={item}>{item}</li>)}</ul></article>)}</div></div></section>
+      <section className="section dark-section compact-method-section"><div className="container"><div className="compact-heading compact-heading-light"><p className="eyebrow"><span /> Programme</p><h2>Un parcours progressif et applicable.</h2></div><div className="program-grid compact-program-grid">{training.program.map((module, index) => <article key={module.title}><span>Module {index + 1}</span><h3>{module.title}</h3><ul>{module.items.map((item) => <li key={item}>{item}</li>)}</ul></article>)}</div></div></section>
 
       <section className="section light-section compact-practical-section"><div className="container training-practical"><div><p className="eyebrow eyebrow-dark"><span /> Public cible</p><h2>Pour qui ?</h2><div className="pill-list">{training.audience.slice(0, 4).map((item) => <span key={item}>{item}</span>)}</div></div><div><p className="eyebrow eyebrow-dark"><span /> Prérequis</p><h2>Avant de commencer</h2><p>{training.prerequisites}</p></div><div><p className="eyebrow eyebrow-dark"><span /> Format</p><h2>Modalités</h2><p>{training.format}</p><ul className="icon-list compact-training-facts"><li><CheckCircle2 aria-hidden="true" size={19} />Niveau : {training.level}</li><li><CheckCircle2 aria-hidden="true" size={19} />Durée : {training.duration}</li></ul></div></div></section>
 

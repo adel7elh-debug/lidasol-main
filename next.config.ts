@@ -15,14 +15,6 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-    ],
-  },
   async redirects() {
     return [
       { source: "/conseil-accompagnement/diagnostic-entreprise", destination: "/gestion-organisation/diagnostic-organisationnel-iso", permanent: true },

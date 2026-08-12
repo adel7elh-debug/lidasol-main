@@ -3,6 +3,14 @@ import { whatsappMessages } from "@/app/_lib/site";
 export type LinkItem = { label: string; href: string };
 export type ServiceChild = { label: string; href?: string };
 export type FaqItem = { question: string; answer: string };
+export type PracticalCase = {
+  context: string;
+  situation: string;
+  problem: string;
+  solution: string;
+  deliverables: string[];
+  result: string;
+};
 
 export type ServicePageData = {
   path: string;
@@ -18,6 +26,7 @@ export type ServicePageData = {
   benefits: string[];
   audience: string[];
   examples: string[];
+  practicalCase: PracticalCase;
   faq: FaqItem[];
   related: LinkItem[];
   children?: ServiceChild[];
@@ -50,15 +59,16 @@ type DetailSeed = {
 };
 
 const photos = {
-  accounting: "https://images.unsplash.com/photo-1772588627354-ca3617853217?auto=format&fit=crop&fm=jpg&q=80&w=1600",
-  legal: "https://images.unsplash.com/photo-1768839719921-6a554fb3e847?auto=format&fit=crop&fm=jpg&q=80&w=1600",
-  analytics: "https://images.unsplash.com/photo-1712904322016-9c8f5aef351f?auto=format&fit=crop&fm=jpg&q=80&w=1600",
-  documents: "https://images.unsplash.com/photo-1468779036391-52341f60b55d?auto=format&fit=crop&fm=jpg&q=80&w=1600",
-  digitalTeam: "https://images.unsplash.com/photo-1752170080635-db168448f85d?auto=format&fit=crop&fm=jpg&q=80&w=1600",
-  workflow: "https://images.unsplash.com/photo-1743385779347-1549dabf1320?auto=format&fit=crop&fm=jpg&q=80&w=1600",
-  process: "https://images.unsplash.com/photo-1690191848328-7410cdf9962b?auto=format&fit=crop&fm=jpg&q=80&w=1600",
-  operations: "https://images.unsplash.com/photo-1748345952129-3bdd7d39f155?auto=format&fit=crop&fm=jpg&q=80&w=1600",
-  management: "https://images.unsplash.com/photo-1573164574572-cb89e39749b4?auto=format&fit=crop&fm=jpg&q=80&w=1600",
+  accounting: "/photos/services/conseil-comptable.webp",
+  fiscal: "/photos/services/conseil-fiscal.webp",
+  legal: "/photos/services/conseil-juridique.webp",
+  analytics: "/photos/services/tableaux-bord.webp",
+  documents: "/photos/services/documents.webp",
+  digitalTeam: "/photos/services/erp.webp",
+  workflow: "/photos/services/suivi-comptable.webp",
+  process: "/photos/services/processus.webp",
+  operations: "/photos/services/outils-gestion.webp",
+  management: "/photos/services/pilotage-qse.webp",
 } as const;
 
 const sharedSteps = [
@@ -75,12 +85,21 @@ const defaultFaq: FaqItem[] = [
 ];
 
 function detail(seed: DetailSeed): ServicePageData {
+  const benefits = seed.benefits ?? ["Organisation plus claire", "Temps mieux utilisé", "Risques réduits", "Suivi plus fiable"];
   return {
     ...seed,
     steps: seed.steps ?? sharedSteps,
-    benefits: seed.benefits ?? ["Organisation plus claire", "Temps mieux utilisé", "Risques réduits", "Suivi plus fiable"],
+    benefits,
     audience: seed.audience ?? ["Dirigeants de PME", "Responsables de service", "Équipes administratives", "Entreprises en croissance"],
     faq: seed.faq ?? defaultFaq,
+    practicalCase: {
+      context: "Exemple représentatif d’une situation fréquemment rencontrée par les PME au Maroc.",
+      situation: `Une PME souhaite mettre en place ${seed.examples[0].toLowerCase()} pour mieux maîtriser son activité.`,
+      problem: `Elle fait face à ${seed.problems[0].toLowerCase()} et ${seed.problems[1].toLowerCase()}, sans méthode partagée pour avancer.`,
+      solution: `LIDA cadre la mission, puis intervient pour ${seed.objectives[0].toLowerCase()} et ${seed.objectives[1].toLowerCase()} avec les personnes concernées.`,
+      deliverables: seed.deliverables.slice(0, 3),
+      result: `L’entreprise dispose d’un cadre opérationnel visant ${benefits[0].toLowerCase()} et ${benefits[1].toLowerCase()}, sans promettre de résultat chiffré avant le déploiement.`,
+    },
   };
 }
 
@@ -112,7 +131,7 @@ const conseilDetails = [
     eyebrow: "Conseil & accompagnement · Fiscalité",
     title: "Anticiper vos obligations fiscales avec une organisation claire.",
     description: "LIDA vous aide à préparer les informations, suivre le calendrier fiscal et coordonner les points nécessitant un professionnel habilité.",
-    image: photos.accounting,
+    image: photos.fiscal,
     imageAlt: "Documents fiscaux, calculatrice et stylo préparés pour contrôle",
     problems: ["Échéances suivies tardivement", "Justificatifs incomplets", "Risques difficiles à identifier", "Décisions mal préparées"],
     objectives: ["Construire un calendrier fiscal", "Organiser les justificatifs", "Identifier les points de vigilance", "Préparer les arbitrages"],
@@ -210,7 +229,7 @@ const digitalDetails = [
     eyebrow: "Digitalisation · Comptabilité & fiscalité",
     title: "Centraliser les pièces, échéances et contrôles comptables et fiscaux.",
     description: "Nous digitalisons le suivi des documents, validations, échéances et anomalies pour faciliter la coordination avec les professionnels habilités.",
-    image: photos.accounting,
+    image: photos.workflow,
     imageAlt: "Pièces comptables et fiscales en cours de vérification",
     problems: ["Pièces reçues par plusieurs canaux", "Relances manuelles", "Échéances peu visibles", "Anomalies suivies par messages"],
     objectives: ["Centraliser les demandes", "Automatiser les rappels", "Tracer les contrôles", "Partager l’avancement"],
@@ -247,7 +266,7 @@ const pilotageDetails = [
     eyebrow: "Pilotage & organisation · Diagnostic ISO",
     title: "Identifier les blocages organisationnels et les écarts ISO prioritaires.",
     description: "Le diagnostic croise organisation, processus, risques, documentation et exigences ISO 9001, 14001 ou 45001 selon votre objectif.",
-    image: "/photos/organisation.jpg",
+    image: "/photos/services/diagnostic-iso.webp",
     imageAlt: "Réunion de diagnostic organisationnel et ISO",
     problems: ["Dysfonctionnements inexpliqués", "Projet ISO sans départ clair", "Risques peu hiérarchisés", "Actions dispersées"],
     objectives: ["Établir un état des lieux", "Mesurer les écarts ISO", "Prioriser les risques", "Construire une feuille de route"],
@@ -281,7 +300,7 @@ const pilotageDetails = [
     eyebrow: "Pilotage & organisation · Conformité",
     title: "Construire une documentation utile, maîtrisée et conforme.",
     description: "Nous organisons les procédures, preuves et règles documentaires nécessaires au fonctionnement, à la conformité et aux audits.",
-    image: photos.documents,
+    image: "/photos/services/documentation.webp",
     imageAlt: "Dossiers classés représentant la documentation et la conformité",
     problems: ["Procédures obsolètes", "Modèles dispersés", "Versions non maîtrisées", "Preuves difficiles à retrouver"],
     objectives: ["Définir l’architecture documentaire", "Rédiger avec le terrain", "Maîtriser les versions", "Relier documents et exigences"],
@@ -298,7 +317,7 @@ const pilotageDetails = [
     eyebrow: "Pilotage & organisation · Risques",
     title: "Prévenir les incidents et sécuriser les opérations critiques.",
     description: "Nous identifions les risques, évaluons leurs impacts et mettons en place des mesures de maîtrise suivies.",
-    image: "/photos/iso.jpg",
+    image: "/photos/services/risques.webp",
     imageAlt: "Professionnel équipé pour la maîtrise des risques opérationnels",
     problems: ["Risques non formalisés", "Prévention non suivie", "Incidents répétitifs", "Plans d’urgence incomplets"],
     objectives: ["Identifier les risques", "Évaluer leurs impacts", "Définir les mesures", "Suivre incidents et actions"],
@@ -315,7 +334,7 @@ const pilotageDetails = [
     eyebrow: "Pilotage & organisation · KPI",
     title: "Piloter les résultats avec peu d’indicateurs, mais les bons.",
     description: "Nous relions objectifs, KPI, responsabilités et plans d’action dans des routines de pilotage simples.",
-    image: photos.analytics,
+    image: "/photos/services/kpi.webp",
     imageAlt: "Tableau de bord affichant les indicateurs de performance KPI",
     problems: ["Trop d’indicateurs", "Calculs non partagés", "Réunions sans décisions", "Plans d’action oubliés"],
     objectives: ["Choisir les bons KPI", "Formaliser les calculs", "Installer les revues", "Tracer décisions et actions"],
@@ -332,7 +351,7 @@ const pilotageDetails = [
     eyebrow: "Pilotage & organisation · Audit interne",
     title: "Vérifier le système et préparer la certification sans surprise.",
     description: "Nous réalisons l’audit interne, accompagnons le traitement des écarts et préparons vos équipes à l’audit de certification.",
-    image: photos.workflow,
+    image: "/photos/services/audit-interne.webp",
     imageAlt: "Documents de contrôle utilisés pour un audit interne",
     problems: ["Programme d’audit incomplet", "Écarts mal analysés", "Preuves dispersées", "Équipes peu préparées"],
     objectives: ["Évaluer l’application du système", "Identifier les écarts", "Traiter les causes", "Préparer l’audit externe"],
@@ -368,14 +387,25 @@ const pilotageDetails = [
   }),
 ];
 
-function parentPage(seed: Omit<ServicePageData, "steps">): ServicePageData {
-  return { ...seed, steps: sharedSteps };
+function parentPage(seed: Omit<ServicePageData, "steps" | "practicalCase">): ServicePageData {
+  return {
+    ...seed,
+    steps: sharedSteps,
+    practicalCase: {
+      context: "Exemple représentatif d’une situation fréquemment rencontrée par les PME au Maroc.",
+      situation: "Une entreprise souhaite structurer une priorité devenue difficile à piloter.",
+      problem: seed.problems.slice(0, 2).join(" et ").toLowerCase() + ".",
+      solution: `LIDA intervient pour ${seed.objectives.slice(0, 2).join(" et ").toLowerCase()}.`,
+      deliverables: seed.deliverables.slice(0, 3),
+      result: `Le cadre proposé vise ${seed.benefits.slice(0, 2).join(" et ").toLowerCase()}.`,
+    },
+  };
 }
 
 const conseilParent = parentPage({
   path: "conseil-accompagnement", eyebrow: "Conseil & accompagnement", title: "Mieux préparer et suivre les obligations de votre entreprise.",
   description: "Nous vous aidons à préparer, organiser et suivre vos obligations administratives, comptables, fiscales et juridiques.",
-  image: "/photos/conseil.jpg", imageAlt: "Conseil et accompagnement d’une entreprise",
+  image: "/photos/services/conseil.webp", imageAlt: "Réunion de conseil et d’accompagnement d’une PME",
   problems: ["Échéances difficiles à suivre", "Documents dispersés", "Informations incomplètes", "Interlocuteurs multiples"],
   objectives: ["Organiser les informations", "Anticiper les échéances", "Préparer les dossiers", "Coordonner les professionnels"],
   deliverables: ["État des lieux", "Calendrier", "Dossiers organisés", "Points de vigilance"],
@@ -399,8 +429,8 @@ const conseilParent = parentPage({
 
 const digitalParent = parentPage({
   path: "digitalisation", eyebrow: "Digitalisation & automatisation", title: "Digitaliser ce qui ralentit réellement votre activité.",
-  description: "Nous organisons les données, automatisons les tâches répétitives et connectons les outils utiles à votre entreprise.",
-  image: "/photos/digitalisation.jpg", imageAlt: "Digitalisation et automatisation des activités d’une PME",
+  description: "Nous digitalisons et automatisons les tâches qui ralentissent réellement votre activité.",
+  image: "/photos/services/digitalisation.webp", imageAlt: "Équipe collaborant avec des outils numériques en entreprise",
   problems: ["Saisies multiples", "Fichiers dispersés", "Reporting chronophage", "Outils déconnectés"],
   objectives: ["Fluidifier les processus", "Centraliser les données", "Automatiser les tâches", "Faciliter les décisions"],
   deliverables: ["Cartographie des flux", "Cahier des besoins", "Workflows", "Tableaux de bord et guides"],
@@ -421,8 +451,8 @@ const digitalParent = parentPage({
 
 const pilotageParent = parentPage({
   path: "gestion-organisation", eyebrow: "Pilotage & organisation", title: "Mieux décider, mieux agir et mieux suivre les résultats.",
-  description: "Nous structurons votre entreprise et intégrons le pilotage, la maîtrise des risques et le management ISO.",
-  image: "/photos/organisation.jpg", imageAlt: "Pilotage et organisation d’une entreprise",
+  description: "Nous structurons le fonctionnement de votre entreprise et mettons en place les outils nécessaires pour mieux décider, agir et suivre les résultats.",
+  image: "/photos/services/pilotage.webp", imageAlt: "Analyse d’indicateurs pour le pilotage d’une entreprise",
   problems: ["Rôles mal définis", "Procédures peu appliquées", "Risques non maîtrisés", "ISO difficile à maintenir"],
   objectives: ["Structurer le fonctionnement", "Clarifier les responsabilités", "Maîtriser les risques", "Piloter les résultats et l’ISO"],
   deliverables: ["Processus", "Responsabilités", "Documentation", "KPI et routines"],
@@ -446,7 +476,7 @@ const pilotageParent = parentPage({
 const isoParent = parentPage({
   path: "accompagnement-iso", eyebrow: "Pilotage & organisation · ISO", title: "Préparer votre certification avec un système utile au terrain.",
   description: "Du diagnostic à l’audit blanc, LIDA accompagne vos équipes sur ISO 9001, ISO 14001 et ISO 45001.",
-  image: "/photos/iso.jpg", imageAlt: "Accompagnement aux normes ISO 9001, 14001 et 45001",
+  image: "/photos/services/accompagnement-iso.webp", imageAlt: "Équipe en réunion pour préparer une certification ISO",
   problems: ["Exigences difficiles", "Documentation déconnectée", "Échéance de certification", "Équipes peu sensibilisées"],
   objectives: ["Évaluer les écarts", "Déployer le système", "Former les acteurs", "Préparer la certification"],
   deliverables: ["Rapport d’écarts", "Plan d’action", "Documentation", "Audit interne et audit blanc"],
@@ -465,9 +495,9 @@ const isoParent = parentPage({
 });
 
 const standards = [
-  { code: "9001", name: "qualité", purpose: "la satisfaction client et la maîtrise des processus", image: "/photos/conseil.jpg", alt: "Équipe analysant des indicateurs qualité ISO 9001", benefits: ["Satisfaction client", "Processus maîtrisés", "Écarts traités", "Amélioration continue"] },
-  { code: "14001", name: "environnement", purpose: "les impacts environnementaux et les obligations de conformité", image: "/photos/iso.jpg", alt: "Management environnemental ISO 14001", benefits: ["Impacts priorisés", "Obligations suivies", "Consommations maîtrisées", "Performance mesurée"] },
-  { code: "45001", name: "santé et sécurité", purpose: "les risques SST et la prévention des accidents", image: "/photos/iso.jpg", alt: "Santé et sécurité au travail ISO 45001", benefits: ["Risques SST évalués", "Prévention suivie", "Travailleurs consultés", "Culture sécurité"] },
+  { code: "9001", name: "qualité", purpose: "la satisfaction client et la maîtrise des processus", image: "/photos/services/iso-9001.webp", alt: "Espace de travail structuré pour un système qualité ISO 9001", benefits: ["Satisfaction client", "Processus maîtrisés", "Écarts traités", "Amélioration continue"] },
+  { code: "14001", name: "environnement", purpose: "les impacts environnementaux et les obligations de conformité", image: "/photos/services/iso-14001.webp", alt: "Installations énergétiques au coucher du soleil pour ISO 14001", benefits: ["Impacts priorisés", "Obligations suivies", "Consommations maîtrisées", "Performance mesurée"] },
+  { code: "45001", name: "santé et sécurité", purpose: "les risques SST et la prévention des accidents", image: "/photos/services/iso-45001.webp", alt: "Professionnel équipé pour la sécurité au travail ISO 45001", benefits: ["Risques SST évalués", "Prévention suivie", "Travailleurs consultés", "Culture sécurité"] },
 ] as const;
 
 const isoPages = standards.map((standard) => detail({

@@ -16,6 +16,11 @@ function getBreadcrumbs(page: ServicePageData) {
 
 export function ServicePage({ page }: { page: ServicePageData }) {
   const isSubService = page.path.includes("/");
+  const regulatedNotice = page.path.startsWith("conseil-accompagnement")
+    ? "Certaines prestations sont réalisées en collaboration avec des professionnels habilités, selon la nature de la mission."
+    : page.path.startsWith("accompagnement-iso") || page.path.includes("audit-interne-certification") || page.path.includes("diagnostic-organisationnel-iso")
+      ? "LIDA accompagne la préparation à la certification. La certification est délivrée par un organisme certificateur indépendant."
+      : null;
   const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -46,6 +51,8 @@ export function ServicePage({ page }: { page: ServicePageData }) {
           primaryHref="/contact#contact-form"
           whatsappMessage={page.whatsappMessage}
         />
+
+        {regulatedNotice ? <aside className="service-notice"><div className="container"><strong>À savoir</strong><p>{regulatedNotice}</p></div></aside> : null}
 
         <section className="section compact-overview-section">
           <div className="container">
@@ -84,6 +91,23 @@ export function ServicePage({ page }: { page: ServicePageData }) {
                 {page.deliverables.slice(0, 5).map((item) => <li key={item}><CheckCircle2 aria-hidden="true" size={19} />{item}</li>)}
               </ul>
             </aside>
+          </div>
+        </section>
+
+        <section className="section practical-case-section">
+          <div className="container">
+            <div className="compact-heading practical-case-heading">
+              <p className="eyebrow eyebrow-dark"><span /> Cas pratique représentatif</p>
+              <h2>Un exemple concret, présenté en toute transparence.</h2>
+              <p>{page.practicalCase.context}</p>
+            </div>
+            <div className="practical-case-grid">
+              <article><small>Situation</small><p>{page.practicalCase.situation}</p></article>
+              <article><small>Problème</small><p>{page.practicalCase.problem}</p></article>
+              <article><small>Solution LIDA</small><p>{page.practicalCase.solution}</p></article>
+              <article><small>Livrables</small><ul>{page.practicalCase.deliverables.map((item) => <li key={item}>{item}</li>)}</ul></article>
+              <article><small>Résultat attendu</small><p>{page.practicalCase.result}</p></article>
+            </div>
           </div>
         </section>
 
@@ -127,6 +151,8 @@ export function ServicePage({ page }: { page: ServicePageData }) {
         primaryHref="/contact#contact-form"
         whatsappMessage={page.whatsappMessage}
       />
+
+      {regulatedNotice ? <aside className="service-notice"><div className="container"><strong>À savoir</strong><p>{regulatedNotice}</p></div></aside> : null}
 
       <section className="section intro-section">
         <div className="container split-copy">

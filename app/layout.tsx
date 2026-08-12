@@ -11,7 +11,21 @@ export const metadata: Metadata = {
   description: "Digitalisation et automatisation, conseil, pilotage et organisation, accompagnement ISO et formations professionnelles au Maroc.",
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
   robots: { index: true, follow: true },
-  openGraph: { type: "website", locale: "fr_MA", siteName: SITE_NAME },
+  openGraph: {
+    type: "website",
+    locale: "fr_MA",
+    siteName: SITE_NAME,
+    title: SITE_NAME,
+    description: "Des solutions intelligentes pour développer votre activité.",
+    url: SITE_URL,
+    images: [{ url: absoluteUrl("/og.png"), width: 1200, height: 630, alt: "LIDA Solutions & Consulting — quatre activités pour développer votre entreprise" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_NAME,
+    description: "Des solutions intelligentes pour développer votre activité.",
+    images: [absoluteUrl("/og.png")],
+  },
 };
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#061b3d" };
