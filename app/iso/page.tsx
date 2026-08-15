@@ -240,7 +240,7 @@ export default function IsoPage() {
       <section className={styles.consultantSection} aria-labelledby="consultant-title">
         <div className={`container ${styles.consultantLayout}`}>
           <div className={styles.consultantImage}>
-            <Image src="/photos/pages/consultant.webp" alt="Atelier professionnel animé autour d’outils de management" fill sizes="(max-width: 900px) 100vw, 44vw" />
+            <Image src="/photos/pages/adel-el-haddioui.webp" alt="Portrait professionnel d’Adel El Haddioui" fill sizes="(max-width: 900px) 100vw, 44vw" />
           </div>
           <div className={styles.consultantCopy}>
             <p className={styles.eyebrow}>Votre consultant</p>
