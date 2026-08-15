@@ -1011,29 +1011,33 @@
   line-height: 1.8;
 }
 
-.badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-  margin-top: 28px;
+.consultantHighlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px 28px;
+  margin: 30px 0 0;
+  padding: 24px 0 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
 }
 
-.badges span {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 9px 12px;
-  color: #27466a;
-  background: var(--iso-paper);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 700;
+.consultantHighlights li {
+  position: relative;
+  padding-left: 22px;
+  color: #41536c;
+  font-size: 12px;
+  line-height: 1.55;
 }
 
-.badges svg {
-  width: 14px;
-  color: #248052;
+.consultantHighlights li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: .48em;
+  width: 8px;
+  height: 8px;
+  background: var(--iso-gold);
+  transform: rotate(45deg);
 }
 
 .textLink {
@@ -1382,6 +1386,11 @@
 
   .consultantImage {
     min-height: 360px;
+  }
+
+  .consultantHighlights {
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 
   .finalCta {

@@ -86,6 +86,15 @@ const tools = [
   { title: "Cartographie des processus", text: "Donne une vue partagée des flux, interactions et responsabilités.", icon: Map },
 ] as const;
 
+const consultantHighlights = [
+  "Manager et Responsable de Site au sein d’une entreprise européenne",
+  "Ex-Directeur Administratif et Financier (DAF)",
+  "Formateur professionnel à l’OFPPT et à l’IIPM",
+  "Professeur universitaire à la FIEP (France)",
+  "Auditeur ISO 9001, ISO 14001 et ISO 45001",
+  "Ingénieur en Management Environnemental",
+] as const;
+
 const currentSituation = [
   "Processus informels",
   "Réclamations peu analysées",
@@ -245,10 +254,10 @@ export default function IsoPage() {
           <div className={styles.consultantCopy}>
             <p className={styles.eyebrow}>Votre consultant</p>
             <h2 id="consultant-title">Adel El Haddioui</h2>
-            <p>Consultant Senior QHSE, Auditeur ISO 9001, ISO 14001 et ISO 45001, formateur professionnel et expert en systèmes de management.</p>
-            <div className={styles.badges}>
-              {["ISO 9001", "ISO 14001", "ISO 45001", "Audit interne", "Formation QHSE", "Diagnostic gratuit"].map((badge) => <span key={badge}><Check aria-hidden="true" />{badge}</span>)}
-            </div>
+            <p>Professionnel de la comptabilité, de la finance, de la gestion administrative et du management, disposant de <strong>plus de 10 ans d’expérience</strong> dans la formation professionnelle.</p>
+            <ul className={styles.consultantHighlights}>
+              {consultantHighlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+            </ul>
             <Link className={styles.textLink} href="/a-propos/adel-el-haddioui">Découvrir votre interlocuteur <ArrowRight aria-hidden="true" /></Link>
           </div>
         </div>
