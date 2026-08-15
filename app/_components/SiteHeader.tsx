@@ -3,12 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { createWhatsAppUrl, whatsappMessages } from "@/app/_lib/site";
 
 const serviceLinks = [
   ["Digitalisation & automatisation", "/digitalisation"],
   ["Conseil & accompagnement", "/conseil-accompagnement"],
   ["Pilotage & organisation", "/gestion-organisation"],
+  ["Accompagnement ISO", "/accompagnement-iso"],
   ["Formations professionnelles", "/formation"],
 ] as const;
 
@@ -50,7 +52,7 @@ function MobileNavSection({ id, label, links, isOpen, onToggle, onLinkClick }: {
   );
 }
 
-function NavDropdown({ label, links, isOpen, onOpen, onClose, onScheduleClose, onCancelClose }: {
+function NavDropdown({ label, links, isOpen, onOpen, onClose, onScheduleClose, onCancelClose, currentPath }: {
   label: DropdownName;
   links: ReadonlyArray<readonly [string, string]>;
   isOpen: boolean;
@@ -58,10 +60,11 @@ function NavDropdown({ label, links, isOpen, onOpen, onClose, onScheduleClose, o
   onClose: () => void;
   onScheduleClose: () => void;
   onCancelClose: () => void;
+  currentPath: string;
 }) {
   return (
     <details
-      className="nav-dropdown"
+      className={`nav-dropdown ${links.some(([, href]) => currentPath === href || currentPath.startsWith(`${href}/`)) ? "is-active" : ""}`}
       open={isOpen}
       onMouseEnter={() => onOpen(label)}
       onMouseLeave={onScheduleClose}
@@ -94,6 +97,7 @@ function NavDropdown({ label, links, isOpen, onOpen, onClose, onScheduleClose, o
 }
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [activeDropdown, setActiveDropdown] = useState<DropdownName | null>(null);
   const [activeMobileSection, setActiveMobileSection] = useState<MobileSectionName | null>(null);
   const closeTimer = useRef<number | null>(null);
@@ -172,11 +176,11 @@ export function SiteHeader() {
         </details>
 
         <nav className="desktop-nav" aria-label="Navigation principale">
-          <Link href="/">Accueil</Link>
-          <NavDropdown label="Services" links={serviceLinks} isOpen={activeDropdown === "Services"} onOpen={openDropdown} onClose={closeDropdown} onScheduleClose={scheduleClose} onCancelClose={cancelClose} />
-          <Link href="/realisations">Réalisations</Link>
-          <Link href="/a-propos">À propos</Link>
-          <Link href="/contact">Contact</Link>
+          <Link className={pathname === "/" ? "is-active" : undefined} href="/">Accueil</Link>
+          <NavDropdown label="Services" links={serviceLinks} isOpen={activeDropdown === "Services"} onOpen={openDropdown} onClose={closeDropdown} onScheduleClose={scheduleClose} onCancelClose={cancelClose} currentPath={pathname} />
+          <Link className={pathname.startsWith("/realisations") ? "is-active" : undefined} href="/realisations">Réalisations</Link>
+          <Link className={pathname.startsWith("/a-propos") ? "is-active" : undefined} href="/a-propos">À propos</Link>
+          <Link className={pathname.startsWith("/contact") ? "is-active" : undefined} href="/contact">Contact</Link>
         </nav>
 
         <a className="button button-gold header-cta" href={createWhatsAppUrl(whatsappMessages.diagnostic)} target="_blank" rel="noreferrer">
