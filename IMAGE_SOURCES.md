@@ -11,6 +11,8 @@ Aucune image externe ni image générée par intelligence artificielle n’a ét
 | Conseil & accompagnement | `public/photos/services/conseil.webp` | Ressource préexistante du dépôt ; URL d’origine non fournie |
 | Pilotage & organisation | `public/photos/services/pilotage.webp` | Ressource préexistante du dépôt ; URL d’origine non fournie |
 | Accompagnement ISO | `public/photos/services/accompagnement-iso.webp` | Ressource préexistante du dépôt ; URL d’origine non fournie |
+| Guide ISO — santé | `public/photos/iso-health.jpg` | [Unsplash — National Cancer Institute](https://images.unsplash.com/photo-1576091160399-112ba8d25d1d) |
+| Guide ISO — logistique | `public/photos/iso-logistics.jpg` | [Unsplash — Osmany M Leyva Aldana](https://unsplash.com/photos/orange-forklift-parked-outside-industrial-building-IcB8U3l9Slg) |
 | Formations professionnelles | `public/photos/formation.jpg` | Ressource préexistante du dépôt ; URL d’origine non fournie |
 | À propos | `public/photos/pages/a-propos.webp` | Ressource préexistante du dépôt ; URL d’origine non fournie |
 | Réalisations | `public/photos/pages/realisations.webp` | Ressource préexistante du dépôt ; URL d’origine non fournie |

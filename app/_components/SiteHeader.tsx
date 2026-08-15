@@ -10,7 +10,7 @@ const serviceLinks = [
   ["Digitalisation & automatisation", "/digitalisation"],
   ["Conseil & accompagnement", "/conseil-accompagnement"],
   ["Pilotage & organisation", "/gestion-organisation"],
-  ["Accompagnement ISO", "/accompagnement-iso"],
+  ["Accompagnement ISO", "/iso"],
   ["Formations professionnelles", "/formation"],
 ] as const;
 
