@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, CircleOff, ClipboardCheck, FileInput, PackageCheck, SearchCheck } from "lucide-react";
 import type { ServicePageData } from "@/app/_data/services";
@@ -6,6 +7,7 @@ import { PageHero } from "@/app/_components/PageHero";
 import { FAQ } from "@/app/_components/FAQ";
 import { CTASection } from "@/app/_components/CTASection";
 import { OfferVisual } from "@/app/_components/OfferVisual";
+import { serviceNarratives, type ServiceNarrative } from "@/app/_data/serviceNarratives";
 import { absoluteUrl, SITE_NAME } from "@/app/_lib/site";
 
 function getBreadcrumbs(page: ServicePageData) {
@@ -13,6 +15,43 @@ function getBreadcrumbs(page: ServicePageData) {
   if (parts.length === 1) return [{ label: page.eyebrow, href: `/${page.path}` }];
   const parent = servicePages[parts[0]];
   return [{ label: parent?.eyebrow ?? parts[0], href: `/${parts[0]}` }, { label: page.eyebrow, href: `/${page.path}` }];
+}
+
+function NarrativeServicePage({ page, narrative, schema }: { page: ServicePageData; narrative: ServiceNarrative; schema: Record<string, unknown> }) {
+  return (
+    <main>
+      <PageHero
+        eyebrow={page.eyebrow}
+        title={narrative.heroTitle}
+        description={narrative.heroDescription}
+        image={page.image}
+        imageAlt={page.imageAlt}
+        breadcrumbs={getBreadcrumbs(page)}
+        primaryLabel={narrative.ctaLabel}
+        primaryHref="/contact#contact-form"
+        whatsappMessage={page.whatsappMessage}
+      />
+
+      {narrative.notice ? <aside className="service-notice"><div className="container"><strong>{narrative.notice.title}</strong><p>{narrative.notice.text}</p></div></aside> : null}
+
+      <section className="section narrative-intro"><div className="container narrative-intro-layout"><p className="eyebrow eyebrow-dark"><span /> Votre situation</p><div>{narrative.lead.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></div></section>
+
+      {narrative.signals ? <section className="section light-section"><div className="container"><div className="section-heading"><p className="eyebrow eyebrow-dark"><span /> Points de vigilance</p><h2>{narrative.signals.title}</h2></div><div className="narrative-signal-grid">{narrative.signals.items.map((item, index) => <article key={item}><span>{String(index + 1).padStart(2, "0")}</span><p>{item}</p></article>)}</div></div></section> : null}
+
+      {page.children ? <section className="section service-navigation-section"><div className="container"><div className="section-heading split-heading"><div><p className="eyebrow eyebrow-dark"><span /> Nos domaines d’intervention</p><h2>Choisissez le point d’entrée adapté à votre besoin.</h2></div><p>Chaque domaine présente les situations traitées, les actions prévues et les livrables associés.</p></div><div className="service-image-grid">{page.children.map((child, index) => { const childPage = child.href ? servicePages[child.href.slice(1)] : undefined; return child.href ? <Link href={child.href} key={child.href}><div className="service-image-grid__visual">{childPage ? <Image src={childPage.image} alt={childPage.imageAlt} fill sizes="(max-width: 700px) 100vw, 33vw" /> : null}</div><div><small>{String(index + 1).padStart(2, "0")}</small><h3>{child.label}</h3><p>{child.description}</p><span>Découvrir <ArrowRight aria-hidden="true" size={16} /></span></div></Link> : null; })}</div></div></section> : null}
+
+      <section className="narrative-detail-list">{narrative.sections.map((section, index) => <article className="section" key={section.title}><div className="container narrative-detail-layout"><div><span className="narrative-index">{String(index + 1).padStart(2, "0")}</span><h2>{section.title}</h2><p>{section.description}</p>{section.outcome ? <div className="narrative-outcome"><small>Résultat attendu</small><p>{section.outcome}</p></div> : null}</div><div><h3>{section.listLabel ?? "Ce que comprend l'accompagnement"}</h3><ul>{section.items.map((item) => <li key={item}><CheckCircle2 aria-hidden="true" size={17} />{item}</li>)}</ul></div></div></article>)}</section>
+
+      {narrative.tracking ? <section className="section narrative-tracking"><div className="container narrative-tracking-layout"><div><p className="eyebrow"><span /> Pilotage</p><h2>{narrative.tracking.title}</h2>{narrative.tracking.intro ? <p>{narrative.tracking.intro}</p> : null}{narrative.tracking.outro ? <p>{narrative.tracking.outro}</p> : null}</div><div className="tracking-list">{narrative.tracking.items.map((item, index) => <div key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></div>)}</div></div></section> : null}
+
+      {narrative.method ? <section className="section dark-section"><div className="container"><div className="section-heading heading-light"><p className="eyebrow"><span /> Notre méthode</p><h2>Une progression claire, du diagnostic au suivi.</h2></div><ol className="narrative-method">{narrative.method.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span><p>{item}</p></li>)}</ol></div></section> : null}
+
+      <section className="section light-section"><div className="container"><div className="section-heading"><p className="eyebrow eyebrow-dark"><span /> Livrables</p><h2>Des supports directement exploitables par vos équipes.</h2></div><div className="narrative-deliverables">{narrative.deliverables.map((item) => <div key={item}><PackageCheck aria-hidden="true" size={20} /><span>{item}</span></div>)}</div></div></section>
+
+      <CTASection title={narrative.ctaTitle} text={narrative.ctaText} primaryLabel={narrative.ctaLabel} primaryHref="/contact#contact-form" whatsappMessage={page.whatsappMessage} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+    </main>
+  );
 }
 
 export function ServicePage({ page }: { page: ServicePageData }) {
@@ -31,6 +70,9 @@ export function ServicePage({ page }: { page: ServicePageData }) {
     provider: { "@type": "ProfessionalService", name: SITE_NAME, url: absoluteUrl() },
     areaServed: { "@type": "Country", name: "Maroc" },
   };
+
+  const narrative = serviceNarratives[page.path];
+  if (!isSubService && narrative) return <NarrativeServicePage page={page} narrative={narrative} schema={schema} />;
 
   if (isSubService) {
     const offer = page.offer;
