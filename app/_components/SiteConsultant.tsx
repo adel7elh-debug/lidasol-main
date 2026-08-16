@@ -21,7 +21,7 @@ export function SiteConsultant() {
             alt="Portrait professionnel d’Adel El Haddioui"
             width={1079}
             height={1538}
-            sizes="(max-width: 930px) calc(100vw - 48px), 44vw"
+            sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 930px) min(520px, calc(100vw - 48px)), 44vw"
           />
         </div>
 
