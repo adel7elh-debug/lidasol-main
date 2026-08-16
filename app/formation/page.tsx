@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { PageHero } from "@/app/_components/PageHero";
 import { CTASection } from "@/app/_components/CTASection";
+import { PremiumMetrics, TransformationComparison } from "@/app/_components/PremiumServiceStory";
 import { whatsappMessages } from "@/app/_lib/site";
 
 export const metadata: Metadata = {
@@ -62,12 +63,45 @@ const method = [
   "Remise des supports — Fournir une documentation réutilisable après la formation.",
 ];
 
+const trainingMetrics = [
+  { value: "4", label: "axes de formation" },
+  { value: "7", label: "étapes pédagogiques" },
+  { value: "5", label: "formats possibles" },
+  { value: "1", label: "plan d’application" },
+] as const;
+
+const trainingBefore = [
+  "Programme générique éloigné du métier",
+  "Participants de niveaux très différents",
+  "Exercices sans lien avec les outils utilisés",
+  "Peu d’application après la session",
+] as const;
+
+const trainingAfter = [
+  "Objectifs construits à partir du besoin réel",
+  "Parcours adapté au niveau des participants",
+  "Mises en situation proches de l’activité",
+  "Supports et plan d’application réutilisables",
+] as const;
+
 export default function FormationPage() {
   return (
-    <main>
+    <main className="premium-service-page premium-training-page">
       <PageHero eyebrow="Formations professionnelles" title="Développez des compétences directement applicables à votre activité" description="Une formation n'a de valeur que si elle répond à des situations réellement rencontrées par les participants dans leur travail quotidien. Trop de formations restent théoriques et n'ont aucun effet visible une fois les participants revenus à leur poste." image="/photos/formation.jpg" imageAlt="Salle de formation professionnelle pour les entreprises au Maroc" breadcrumbs={[{ label: "Formations", href: "/formation" }]} primaryLabel="Demander un programme de formation" primaryHref="/formation/inscription" whatsappMessage={whatsappMessages.formation} />
 
+      <PremiumMetrics eyebrow="Votre parcours de formation" metrics={trainingMetrics} />
+
       <section className="section narrative-intro"><div className="container narrative-intro-layout"><p className="eyebrow eyebrow-dark"><span /> Notre approche</p><div><p>LIDA construit des parcours sur mesure, adaptés au niveau des participants, aux objectifs de l’entreprise, aux outils déjà en place et au contexte réglementaire marocain — pour que chaque heure de formation se traduise en compétence utilisable dès le lendemain.</p></div></div></section>
+
+      <TransformationComparison
+        eyebrow="Avant / après formation"
+        title="Passer d’un contenu théorique à des compétences réellement applicables"
+        description="Le programme, les exercices et les supports sont construits autour des situations que les participants devront maîtriser après la formation."
+        beforeTitle="Formation standard"
+        afterTitle="Parcours LIDA"
+        before={trainingBefore}
+        after={trainingAfter}
+      />
 
       <section className="section light-section"><div className="container"><div className="section-heading"><p className="eyebrow eyebrow-dark"><span /> Quatre axes</p><h2>Formations professionnelles</h2></div><div className="training-editorial-grid">{trainingAreas.map((area) => <article key={area.href}><div className="training-editorial-grid__image"><Image src={area.image} alt={area.imageAlt} fill sizes="(max-width: 820px) 100vw, 50vw" /></div><div className="training-editorial-grid__body"><h2>{area.title}</h2><p>{area.description}</p><h3>{area.listLabel}</h3><ul>{area.items.map((item) => <li key={item}><CheckCircle2 aria-hidden="true" size={16} />{item}</li>)}</ul><Link href={area.href}>Voir les programmes <ArrowRight aria-hidden="true" size={17} /></Link></div></article>)}</div></div></section>
 
