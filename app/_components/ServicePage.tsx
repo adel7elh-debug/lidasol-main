@@ -7,8 +7,68 @@ import { PageHero } from "@/app/_components/PageHero";
 import { FAQ } from "@/app/_components/FAQ";
 import { CTASection } from "@/app/_components/CTASection";
 import { OfferVisual } from "@/app/_components/OfferVisual";
+import { PremiumMetrics, TransformationComparison, type PremiumMetric } from "@/app/_components/PremiumServiceStory";
 import { serviceNarratives, type ServiceNarrative } from "@/app/_data/serviceNarratives";
 import { absoluteUrl, SITE_NAME } from "@/app/_lib/site";
+
+type PremiumServiceStory = {
+  metrics: readonly PremiumMetric[];
+  eyebrow: string;
+  title: string;
+  description: string;
+  beforeTitle: string;
+  afterTitle: string;
+  before: readonly string[];
+  after: readonly string[];
+};
+
+const premiumServiceStories: Record<string, PremiumServiceStory> = {
+  digitalisation: {
+    metrics: [
+      { value: "4", label: "axes d’intervention" },
+      { value: "6", label: "étapes de déploiement" },
+      { value: "8", label: "livrables opérationnels" },
+      { value: "1", label: "feuille de route priorisée" },
+    ],
+    eyebrow: "Avant / après digitalisation",
+    title: "Passer d’outils dispersés à des flux simples, fiables et suivis",
+    description: "La digitalisation utile ne consiste pas à multiplier les logiciels. Elle rend l’information plus facile à saisir, retrouver, contrôler et transmettre.",
+    beforeTitle: "Fonctionnement actuel",
+    afterTitle: "Après la transformation",
+    before: ["Ressaisies et doubles saisies", "Fichiers répartis entre plusieurs collaborateurs", "Validations sans historique fiable", "Indicateurs reconstruits manuellement"],
+    after: ["Flux simplifiés et documentés", "Documents centralisés et accessibles", "Validations et responsabilités visibles", "Tableaux de bord actualisés plus facilement"],
+  },
+  "conseil-accompagnement": {
+    metrics: [
+      { value: "3", label: "domaines complémentaires" },
+      { value: "5", label: "étapes d’accompagnement" },
+      { value: "11", label: "livrables structurants" },
+      { value: "1", label: "suivi consolidé" },
+    ],
+    eyebrow: "Avant / après organisation",
+    title: "Transformer des dossiers dispersés en obligations anticipées et maîtrisées",
+    description: "L’objectif est de donner à la direction une vision claire des pièces, des responsables, des validations et des prochaines échéances.",
+    beforeTitle: "Gestion réactive",
+    afterTitle: "Organisation maîtrisée",
+    before: ["Documents reçus par plusieurs canaux", "Échéances suivies de mémoire", "Dossiers incomplets au moment de transmettre", "Contrats et justificatifs difficiles à retrouver"],
+    after: ["Plan de classement partagé", "Calendrier et alertes formalisés", "Dossiers contrôlés avant transmission", "Responsables et statuts visibles par la direction"],
+  },
+  "gestion-organisation": {
+    metrics: [
+      { value: "5", label: "axes de structuration" },
+      { value: "7", label: "leviers de pilotage" },
+      { value: "10", label: "livrables possibles" },
+      { value: "1", label: "système de décision" },
+    ],
+    eyebrow: "Avant / après structuration",
+    title: "Passer d’une organisation dépendante des personnes à un pilotage partagé",
+    description: "Processus, responsabilités, risques et indicateurs sont reliés pour que les décisions deviennent des actions attribuées, datées et vérifiables.",
+    beforeTitle: "Organisation peu lisible",
+    afterTitle: "Pilotage structuré",
+    before: ["Responsabilités implicites", "Procédures éloignées du terrain", "Risques traités au cas par cas", "Réunions centrées sur les chiffres"],
+    after: ["Rôles et validations clarifiés", "Processus applicables et documentés", "Risques hiérarchisés et suivis", "Décisions transformées en plans d’action"],
+  },
+};
 
 function getBreadcrumbs(page: ServicePageData) {
   const parts = page.path.split("/");
@@ -18,8 +78,10 @@ function getBreadcrumbs(page: ServicePageData) {
 }
 
 function NarrativeServicePage({ page, narrative, schema }: { page: ServicePageData; narrative: ServiceNarrative; schema: Record<string, unknown> }) {
+  const premiumStory = premiumServiceStories[page.path];
+
   return (
-    <main>
+    <main className="premium-service-page">
       <PageHero
         eyebrow={page.eyebrow}
         title={narrative.heroTitle}
@@ -32,6 +94,8 @@ function NarrativeServicePage({ page, narrative, schema }: { page: ServicePageDa
         whatsappMessage={page.whatsappMessage}
       />
 
+      {premiumStory ? <PremiumMetrics eyebrow="Votre parcours LIDA" metrics={premiumStory.metrics} /> : null}
+
       {narrative.notice ? <aside className="service-notice"><div className="container"><strong>{narrative.notice.title}</strong><p>{narrative.notice.text}</p></div></aside> : null}
 
       <section className="section narrative-intro"><div className="container narrative-intro-layout"><p className="eyebrow eyebrow-dark"><span /> Votre situation</p><div>{narrative.lead.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></div></section>
@@ -39,6 +103,8 @@ function NarrativeServicePage({ page, narrative, schema }: { page: ServicePageDa
       {narrative.signals ? <section className="section light-section"><div className="container"><div className="section-heading"><p className="eyebrow eyebrow-dark"><span /> Points de vigilance</p><h2>{narrative.signals.title}</h2></div><div className="narrative-signal-grid">{narrative.signals.items.map((item, index) => <article key={item}><span>{String(index + 1).padStart(2, "0")}</span><p>{item}</p></article>)}</div></div></section> : null}
 
       {page.children ? <section className="section service-navigation-section"><div className="container"><div className="section-heading split-heading"><div><p className="eyebrow eyebrow-dark"><span /> Nos domaines d’intervention</p><h2>Choisissez le point d’entrée adapté à votre besoin.</h2></div><p>Chaque domaine présente les situations traitées, les actions prévues et les livrables associés.</p></div><div className="service-image-grid">{page.children.map((child, index) => { const childPage = child.href ? servicePages[child.href.slice(1)] : undefined; return child.href ? <Link href={child.href} key={child.href}><div className="service-image-grid__visual">{childPage ? <Image src={childPage.image} alt={childPage.imageAlt} fill sizes="(max-width: 700px) 100vw, 33vw" /> : null}</div><div><small>{String(index + 1).padStart(2, "0")}</small><h3>{child.label}</h3><p>{child.description}</p><span>Découvrir <ArrowRight aria-hidden="true" size={16} /></span></div></Link> : null; })}</div></div></section> : null}
+
+      {premiumStory ? <TransformationComparison {...premiumStory} /> : null}
 
       <section className="narrative-detail-list">{narrative.sections.map((section, index) => <article className="section" key={section.title}><div className="container narrative-detail-layout"><div><span className="narrative-index">{String(index + 1).padStart(2, "0")}</span><h2>{section.title}</h2><p>{section.description}</p>{section.outcome ? <div className="narrative-outcome"><small>Résultat attendu</small><p>{section.outcome}</p></div> : null}</div><div><h3>{section.listLabel ?? "Ce que comprend l'accompagnement"}</h3><ul>{section.items.map((item) => <li key={item}><CheckCircle2 aria-hidden="true" size={17} />{item}</li>)}</ul></div></div></article>)}</section>
 
