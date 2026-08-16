@@ -138,8 +138,7 @@
 }
 
 .goldButton svg,
-.ghostButton svg,
-.textLink svg {
+.ghostButton svg {
   width: 17px;
   height: 17px;
 }
@@ -222,8 +221,7 @@
 .sectorCarouselSection,
 .standardsSection,
 .comparisonSection,
-.toolsSection,
-.consultantSection {
+.toolsSection {
   padding: 108px 0;
 }
 
@@ -966,90 +964,6 @@
   line-height: 1.62;
 }
 
-.consultantSection {
-  background: white;
-}
-
-.consultantLayout {
-  display: grid;
-  grid-template-columns: .9fr 1.1fr;
-  gap: clamp(45px, 7vw, 90px);
-  align-items: center;
-}
-
-.consultantImage {
-  position: relative;
-  min-height: 520px;
-  overflow: hidden;
-  border-radius: 18px;
-  box-shadow: 0 28px 70px rgba(6,27,61,.16);
-}
-
-.consultantImage::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 55%, rgba(6,27,61,.45));
-}
-
-.consultantImage img {
-  object-fit: cover;
-  object-position: center 30%;
-}
-
-.consultantCopy h2 {
-  margin: 0;
-  font-size: clamp(38px, 4.5vw, 58px);
-  letter-spacing: -.045em;
-}
-
-.consultantCopy > p:not(.eyebrow) {
-  max-width: 620px;
-  margin: 24px 0 0;
-  color: var(--muted);
-  font-size: 16px;
-  line-height: 1.8;
-}
-
-.consultantHighlights {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 17px 28px;
-  margin: 30px 0 0;
-  padding: 24px 0 0;
-  list-style: none;
-  border-top: 1px solid var(--line);
-}
-
-.consultantHighlights li {
-  position: relative;
-  padding-left: 22px;
-  color: #41536c;
-  font-size: 12px;
-  line-height: 1.55;
-}
-
-.consultantHighlights li::before {
-  content: "";
-  position: absolute;
-  left: 2px;
-  top: .48em;
-  width: 8px;
-  height: 8px;
-  background: var(--iso-gold);
-  transform: rotate(45deg);
-}
-
-.textLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  margin-top: 32px;
-  color: var(--iso-blue);
-  font-size: 13px;
-  font-weight: 800;
-}
-
 .finalCta {
   position: relative;
   padding: 105px 0;
@@ -1207,13 +1121,6 @@
     display: none;
   }
 
-  .consultantLayout {
-    grid-template-columns: 1fr;
-  }
-
-  .consultantImage {
-    min-height: 440px;
-  }
 }
 
 @media (max-width: 680px) {
@@ -1222,8 +1129,7 @@
   .guideSection,
   .comparisonSection,
   .roadmapSection,
-  .toolsSection,
-  .consultantSection {
+  .toolsSection {
     padding: 78px 0;
   }
 
@@ -1382,15 +1288,6 @@
 
   .toolsGrid article {
     min-height: auto;
-  }
-
-  .consultantImage {
-    min-height: 360px;
-  }
-
-  .consultantHighlights {
-    grid-template-columns: 1fr;
-    gap: 14px;
   }
 
   .finalCta {

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { SiteHeader } from "@/app/_components/SiteHeader";
+import { SiteConsultant } from "@/app/_components/SiteConsultant";
 import { SiteFooter } from "@/app/_components/SiteFooter";
 import { WhatsAppFloatingButton } from "@/app/_components/WhatsAppButton";
 import { absoluteUrl, CONTACT_EMAIL, LOCATION, PHONE_LINK, SITE_NAME, SITE_URL } from "@/app/_lib/site";
@@ -48,7 +49,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <a className="skip-link" href="#main-content">Aller au contenu</a>
         <SiteHeader />
-        <div id="main-content">{children}</div>
+        <div id="main-content">
+          {children}
+          <SiteConsultant />
+        </div>
         <SiteFooter />
         <WhatsAppFloatingButton />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />

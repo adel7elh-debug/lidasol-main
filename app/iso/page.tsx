@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import {
   Activity,
   ArrowRight,
@@ -84,15 +83,6 @@ const tools = [
   { title: "Programme d’audit", text: "Planifie les audits selon la criticité et la maturité des processus.", icon: ClipboardCheck },
   { title: "Fiche de non-conformité", text: "Structure la correction, l’analyse des causes et l’action corrective.", icon: FileWarning },
   { title: "Cartographie des processus", text: "Donne une vue partagée des flux, interactions et responsabilités.", icon: Map },
-] as const;
-
-const consultantHighlights = [
-  "Manager et Responsable de Site au sein d’une entreprise européenne",
-  "Ex-Directeur Administratif et Financier (DAF)",
-  "Formateur professionnel à l’OFPPT et à l’IIPM",
-  "Professeur universitaire à la FIEP (France)",
-  "Auditeur ISO 9001, ISO 14001 et ISO 45001",
-  "Ingénieur en Management Environnemental",
 ] as const;
 
 const currentSituation = [
@@ -242,23 +232,6 @@ export default function IsoPage() {
                 <p>{text}</p>
               </article>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className={styles.consultantSection} aria-labelledby="consultant-title">
-        <div className={`container ${styles.consultantLayout}`}>
-          <div className={styles.consultantImage}>
-            <Image src="/photos/pages/adel-el-haddioui.webp" alt="Portrait professionnel d’Adel El Haddioui" fill sizes="(max-width: 900px) 100vw, 44vw" />
-          </div>
-          <div className={styles.consultantCopy}>
-            <p className={styles.eyebrow}>Votre consultant</p>
-            <h2 id="consultant-title">Adel El Haddioui</h2>
-            <p>Professionnel de la comptabilité, de la finance, de la gestion administrative et du management, disposant de <strong>plus de 10 ans d’expérience</strong> dans la formation professionnelle.</p>
-            <ul className={styles.consultantHighlights}>
-              {consultantHighlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
-            </ul>
-            <Link className={styles.textLink} href="/a-propos/adel-el-haddioui">Découvrir votre interlocuteur <ArrowRight aria-hidden="true" /></Link>
           </div>
         </div>
       </section>
