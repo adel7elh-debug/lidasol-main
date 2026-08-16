@@ -496,9 +496,9 @@ main { overflow: clip; }
 /* Consultant profile shared by every page */
 .site-consultant { padding: 108px 0; background: white; content-visibility: auto; contain-intrinsic-size: auto 740px; }
 .site-consultant__layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(45px, 7vw, 90px); align-items: center; }
-.site-consultant__image { position: relative; min-height: 520px; overflow: hidden; border-radius: 18px; box-shadow: 0 28px 70px rgba(6,27,61,.16); }
+.site-consultant__image { position: relative; overflow: hidden; background: #11131a; border-radius: 18px; box-shadow: 0 28px 70px rgba(6,27,61,.16); }
 .site-consultant__image::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(6,27,61,.4)); pointer-events: none; }
-.site-consultant__image img { object-fit: cover; object-position: center 30%; }
+.site-consultant__image img { width: 100%; height: auto; }
 .site-consultant__content h2 { margin: 0; font-size: clamp(38px,4.5vw,58px); line-height: 1.06; letter-spacing: -.045em; }
 .site-consultant__content > p:not(.eyebrow) { max-width: 620px; margin: 24px 0 0; color: var(--muted); font-size: 16px; line-height: 1.8; }
 .site-consultant__highlights { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 17px 28px; margin: 30px 0 0; padding: 24px 0 0; list-style: none; border-top: 1px solid var(--line); }
@@ -570,7 +570,6 @@ main { overflow: clip; }
   .intra-layout { grid-template-columns: 1fr; gap: 30px; }
   .placeholder-grid { grid-template-columns: 1fr; }
   .site-consultant__layout { grid-template-columns: 1fr; }
-  .site-consultant__image { min-height: 440px; }
   .footer-main { grid-template-columns: 1.3fr 1fr 1fr; }
   .footer-main > div:last-child { grid-column: 1 / -1; }
 }
@@ -689,7 +688,6 @@ main { overflow: clip; }
   .form-submit .button { width: 100%; }
   .form-submit small { font-size: 11px; }
   .site-consultant { padding: 64px 0; }
-  .site-consultant__image { min-height: 360px; }
   .site-consultant__highlights { grid-template-columns: 1fr; gap: 14px; }
   .method-timeline { margin-left: 24px; }
   .method-timeline li { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 0 0 46px 34px; }

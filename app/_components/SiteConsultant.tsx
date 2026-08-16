@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 const consultantHighlights = [
   "Manager et Responsable de Site au sein d’une entreprise européenne",
-  "Ex-Directeur Administratif et Financier (DAF)",
+  "Directeur Administratif et Financier (DAF)",
   "Formateur professionnel à l’OFPPT et à l’IIPM",
   "Professeur universitaire à la FIEP (France)",
   "Auditeur ISO 9001, ISO 14001 et ISO 45001",
@@ -19,7 +19,8 @@ export function SiteConsultant() {
           <Image
             src="/photos/pages/adel-el-haddioui.webp"
             alt="Portrait professionnel d’Adel El Haddioui"
-            fill
+            width={1079}
+            height={1538}
             sizes="(max-width: 930px) calc(100vw - 48px), 44vw"
           />
         </div>
