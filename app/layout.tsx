@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { SiteHeader } from "@/app/_components/SiteHeader";
-import { SiteConsultant } from "@/app/_components/SiteConsultant";
 import { SiteFooter } from "@/app/_components/SiteFooter";
 import { WhatsAppFloatingButton } from "@/app/_components/WhatsAppButton";
 import { absoluteUrl, CONTACT_EMAIL, LOCATION, PHONE_LINK, SITE_NAME, SITE_URL } from "@/app/_lib/site";
@@ -51,7 +50,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <SiteHeader />
         <div id="main-content">
           {children}
-          <SiteConsultant />
         </div>
         <SiteFooter />
         <WhatsAppFloatingButton />
