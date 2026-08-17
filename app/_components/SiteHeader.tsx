@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { createWhatsAppUrl, whatsappMessages } from "@/app/_lib/site";
 
 const serviceLinks = [
   ["Digitalisation & automatisation", "/digitalisation"],
@@ -183,9 +182,9 @@ export function SiteHeader() {
           <Link className={pathname.startsWith("/contact") ? "is-active" : undefined} href="/contact">Contact</Link>
         </nav>
 
-        <a className="button button-gold header-cta" href={createWhatsAppUrl(whatsappMessages.diagnostic)} target="_blank" rel="noreferrer">
+        <Link className="button button-gold header-cta" href="/contact#diagnostic-form">
           Diagnostic 180° offert
-        </a>
+        </Link>
       </div>
     </header>
   );

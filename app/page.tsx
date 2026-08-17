@@ -84,7 +84,7 @@ export default function Home() {
             <h1>Des solutions <em>intelligentes</em> pour développer votre activité</h1>
             <p className="hero-kicker">Un accompagnement simple, efficace et orienté résultats.</p>
             <p className="hero-lead">Fichiers dispersés, relances manuelles, responsabilités floues ou projet ISO difficile à cadrer : ce sont rarement des problèmes de compétence. Ce sont des problèmes d’organisation. LIDA aide les TPE et PME au Maroc à transformer ces irritants en méthodes, outils et décisions réellement applicables.</p>
-            <div className="hero-actions"><Link className="button button-gold" href="/contact">Diagnostic 180° offert <ArrowRight aria-hidden="true" size={17} /></Link><WhatsAppButton message={whatsappMessages.general} label="Échanger sur WhatsApp" /></div>
+            <div className="hero-actions"><Link className="button button-gold" href="/contact#diagnostic-form">Diagnostic 180° offert <ArrowRight aria-hidden="true" size={17} /></Link><WhatsAppButton message={whatsappMessages.general} label="Échanger sur WhatsApp" /></div>
             <div className="trust-row"><span><CheckCircle2 aria-hidden="true" /> Diagnostic avant solution</span><span><CheckCircle2 aria-hidden="true" /> Livrables identifiés</span><span><CheckCircle2 aria-hidden="true" /> Actions et responsables suivis</span></div>
           </div>
           <div className="home-hero-visual">
@@ -113,7 +113,7 @@ export default function Home() {
 
       <ClientReferences />
 
-      <CTASection title="Quel est le prochain cap de votre entreprise ?" text="Un premier échange pour comprendre votre besoin et identifier les premières actions utiles." primaryLabel="Diagnostic 180° offert" primaryHref="/contact" whatsappMessage={whatsappMessages.diagnostic} />
+      <CTASection title="Quel est le prochain cap de votre entreprise ?" text="Un premier échange pour comprendre votre besoin et identifier les premières actions utiles." primaryLabel="Diagnostic 180° offert" primaryHref="/contact#diagnostic-form" whatsappMessage={whatsappMessages.diagnostic} />
 
       <section className="quick-contact"><div className="container"><div><small>Contact rapide</small><strong>+212 663 667 848</strong></div><WhatsAppButton message={whatsappMessages.general} label="Discuter sur WhatsApp" /><Link className="button button-outline-dark" href="/contact">Accéder au contact</Link></div></section>
     </main>

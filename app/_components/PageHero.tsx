@@ -5,7 +5,7 @@ import type { LinkItem } from "@/app/_data/services";
 import { Breadcrumbs } from "@/app/_components/Breadcrumbs";
 import { WhatsAppButton } from "@/app/_components/WhatsAppButton";
 
-export function PageHero({ eyebrow, title, description, image, imageAlt, breadcrumbs, primaryLabel, primaryHref = "/contact", whatsappMessage }: {
+export function PageHero({ eyebrow, title, description, image, imageAlt, breadcrumbs, primaryLabel, primaryHref = "/contact", whatsappMessage, showWhatsApp = true }: {
   eyebrow: string;
   title: string;
   description: string;
@@ -15,6 +15,7 @@ export function PageHero({ eyebrow, title, description, image, imageAlt, breadcr
   primaryLabel: string;
   primaryHref?: string;
   whatsappMessage: string;
+  showWhatsApp?: boolean;
 }) {
   return (
     <section className="page-hero">
@@ -28,7 +29,7 @@ export function PageHero({ eyebrow, title, description, image, imageAlt, breadcr
             <p className="hero-lead">{description}</p>
             <div className="hero-actions">
               <Link className="button button-gold" href={primaryHref}>{primaryLabel}<ArrowRight aria-hidden="true" size={17} /></Link>
-              <WhatsAppButton message={whatsappMessage} label="Discuter sur WhatsApp" />
+              {showWhatsApp ? <WhatsAppButton message={whatsappMessage} label="Discuter sur WhatsApp" /> : null}
             </div>
           </div>
           <div className="page-hero-image">
