@@ -28,7 +28,9 @@ export function ClientReferences() {
                   src={logo}
                   alt={name}
                   fill
-                  sizes="(max-width: 640px) 42vw, (max-width: 930px) 28vw, 190px"
+                  quality={95}
+                  sizes="(max-width: 640px) 44vw, (max-width: 930px) 30vw, 220px"
+                  style={{ objectFit: "contain" }}
                 />
               </div>
             </li>

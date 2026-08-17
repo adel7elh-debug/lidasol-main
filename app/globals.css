@@ -831,9 +831,9 @@ h1, h2, h3, .button, .desktop-nav, .mobile-menu { font-family: Manrope, Inter, "
 .client-references-heading { max-width: 780px; margin-bottom: 48px; }
 .client-references-heading > p:last-child { max-width: 720px; margin: 20px 0 0; color: var(--muted); font-size: 15px; line-height: 1.75; }
 .client-reference-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin: 0; padding: 0; list-style: none; }
-.client-reference-grid > li { min-width: 0; min-height: 176px; display: grid; place-items: center; padding: 24px; background: white; border: 1px solid var(--line); border-radius: 7px; box-shadow: 0 14px 36px rgba(7,26,58,.055); transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
-.client-reference-logo { position: relative; width: min(100%, 170px); height: 120px; }
-.client-reference-logo--wide { width: min(100%, 230px); height: 90px; }
+.client-reference-grid > li { min-width: 0; min-height: 204px; display: grid; place-items: center; padding: 22px; background: white; border: 1px solid var(--line); border-radius: 7px; box-shadow: 0 14px 36px rgba(7,26,58,.055); transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
+.client-reference-logo { position: relative; width: min(100%, 220px); height: 145px; }
+.client-reference-logo--wide { width: min(100%, 250px); height: 110px; }
 .client-reference-logo img { object-fit: contain; }
 
 @media (hover: hover) and (pointer: fine) {
@@ -891,10 +891,10 @@ h1, h2, h3, .button, .desktop-nav, .mobile-menu { font-family: Manrope, Inter, "
   .client-references-heading { margin-bottom: 34px; }
   .client-references-heading > p:last-child { font-size: 14px; line-height: 1.7; }
   .client-reference-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-  .client-reference-grid > li { min-height: 148px; padding: 16px; }
+  .client-reference-grid > li { min-height: 160px; padding: 14px; }
   .client-reference-grid > li:last-child:nth-child(odd) { grid-column: 1 / -1; width: calc((100% - 14px) / 2); justify-self: center; }
-  .client-reference-logo { width: min(100%, 145px); height: 104px; }
-  .client-reference-logo--wide { width: min(100%, 180px); height: 72px; }
+  .client-reference-logo { width: min(100%, 150px); height: 120px; }
+  .client-reference-logo--wide { width: min(100%, 185px); height: 78px; }
   .page-hero { padding-top: 44px; }
 }
 
