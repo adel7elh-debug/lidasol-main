@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, GraduationCap, Laptop2, Network, ShieldCheck, Sparkles, Target } from "lucide-react";
+import { ClientReferences } from "@/app/_components/ClientReferences";
 import { CTASection } from "@/app/_components/CTASection";
 import { WhatsAppButton } from "@/app/_components/WhatsAppButton";
 import { whatsappMessages } from "@/app/_lib/site";
@@ -109,6 +110,8 @@ export default function Home() {
       <section className="section training-preview light-section"><div className="container"><div className="section-heading split-heading"><div><p className="eyebrow eyebrow-dark"><span /> Formations</p><h2>Développer des compétences directement applicables</h2></div><p>Quatre axes pratiques, en présentiel, à distance ou en intra-entreprise, adaptés au niveau et aux besoins réels de vos équipes.</p></div><div className="featured-trainings"><Link href="/formation/axe-gestion-administrative-comptable"><small>Gestion</small><h3>Gestion administrative & comptable</h3><span>Voir les formations <ArrowRight aria-hidden="true" size={16} /></span></Link><Link href="/formation/axe-intelligence-artificielle"><small>Innovation</small><h3>IA appliquée à l’entreprise</h3><span>Voir les formations <ArrowRight aria-hidden="true" size={16} /></span></Link><Link href="/formation/axe-iso-qse"><small>Management</small><h3>ISO & QSE</h3><span>Voir les formations <ArrowRight aria-hidden="true" size={16} /></span></Link><Link href="/formation/axe-excel-analyse-donnees"><small>Données</small><h3>Excel & analyse des données</h3><span>Voir les formations <ArrowRight aria-hidden="true" size={16} /></span></Link></div><div className="center-action"><Link className="button button-blue" href="/formation">Découvrir les quatre axes</Link></div></div></section>
 
       <section className="section proof-section"><div className="container two-column-sections"><div><p className="eyebrow eyebrow-dark"><span /> Repères de confiance</p><h2>Un interlocuteur nommé et une méthode vérifiable</h2><p>Adel El Haddioui est l’interlocuteur de LIDA Solutions & Consulting. Le site décrit, pour chaque prestation, les situations traitées, les actions prévues, les livrables et les limites réglementaires applicables — sans promesse vague ni engagement flou.</p><Link className="text-link text-link-blue" href="/a-propos/adel-el-haddioui">Découvrir l’interlocuteur <ArrowRight aria-hidden="true" size={16} /></Link></div><div className="transparency-box"><small>Transparence</small><h2>Des exemples, pas de faux clients</h2><p>Les situations publiées sont signalées comme illustratives. Elles montrent comment une mission peut être cadrée sans inventer de témoignage, de référence commerciale ni de résultat chiffré.</p><Link href="/realisations">Voir les exemples de missions <ArrowRight aria-hidden="true" size={16} /></Link></div></div></section>
+
+      <ClientReferences />
 
       <CTASection title="Quel est le prochain cap de votre entreprise ?" text="Un premier échange pour comprendre votre besoin et identifier les premières actions utiles." primaryLabel="Diagnostic 180° offert" primaryHref="/contact" whatsappMessage={whatsappMessages.diagnostic} />
 

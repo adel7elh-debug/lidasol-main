@@ -825,6 +825,21 @@ h1, h2, h3, .button, .desktop-nav, .mobile-menu { font-family: Manrope, Inter, "
 .featured-trainings a, .transparency-box, .feature-card, .training-axis-card, .lead-form, .contact-cards > a, .contact-cards > div { border-radius: 7px; }
 .preview-image { overflow: hidden; }
 
+.client-references { position: relative; overflow: hidden; background: linear-gradient(180deg, #fff 0%, #f8fafc 100%); border-block: 1px solid var(--line); }
+.client-references::before { content: ""; position: absolute; width: 360px; height: 360px; right: -220px; top: -220px; border: 1px solid rgba(214,166,50,.22); border-radius: 50%; box-shadow: 0 0 0 38px rgba(11,75,179,.035); pointer-events: none; }
+.client-references .container { position: relative; z-index: 1; }
+.client-references-heading { max-width: 780px; margin-bottom: 48px; }
+.client-references-heading > p:last-child { max-width: 720px; margin: 20px 0 0; color: var(--muted); font-size: 15px; line-height: 1.75; }
+.client-reference-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin: 0; padding: 0; list-style: none; }
+.client-reference-grid > li { min-width: 0; min-height: 176px; display: grid; place-items: center; padding: 24px; background: white; border: 1px solid var(--line); border-radius: 7px; box-shadow: 0 14px 36px rgba(7,26,58,.055); transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
+.client-reference-logo { position: relative; width: min(100%, 170px); height: 120px; }
+.client-reference-logo--wide { width: min(100%, 230px); height: 90px; }
+.client-reference-logo img { object-fit: contain; }
+
+@media (hover: hover) and (pointer: fine) {
+  .client-reference-grid > li:hover { transform: translateY(-4px); border-color: rgba(214,166,50,.48); box-shadow: 0 20px 46px rgba(7,26,58,.085); }
+}
+
 .page-hero { padding: 34px 0 92px; }
 .page-hero-layout { gap: 70px; }
 .page-hero h1 { font-size: clamp(43px, 4.7vw, 66px); }
@@ -851,6 +866,7 @@ h1, h2, h3, .button, .desktop-nav, .mobile-menu { font-family: Manrope, Inter, "
   .home-hero-visual { width: 100%; min-height: 430px; }
   .home-expertise-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .home-expertise-grid article, .home-expertise-grid article:nth-child(-n+2) { grid-column: span 1; }
+  .client-reference-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (max-width: 640px) {
@@ -872,6 +888,13 @@ h1, h2, h3, .button, .desktop-nav, .mobile-menu { font-family: Manrope, Inter, "
   .expertise-card-body { padding: 23px; }
   .home-expertise-grid small { top: 27px; right: 23px; }
   .home-expertise-grid a { padding-top: 22px; }
+  .client-references-heading { margin-bottom: 34px; }
+  .client-references-heading > p:last-child { font-size: 14px; line-height: 1.7; }
+  .client-reference-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .client-reference-grid > li { min-height: 148px; padding: 16px; }
+  .client-reference-grid > li:last-child:nth-child(odd) { grid-column: 1 / -1; width: calc((100% - 14px) / 2); justify-self: center; }
+  .client-reference-logo { width: min(100%, 145px); height: 104px; }
+  .client-reference-logo--wide { width: min(100%, 180px); height: 72px; }
   .page-hero { padding-top: 44px; }
 }
 
