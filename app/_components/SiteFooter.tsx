@@ -10,7 +10,7 @@ export function SiteFooter() {
           <Link className="brand footer-brand" href="/" aria-label="LIDA Solutions & Consulting — Accueil">
             <Image
               className="brand-logo footer-brand-logo"
-              src="/logo-lida-affiche.png"
+              src="/logo-lida-white.png"
               alt=""
               width={900}
               height={648}

@@ -147,7 +147,7 @@ export function SiteHeader() {
         <Link className="brand" href="/" aria-label="LIDA Solutions & Consulting — Accueil">
           <Image
             className="brand-logo"
-            src="/logo-lida-affiche.png"
+            src="/logo-lida.png"
             alt=""
             width={900}
             height={648}
