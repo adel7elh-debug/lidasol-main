@@ -8,6 +8,7 @@ const clientReferences: ReadonlyArray<{ name: string; logo: string; wide?: boole
   { name: "FZ Concept", logo: "/references/fz-concept.png" },
   { name: "KM Consulting & Digital Agency", logo: "/references/km-consulting.png" },
   { name: "Let’s go12 Car Rental", logo: "/references/letsgo12-car-rental.png" },
+  { name: "ZT Style", logo: "/references/zt-style.webp" },
 ];
 
 export function ClientReferences() {
