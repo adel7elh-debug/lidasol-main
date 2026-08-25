@@ -169,6 +169,7 @@ export function SiteHeader() {
             <Link href="/" onClick={closeMobileMenu}>Accueil</Link>
             <MobileNavSection id="mobile-services" label="Services" links={serviceLinks} isOpen={activeMobileSection === "Services"} onToggle={() => toggleMobileSection("Services")} onLinkClick={closeMobileMenu} />
             <Link href="/realisations" onClick={closeMobileMenu}>Réalisations</Link>
+            <Link href="/blog" onClick={closeMobileMenu}>Blog</Link>
             <MobileNavSection id="mobile-about" label="À propos" links={aboutLinks} isOpen={activeMobileSection === "À propos"} onToggle={() => toggleMobileSection("À propos")} onLinkClick={closeMobileMenu} />
             <Link href="/contact" onClick={closeMobileMenu}>Contact</Link>
           </nav>
@@ -178,6 +179,7 @@ export function SiteHeader() {
           <Link className={pathname === "/" ? "is-active" : undefined} href="/">Accueil</Link>
           <NavDropdown label="Services" links={serviceLinks} isOpen={activeDropdown === "Services"} onOpen={openDropdown} onClose={closeDropdown} onScheduleClose={scheduleClose} onCancelClose={cancelClose} currentPath={pathname} />
           <Link className={pathname.startsWith("/realisations") ? "is-active" : undefined} href="/realisations">Réalisations</Link>
+          <Link className={pathname.startsWith("/blog") ? "is-active" : undefined} href="/blog">Blog</Link>
           <Link className={pathname.startsWith("/a-propos") ? "is-active" : undefined} href="/a-propos">À propos</Link>
           <Link className={pathname.startsWith("/contact") ? "is-active" : undefined} href="/contact">Contact</Link>
         </nav>
