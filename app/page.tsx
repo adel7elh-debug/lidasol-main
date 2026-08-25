@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, GraduationCap, Laptop2, Network, ShieldCheck, Sparkles, Target } from "lucide-react";
 import { ClientReferences } from "@/app/_components/ClientReferences";
 import { CTASection } from "@/app/_components/CTASection";
+import { LatestArticles } from "@/app/_components/LatestArticles";
 import { WhatsAppButton } from "@/app/_components/WhatsAppButton";
 import { whatsappMessages } from "@/app/_lib/site";
 
@@ -112,6 +113,8 @@ export default function Home() {
       <section className="section proof-section"><div className="container two-column-sections"><div><p className="eyebrow eyebrow-dark"><span /> Repères de confiance</p><h2>Un interlocuteur nommé et une méthode vérifiable</h2><p>Adel El Haddioui est l’interlocuteur de LIDA Solutions & Consulting. Le site décrit, pour chaque prestation, les situations traitées, les actions prévues, les livrables et les limites réglementaires applicables — sans promesse vague ni engagement flou.</p><Link className="text-link text-link-blue" href="/a-propos/adel-el-haddioui">Découvrir l’interlocuteur <ArrowRight aria-hidden="true" size={16} /></Link></div><div className="transparency-box"><small>Transparence</small><h2>Des exemples, pas de faux clients</h2><p>Les situations publiées sont signalées comme illustratives. Elles montrent comment une mission peut être cadrée sans inventer de témoignage, de référence commerciale ni de résultat chiffré.</p><Link href="/realisations">Voir les exemples de missions <ArrowRight aria-hidden="true" size={16} /></Link></div></div></section>
 
       <ClientReferences />
+
+      <LatestArticles />
 
       <CTASection title="Quel est le prochain cap de votre entreprise ?" text="Un premier échange pour comprendre votre besoin et identifier les premières actions utiles." primaryLabel="Diagnostic 180° offert" primaryHref="/contact#diagnostic-form" whatsappMessage={whatsappMessages.diagnostic} />
 
