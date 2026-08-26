@@ -9,7 +9,7 @@ export function LatestArticles() {
       <div className="container">
         <div className="section-heading split-heading">
           <div>
-            <p className="eyebrow eyebrow-dark"><span /> Blog & actualités</p>
+            <p className="eyebrow eyebrow-dark"><span /> Actualités &amp; Conseils</p>
             <h2>Des repères utiles pour passer à l’action</h2>
           </div>
           <div className="latest-articles-heading-copy">

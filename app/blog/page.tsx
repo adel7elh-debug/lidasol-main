@@ -6,11 +6,11 @@ import { blogPosts } from "@/app/_data/blog";
 import { whatsappMessages } from "@/app/_lib/site";
 
 export const metadata: Metadata = {
-  title: "Blog & actualités pour les PME au Maroc",
+  title: "Actualités & Conseils pour les PME au Maroc",
   description: "Conseils pratiques sur la digitalisation, le pilotage, l’organisation, l’ISO et la formation pour les TPE et PME au Maroc.",
   alternates: { canonical: "/blog" },
   openGraph: {
-    title: "Blog & actualités | LIDA Solutions & Consulting",
+    title: "Actualités & Conseils | LIDA Solutions & Consulting",
     description: "Des repères concrets pour structurer, digitaliser et développer votre entreprise.",
     url: "/blog",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "LIDA Solutions & Consulting" }],
@@ -24,7 +24,7 @@ export default function BlogPage() {
     <main>
       <section className="blog-hero">
         <div className="container">
-          <Breadcrumbs items={[{ label: "Blog & actualités", href: "/blog" }]} />
+          <Breadcrumbs items={[{ label: "Actualités & Conseils", href: "/blog" }]} />
           <div className="blog-hero__copy">
             <p className="eyebrow"><span /> Ressources</p>
             <h1>Des idées claires pour améliorer le travail au quotidien</h1>

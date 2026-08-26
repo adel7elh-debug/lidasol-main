@@ -61,7 +61,7 @@ export default async function BlogArticlePage({ params }: Props) {
       <article>
         <header className="article-hero">
           <div className="container">
-            <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: post.title, href: `/blog/${post.slug}` }]} />
+            <Breadcrumbs items={[{ label: "Actualités & Conseils", href: "/blog" }, { label: post.title, href: `/blog/${post.slug}` }]} />
             <div className="article-hero__layout">
               <div className="article-hero__copy">
                 <span className="article-category">{post.category}</span>
