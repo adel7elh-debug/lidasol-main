@@ -1061,7 +1061,7 @@ h1, h2, h3, .button, .desktop-nav, .mobile-menu { font-family: Manrope, Inter, "
   .value-card-grid article { min-height: 0; }
 }
 
-/* Blog & actualités */
+/* Actualités & Conseils */
 .blog-hero, .article-hero { position: relative; overflow: hidden; color: white; background: radial-gradient(circle at 86% 18%, rgba(23,106,212,.3), transparent 30%), linear-gradient(125deg, #071a3a 0%, #092755 66%, #0b3a7c 100%); }
 .blog-hero::after, .article-hero::after { content: ""; position: absolute; right: -250px; bottom: -350px; width: 520px; height: 520px; border: 1px solid rgba(232,190,85,.45); border-radius: 50%; box-shadow: 0 0 0 42px rgba(11,75,179,.16), 0 0 0 86px rgba(232,190,85,.06); pointer-events: none; }
 .blog-hero { padding: 34px 0 104px; }
